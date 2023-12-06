@@ -7,4 +7,4 @@
 - 📧 Email: contact@dedaub.com
 - 🌐 [Website](https://dedaub.com)
 - 🐦 [Twitter](https://twitter.com/dedaub)
-- 💼 [LinkedIn] (https://www.linkedin.com/company/dedaub/)
+- 💼 [LinkedIn](https://www.linkedin.com/company/dedaub/)
