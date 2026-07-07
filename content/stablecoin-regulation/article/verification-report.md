@@ -82,3 +82,38 @@ Arts. 40/50 interest ban.
    article body).
 
 Everything else in the article traces to a confirmed source as of this run.
+
+
+## Addendum — reconciliation against primary texts (2026-07-07, second pass)
+
+Author-supplied source pack: enrolled GENIUS text (PL 119-27 rendering), CLARITY
+H.R. 3633 engrossed text, Treasury ANPRM / White House / Covington / Mayer Brown /
+Paul Hastings summaries, clause-by-clause euro-reserve analysis, FDIC BankFind check.
+
+Corrections applied to the article in this pass:
+1. **Reserve-list precision** — Sec. 4(a)(1)(A) clause (ii) (bank deposits) states
+   no currency: euro deposits are the list's single lawful non-USD bucket. Article
+   text changed from "every item on it is American" to "all but one item is
+   dollar-locked," with the de jure/de facto distinction spelled out (fn [31]).
+2. **The euro coin's real constraint set** — replaced "non-earning euro cash" with
+   the documented chain: uninsured foreign-branch deposits (FDI Act), 40%
+   single-bank concentration cap (proposed FDIC §350.4(f)), USD insured-deposit
+   floor + USD backstop (proposed OCC §§15.11(d)/15.41(b)(2)), and the FDIC
+   BankFind finding that only 5 of Europe's top-30 banks own an active FDIC-insured
+   US institution (fn [31]).
+3. **Anti-CBDC inversion added** — CLARITY H.R. 3633 Title VI ("Anti-CBDC
+   Surveillance State Act"), House-passed Jul 17, 2025, Senate-pending: US bans its
+   public digital option while the EU builds one (fn [32]).
+4. **Footnotes [4] and [27]** upgraded to statutory citations (12 U.S.C. 5903;
+   Sec. 2(17)/(19)(C) verbatim basis for the currency-neutral peg).
+
+Claims re-checked against the enrolled text and left standing: the 93-day Treasury
+maturity; the closed nature of the reserve list; the yield ban Sec. 4(a)(11)
+(Hagerty Amendment); Jan 18, 2027 effective date; Jul 18, 2028 DASP cutoff; the
+Sec. 18 comparability/OCC-registration/US-reserves gating for foreign issuers
+(SCRC approval required); no usage caps anywhere in GENIUS.
+
+Note for future runs: the Treasury ANPRM summary attributes the foreign-issuer
+lawful-order/noncompliance-designation mechanism to Section 8 of the Act; our
+digest maps Section 8 to state-issuer supervision. Resolve against the enrolled
+text before citing either section number for that mechanism.
