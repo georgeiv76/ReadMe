@@ -55,7 +55,7 @@ The US wrote an export license. Europe wrote an import restriction. Both are tal
 
 **The digital euro's clock.** Euro stablecoins are 0.2% of the market and the public alternative won't circulate before 2029 at best. As one Forbes headline put it: euro stablecoins are scaling "while the digital euro waits on Brussels" [18].
 
-**And the skeptics deserve a hearing.** The Kansas City Fed notes stablecoins raise Treasury demand mostly by cannibalizing money market funds and deposits: substitution, not new money [19]. The BIS argues stablecoins fail the basic tests of money (singleness, elasticity, integrity) and trade more like ETFs [20]. USDC's depeg to $0.87 in March 2023 is a reminder that the weapon can misfire [21]. A $100B+ T-bill fire-sale in a stablecoin run would be a US problem, not just a crypto one.
+**And the skeptics deserve a hearing.** The Kansas City Fed notes stablecoins raise Treasury demand mostly by cannibalizing money market funds and deposits: substitution, not new money [19]. The Bank for International Settlements — the Basel-based "central bank of central banks" — argues stablecoins fail the basic tests of money (singleness, elasticity, integrity) and trade more like ETFs [20]. USDC's depeg to $0.87 in March 2023 is a reminder that the weapon can misfire [21]. A $100B+ T-bill fire-sale in a stablecoin run would be a US problem, not just a crypto one.
 
 ## The war's clearest evidence: USDT under fire
 
