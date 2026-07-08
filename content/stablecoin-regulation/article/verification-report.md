@@ -117,3 +117,13 @@ Note for future runs: the Treasury ANPRM summary attributes the foreign-issuer
 lawful-order/noncompliance-designation mechanism to Section 8 of the Act; our
 digest maps Section 8 to state-issuer supervision. Resolve against the enrolled
 text before citing either section number for that mechanism.
+
+
+## Update — 2026-07-08 (third pass)
+
+Added the second delisting wave (fn [33]): Revolut staged USDT removal for EU
+users (purchases blocked Jul 6; deposits off Jul 30; full delisting Aug 31, 2026,
+auto-conversion of residuals) — verified across Yahoo Finance, BeInCrypto,
+The Paypers (Jul 4-5, 2026). Correction to circulating framing: Aug 31 is
+Revolut's own schedule following the Jul 1, 2026 expiry of the Art. 143(3) CASP
+grandfathering window — not an EU-wide statutory removal date.

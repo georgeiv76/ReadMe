@@ -46,8 +46,13 @@ EDIT 7 — Rendering check, "Same tools, opposite doctrines": if the comparison 
 • Foreign-issuer rules — GENIUS (US): reciprocity to export the dollar rail / MiCA (EU): caps and localization to block the dollar rail
 • End goal — GENIUS (US): dollar everywhere / MiCA (EU): euro survives at home
 
+EDIT 8 — In the USDT section ("The war's clearest evidence"), immediately after the sentence ending "delisted across Coinbase, Kraken, Crypto.com and Binance for EU users by March 2025 [12].":
+INSERT: " And the wall is still closing: with MiCA's final transition window shut on July 1, 2026, the fintech Revolut is now removing USDT for its European users in stages — purchases blocked July 6, deposits off July 30, full delisting August 31, 2026, with any leftover balances auto-converted to fiat [33]."
+Then append footnote [33] after [32]:
+[33] Revolut staged USDT delisting for EU users: purchases blocked July 6, 2026; deposits disabled July 30, 2026; full delisting August 31, 2026, with residual balances auto-converted to the user's base currency at market rate — Yahoo Finance, BeInCrypto, The Paypers (July 4-5, 2026). Timing follows the expiry of MiCA's Art. 143(3) CASP grandfathering window (July 1, 2026). August 31 is Revolut's own schedule, not an EU-wide statutory date.
+
 **FINAL VERIFICATION (all four):**
-1. Body markers [31] and [32] each have a matching footnote; the list runs [1]-[32], no duplicates.
+1. Body markers [31], [32] and [33] each have a matching footnote; the list runs [1]-[33], no duplicates.
 2. Every headline still has its italic summary beneath it.
 3. "every item on it is American" and "non-earning euro cash" appear NOWHERE in the draft.
 4. Editor shows "Draft - saved". Never click Publish or Next.
