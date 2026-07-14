@@ -1,0 +1,40 @@
+{
+  "_comment": "Approximation of GET {api}/project/{id}/version/{vid}/warnings. Confirmed fields (from srcwarnings source): kind (nullable), confidence, severity. Other fields are inferred enrichment; adapters/dedaub.py parses tolerantly.",
+  "warnings": [
+    {
+      "kind": "Reentrancy",
+      "confidence": "MEDIUM PLUS",
+      "severity": "HIGH",
+      "visibility": "PUBLIC",
+      "address": "0x00000000000000000000000000000000DEADBEEF",
+      "chain": "ethereum",
+      "key_selector": "0x2e1a7d4d",
+      "function_signature": "withdraw(uint256)",
+      "statement": "0x41d",
+      "description": "State change after external call in withdraw()."
+    },
+    {
+      "kind": "Accessible selfdestruct",
+      "confidence": "HIGH",
+      "severity": "CRITICAL",
+      "visibility": "PUBLIC",
+      "address": "0x00000000000000000000000000000000DEADBEEF",
+      "chain": "ethereum",
+      "key_selector": "0x9cb8a26a",
+      "statement": "0x812",
+      "description": "SELFDESTRUCT reachable from a public function without an effective guard."
+    },
+    {
+      "kind": "Tainted owner variable",
+      "confidence": "LOW",
+      "severity": "MEDIUM",
+      "visibility": "PUBLIC",
+      "address": "0x00000000000000000000000000000000DEADBEEF",
+      "chain": "ethereum",
+      "key_selector": "0x1e2e3e4e",
+      "function_signature": "setConfig(address)",
+      "statement": "0x9aa",
+      "description": "Owner storage slot writable via unguarded path (candidate false positive: admin setter)."
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "error": null,
+  "issues": [
+    {
+      "address": 1053,
+      "contract": "Unknown",
+      "description": "The contract account state is accessed after an external call to a user-defined address. Consider that the called contract could re-enter the function before this state change takes place.",
+      "function": "_function_0x2e1a7d4d",
+      "max_gas_used": 12345,
+      "min_gas_used": 1076,
+      "severity": "High",
+      "sourceMap": "1053:1:0",
+      "swc-id": "107",
+      "title": "State access after external call",
+      "tx_sequence": {
+        "steps": [
+          {"input": "0x2e1a7d4d0000000000000000000000000000000000000000000000000000000000000001",
+           "value": "0x0"}
+        ]
+      }
+    },
+    {
+      "address": 622,
+      "contract": "Unknown",
+      "description": "Anyone can withdraw ETH from the contract account.",
+      "function": "_function_0x3ccfd60b",
+      "max_gas_used": 1200,
+      "min_gas_used": 1000,
+      "severity": "High",
+      "sourceMap": "622:1:0",
+      "swc-id": "105",
+      "title": "Unprotected Ether Withdrawal",
+      "tx_sequence": null
+    }
+  ],
+  "success": true
+}

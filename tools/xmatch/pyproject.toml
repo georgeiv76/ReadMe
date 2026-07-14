@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "dedaub-xmatch"
+version = "0.1.0"
+description = "Cross-matching confidence engine: reduce Dedaub Security Suite false positives by corroborating warnings against independent tools"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+dependencies = []
+
+[project.optional-dependencies]
+# Real integrations. The core engine and all tests need none of these; adapters
+# import them lazily so the package works with stdlib alone.
+mythril = ["mythril>=0.24"]
+dev = ["pytest>=7"]
+
+[project.scripts]
+xmatch = "dedaub_xmatch.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
