@@ -1,0 +1,47 @@
+{
+  "_comment": "REAL Dedaub warning rows read 2026-07-14 from ethereum.vulnerability_denorm via the dedaub-monitoring MCP server (SELECT to_jsonb(row)). SANITIZED: the two `address` values are replaced with placeholders; every other field (keys, enum labels, bytea `\\x` hex format, integer `stmt`, timestamps, descriptions) is verbatim as delivered. This is the authoritative shape adapters/dedaub.py is validated against.",
+  "rows": [
+    {
+      "vulnerability_kind": "Vulnerability",
+      "vulnerability_type": "ERC20 call demands high-level return value",
+      "confidence": "MEDIUM",
+      "severity": "MEDIUM",
+      "visibility": "PUBLIC",
+      "address": "\\x00000000000000000000000000000000dead0001",
+      "selector": "\\x80dc0672",
+      "signature": "stopReward()",
+      "stmt": 12992,
+      "cwe": null,
+      "description": "ERC20 call does not accept implementations (as in USDT) that do not have a high-level return value",
+      "debug_message": "Call to `transfer(address,uint256)` will fail if performed on a token on which the operation does not return a value. This is particularly an issue for USDT and other old tokens that have no high-level return value in their token operations.",
+      "code_location_type": "bytecode",
+      "vulnerability_owner": -1,
+      "code_vulnerability_state": "UNKNOWN",
+      "state_vulnerability_state": "UNKNOWN",
+      "further_resources_urls": null,
+      "last_analyzed_ts": "2024-05-19T08:48:26.301998+00:00",
+      "last_updated": "2024-05-19T08:48:26.301998+00:00"
+    },
+    {
+      "vulnerability_kind": "Bad smell",
+      "vulnerability_type": "Immutable storage location declared mutable",
+      "confidence": "MEDIUM",
+      "severity": "LOW",
+      "visibility": "PUBLIC",
+      "address": "\\x00000000000000000000000000000000dead0002",
+      "selector": "\\x081812fc",
+      "signature": "getApproved(uint256)",
+      "stmt": 9177,
+      "cwe": null,
+      "description": "Storage location never written, only read. Should have been declared immutable to enable inlining.",
+      "debug_message": "Storage location `stor0xb` is only read. Possible error or should be declared immutable for gas savings.",
+      "code_location_type": "bytecode",
+      "vulnerability_owner": -1,
+      "code_vulnerability_state": "UNKNOWN",
+      "state_vulnerability_state": "UNKNOWN",
+      "further_resources_urls": null,
+      "last_analyzed_ts": "2026-07-11T11:04:47.916677+00:00",
+      "last_updated": "2026-07-11T11:04:47.916677+00:00"
+    }
+  ]
+}

@@ -1,5 +1,5 @@
 {
-  "_comment": "Approximation of GET {api}/project/{id}/version/{vid}/warnings. Confirmed fields (from srcwarnings source): kind (nullable), confidence, severity. Other fields are inferred enrichment; adapters/dedaub.py parses tolerantly.",
+  "_comment": "SYNTHETIC Watchdog-export approximation (invented field spellings kind/key_selector/statement), kept to exercise the adapter's tolerant fallback path. The DB-CONFIRMED warning shape (vulnerability_type/selector/stmt from vulnerability_denorm) lives in dedaub_warnings_real.json and is the authoritative fixture.",
   "warnings": [
     {
       "kind": "Reentrancy",

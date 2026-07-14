@@ -219,3 +219,69 @@ def test_parse_dedaub_unknown_type_maps_to_unknown_class():
         [{"type": "some novel finding", "address": "0x1"}],
     )
     assert findings[0].vuln_class is VulnClass.UNKNOWN
+
+
+# ---- Dedaub: validated against real vulnerability_denorm rows ---------------
+
+def test_parse_dedaub_real_denorm_fixture():
+    """Regression against real ``ethereum.vulnerability_denorm`` rows (addresses
+    sanitized) captured 2026-07-14 via the dedaub-monitoring MCP server. Locks in
+    the confirmed column names: ``rows`` envelope, ``vulnerability_type``,
+    ``confidence``, ``selector`` (bytea ``\\x`` hex), ``address`` (bytea), and
+    ``stmt`` as the location."""
+    payload = (EXAMPLES / "dedaub_warnings_real.json").read_text()
+    findings = parse_dedaub_warnings(payload, chain="ethereum")
+    assert len(findings) == 2
+    assert all(f.source is Source.DEDAUB for f in findings)
+
+    erc20 = findings[0]
+    # selector read from the bytea `selector` column ("\x80dc0672"), not key_selector
+    assert erc20.selector == "0x80dc0672"
+    # address read + normalized from the bytea `address` column
+    assert erc20.address == "0x00000000000000000000000000000000dead0001"
+    # confidence from `confidence`; MEDIUM stays MEDIUM (not driven by severity=MEDIUM here)
+    assert erc20.confidence is Confidence.MEDIUM
+    # location from the integer `stmt` column, stringified
+    assert erc20.location == "12992"
+    # description from `description`
+    assert erc20.description.startswith("ERC20 call does not accept")
+    # classified from `vulnerability_type`; this real detector name is outside the
+    # adjudicated-exploit taxonomy, so it resolves to UNKNOWN (honest: the raw row
+    # is still parsed, just not one of the cross-matched classes)
+    assert erc20.vuln_class is VulnClass.UNKNOWN
+    assert erc20.chain == "ethereum"
+
+    bad_smell = findings[1]
+    assert bad_smell.selector == "0x081812fc"
+    assert bad_smell.address == "0x00000000000000000000000000000000dead0002"
+    assert bad_smell.confidence is Confidence.MEDIUM
+    assert bad_smell.location == "9177"
+    assert bad_smell.vuln_class is VulnClass.UNKNOWN
+
+
+def test_dedaub_classifies_on_vulnerability_type_not_kind():
+    """`vulnerability_kind` is a coarse category ("Vulnerability"/"Bad smell") and
+    must NOT drive classification; `vulnerability_type` is the detector name."""
+    findings = parse_dedaub_warnings(
+        [{
+            "vulnerability_kind": "Vulnerability",     # category — must be ignored
+            "vulnerability_type": "reentrancy",        # detector name — must be used
+            "address": "\\x00000000000000000000000000000000dead0003",
+            "selector": "\\x2e1a7d4d",
+            "confidence": "MEDIUM PLUS",
+            "stmt": 42,
+        }],
+        chain="ethereum",
+    )
+    assert findings[0].vuln_class is VulnClass.REENTRANCY   # from vulnerability_type
+    assert findings[0].selector == "0x2e1a7d4d"             # bytea \x prefix handled
+    assert findings[0].address == "0x00000000000000000000000000000000dead0003"
+    assert findings[0].confidence is Confidence.MEDIUM      # "MEDIUM PLUS" folds to MEDIUM
+    assert findings[0].location == "42"
+
+
+def test_dedaub_strip_hex_prefix_handles_bytea_and_0x():
+    from dedaub_xmatch.adapters.dedaub import _strip_hex_prefix
+    assert _strip_hex_prefix("\\x80dc0672") == "80dc0672"
+    assert _strip_hex_prefix("0x80DC0672") == "80dc0672"
+    assert _strip_hex_prefix("80dc0672") == "80dc0672"
