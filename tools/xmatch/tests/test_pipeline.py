@@ -56,6 +56,21 @@ def test_pipeline_fp_flag_downgrades_owner_warning():
     assert owner2.verdict is Verdict.LIKELY_FP
 
 
+def test_pipeline_refuses_to_misjoin_mythril_across_multiple_contracts():
+    import pytest
+    # Two Dedaub warnings on DIFFERENT contracts, no explicit --address: joining
+    # Mythril output to an arbitrary one would be a mis-join, so it must raise.
+    multi = [
+        {"kind": "Reentrancy", "address": "0xaaa", "key_selector": "0x2e1a7d4d"},
+        {"kind": "Accessible selfdestruct", "address": "0xbbb", "key_selector": "0x9cb8a26a"},
+    ]
+    with pytest.raises(ValueError):
+        run_pipeline(dedaub_payload=multi, mythril_payload=MYTHRIL)
+    # With an explicit address it is unambiguous and must succeed.
+    result = run_pipeline(dedaub_payload=multi, mythril_payload=MYTHRIL, address="0xaaa")
+    assert result.ran_sources == {__import__("dedaub_xmatch").Source.MYTHRIL}
+
+
 def test_pipeline_summary_counts():
     result = run_pipeline(dedaub_payload=DEDAUB, mythril_payload=MYTHRIL)
     summary = result.summary()

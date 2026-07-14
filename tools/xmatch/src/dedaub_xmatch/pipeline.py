@@ -47,9 +47,23 @@ def run_pipeline(
     other: list[NormalizedFinding] = []
     ran: set[Source] = set()
     if mythril_payload is not None:
-        # Address is required to join Mythril findings; fall back to the Dedaub
-        # contract when the caller did not pass one explicitly.
-        myth_addr = address or (dedaub_findings[0].address if dedaub_findings else None)
+        # Mythril output must be joined to the exact contract it analyzed. Fall
+        # back to the Dedaub contract ONLY when it is unambiguous (all warnings
+        # share one address); otherwise refuse rather than mis-join.
+        if address:
+            myth_addr: Optional[str] = address
+        else:
+            dedaub_addrs = {f.address for f in dedaub_findings}
+            if len(dedaub_addrs) == 1:
+                myth_addr = next(iter(dedaub_addrs))
+            elif not dedaub_addrs:
+                myth_addr = None
+            else:
+                raise ValueError(
+                    "Cannot join Mythril output: Dedaub warnings span multiple "
+                    f"contracts {sorted(dedaub_addrs)}; pass an explicit `address` "
+                    "identifying the contract Mythril analyzed."
+                )
         if myth_addr:
             other += parse_mythril_json(mythril_payload, chain=chain, address=myth_addr)
             ran.add(Source.MYTHRIL)

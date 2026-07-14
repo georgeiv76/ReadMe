@@ -105,7 +105,12 @@ def adjudicate(
     evidence: list[Evidence] = []
 
     # --- Family 1/2: agreement from other sources -------------------------
+    # A *source* is the evidence unit, not a finding: one tool emitting several
+    # findings of the same class on a contract must not be counted as multiple
+    # corroborations. Track the best (largest) boost seen per distinct source
+    # and apply each once after the loop.
     agreeing_sources: set[Source] = set()
+    best_boost: dict[Source, float] = {}
     poc_confirmed = False
 
     for cand in candidates:
@@ -126,7 +131,7 @@ def adjudicate(
             if same_selector
             else cfg.agree_contract_logodds
         )
-        logodds += boost
+        best_boost[cand.source] = max(best_boost.get(cand.source, float("-inf")), boost)
         agreeing_sources.add(cand.source)
 
         if cand.source.is_dynamic and cand.has_poc:
@@ -144,6 +149,10 @@ def adjudicate(
             )
         )
 
+    # One boost per distinct source (its best granularity), then the multi-source
+    # bonus for genuinely independent corroboration.
+    for b in best_boost.values():
+        logodds += b
     if len(agreeing_sources) >= 2:
         logodds += cfg.multi_source_bonus_logodds
 

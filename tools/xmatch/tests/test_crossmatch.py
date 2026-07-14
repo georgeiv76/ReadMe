@@ -138,6 +138,32 @@ def test_batch_orders_by_tier_then_score():
     ]
 
 
+def test_duplicate_findings_from_one_source_count_once():
+    # Regression: one tool emitting two findings of the same class on the same
+    # contract must NOT inflate the score beyond a single source's boost.
+    one = adjudicate(dedaub(conf=Confidence.HIGH), [other()])
+    two = adjudicate(
+        dedaub(conf=Confidence.HIGH),
+        [other(), other()],  # same source (Mythril), same selector, two findings
+    )
+    assert two.score == one.score           # boost charged once per distinct source
+    assert two.verdict is Verdict.CORROBORATED
+    # But two DISTINCT sources still stack (via multi_source_bonus).
+    two_sources = adjudicate(
+        dedaub(conf=Confidence.HIGH),
+        [other(source=Source.MYTHRIL), other(source=Source.SLITHER)],
+    )
+    assert two_sources.score > one.score
+
+
+def test_duplicate_source_takes_best_granularity():
+    # Same source with a contract-level and a selector-level finding -> the
+    # single charged boost is the better (selector) one.
+    sel_only = adjudicate(dedaub(), [other(selector=SEL)])
+    both = adjudicate(dedaub(), [other(selector="0x????????"), other(selector=SEL)])
+    assert both.score == sel_only.score
+
+
 def test_higher_dedaub_confidence_gives_higher_prior():
     lo = adjudicate(dedaub(conf=Confidence.LOW), []).score
     hi = adjudicate(dedaub(conf=Confidence.HIGH), []).score

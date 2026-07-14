@@ -16,8 +16,11 @@ public-reachability metadata from ``VulnerabilityProcessed``.
 from __future__ import annotations
 
 import json
+import logging
 import re
 from typing import Any, Iterable
+
+logger = logging.getLogger(__name__)
 
 from ..models import (
     UNKNOWN_SELECTOR,
@@ -41,7 +44,9 @@ _CONFIDENCE = {
     "high": Confidence.HIGH,
     "highest": Confidence.HIGH,
 }
-_SELECTOR_RE = re.compile(r"0x[0-9a-fA-F]{8}")
+# Bounded so a longer hex run (e.g. a 20-byte address embedded in a signature
+# string) is not truncated to a bogus 4-byte selector.
+_SELECTOR_RE = re.compile(r"(?<![0-9a-fA-F])0x[0-9a-fA-F]{8}(?![0-9a-fA-F])")
 
 
 def _first(record: dict, keys: Iterable[str], default: Any = None) -> Any:
@@ -91,15 +96,19 @@ def parse_dedaub_warnings(
     data = json.loads(payload) if isinstance(payload, str) else payload
     if isinstance(data, dict):
         records = _first(data, ("warnings", "results", "issues", "data"), [])
-        # A single warning object is also acceptable.
-        if not records and "vulnerability_type" in data or "type" in data:
+        # A single bare warning object is also acceptable — but only fall back
+        # to it when no list was extracted (parenthesized to avoid the
+        # precedence trap where a top-level "type" key discards a real list).
+        if not records and ("vulnerability_type" in data or "type" in data):
             records = [data]
     else:
         records = data or []
 
     out: list[NormalizedFinding] = []
+    skipped = 0
     for rec in records:
         if not isinstance(rec, dict):
+            skipped += 1
             continue
         # ``kind`` is the confirmed Watchdog field (nullable -> "Unclassified");
         # the rest are tolerated spellings.
@@ -111,7 +120,12 @@ def parse_dedaub_warnings(
         vc = class_for_dedaub_name(str(name))
         addr = _first(rec, ("address", "contract", "contract_address"), address)
         if not addr:
-            # Cannot place the warning on a contract; skip rather than mis-join.
+            # Cannot place the warning on a contract; skip rather than mis-join,
+            # but make the data loss observable to the operator.
+            skipped += 1
+            logger.warning(
+                "Dropping Dedaub warning with no address and no fallback: kind=%r", name
+            )
             continue
         rec_chain = _first(rec, ("chain", "network"), chain)
         swc = _first(rec, ("swc", "swc_id")) or swc_for_class(vc)
@@ -132,5 +146,9 @@ def parse_dedaub_warnings(
                 location=str(_first(rec, ("statement", "location", "pc", "line"), "")),
                 raw=rec,
             )
+        )
+    if skipped:
+        logger.warning(
+            "parse_dedaub_warnings skipped %d record(s) lacking an address or shape", skipped
         )
     return out

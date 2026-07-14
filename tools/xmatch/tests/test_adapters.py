@@ -179,6 +179,41 @@ def test_dedaub_confidence_not_taken_from_severity():
     assert findings[0].confidence is Confidence.LOW
 
 
+def test_dedaub_wrapper_with_type_key_keeps_the_warnings_list():
+    # Regression (operator precedence): an envelope that also carries a top-level
+    # "type" key must not discard the real warnings list.
+    payload = {
+        "type": "watchdog_report",
+        "warnings": [{"kind": "Reentrancy", "address": "0xabc", "key_selector": "0x2e1a7d4d"}],
+    }
+    findings = parse_dedaub_warnings(payload)
+    assert len(findings) == 1
+    assert findings[0].vuln_class is VulnClass.REENTRANCY
+    assert findings[0].address.endswith("abc")
+
+
+def test_dedaub_bare_single_warning_object_still_unwraps():
+    # A genuine single warning object (no list wrapper) is still accepted.
+    findings = parse_dedaub_warnings({"type": "Reentrancy", "address": "0xabc"})
+    assert len(findings) == 1
+    assert findings[0].vuln_class is VulnClass.REENTRANCY
+
+
+def test_dedaub_selector_regex_does_not_truncate_an_address():
+    # Regression: a longer hex run in the signature field must not yield a
+    # fabricated 4-byte selector.
+    findings = parse_dedaub_warnings(
+        [{"kind": "Tainted delegatecall", "address": "0x1",
+          "function_signature": "guard at 0xdeadbeefcafebabe0000000000000000deadbeef"}]
+    )
+    assert findings[0].selector == UNKNOWN_SELECTOR
+    # But a genuine embedded selector is still recovered.
+    findings2 = parse_dedaub_warnings(
+        [{"kind": "Reentrancy", "address": "0x1", "function": "withdraw(uint256) 0x2e1a7d4d"}]
+    )
+    assert findings2[0].selector == "0x2e1a7d4d"
+
+
 def test_parse_dedaub_unknown_type_maps_to_unknown_class():
     findings = parse_dedaub_warnings(
         [{"type": "some novel finding", "address": "0x1"}],
