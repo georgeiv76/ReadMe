@@ -1,0 +1,41 @@
+# Voice Orchestrator configuration.
+# Everything the pipeline needs; edit paths/backend as needed.
+
+paths:
+  raw_dir: data/raw            # your recordings (per-style subfolders)
+  transcript: data/raw/transcript.csv
+  profile_dir: data/profile    # generated voice profile (speaker embeddings)
+  output_dir: data/output      # synthesized WAVs land here
+  memory_db: data/memory.json  # what the orchestrator has learned
+
+audio:
+  sample_rate: 48000
+  channels: 1
+  min_clip_seconds: 3
+  max_clip_seconds: 15
+  # reject clips whose peak exceeds this (clipping) or noise floor is high
+  max_peak: 0.98
+  max_noise_floor_db: -45
+
+# Which cloning/TTS backend to use. The wrapper degrades to a stub if the
+# library isn't installed, so the pipeline logic is testable anywhere.
+backend:
+  engine: openvoice          # openvoice | xtts | stub
+  device: auto               # auto | cpu | cuda
+  # default synthesis style when text has no style tag
+  default_style: neutral
+
+# The "learn from mistakes" refinement loop.
+refine:
+  enabled: true
+  max_attempts: 4            # per synthesis, retry until quality passes
+  # minimum speaker-similarity (0..1) between output and your real voice
+  min_speaker_similarity: 0.82
+  # acceptable words-per-second range so it isn't rushed or dragging
+  min_wps: 1.8
+  max_wps: 3.2
+  # knobs the loop is allowed to adjust between attempts
+  tunable:
+    style_weight: [0.4, 0.7, 1.0]
+    temperature: [0.5, 0.65, 0.8]
+    reference_pick: [best, longest, random]

@@ -1,0 +1,10 @@
+# Your voice is a credential — never commit the recordings or the profile.
+data/raw/**
+!data/raw/.gitkeep
+data/profile/**
+data/output/**
+data/memory.json
+checkpoints/
+*.wav
+__pycache__/
+*.pyc

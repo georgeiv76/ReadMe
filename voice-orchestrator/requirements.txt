@@ -1,0 +1,24 @@
+# Core pipeline runs with the standard library alone (stub backend), so you
+# can test the orchestrator logic anywhere with zero installs.
+
+# --- Recording (your local machine, needs a microphone) ---
+sounddevice>=0.4.6
+soundfile>=0.12.1
+numpy>=1.24
+
+# --- Config (optional; a built-in mini-parser is used if absent) ---
+PyYAML>=6.0
+
+# --- Voice-clone backend: pick ONE ---
+# OpenVoice (best intonation/style control) — install from source per its repo:
+#   https://github.com/myshell-ai/OpenVoice  (needs torch + GPU recommended)
+#
+# Coqui XTTS-v2 (strong few-shot clone):
+# TTS>=0.22.0
+#
+# torch is required by both; install the build matching your CUDA/CPU:
+#   https://pytorch.org/get-started/locally/
+# torch>=2.1
+
+# --- Quality evaluation (speaker-similarity gate in the refine loop) ---
+resemblyzer>=0.1.4
