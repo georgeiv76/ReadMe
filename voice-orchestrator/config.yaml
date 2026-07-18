@@ -20,7 +20,7 @@ audio:
 # Which cloning/TTS backend to use. The wrapper degrades to a stub if the
 # library isn't installed, so the pipeline logic is testable anywhere.
 backend:
-  engine: openvoice          # openvoice | xtts | stub
+  engine: xtts               # xtts | openvoice | stub  (xtts = easiest real clone)
   device: auto               # auto | cpu | cuda
   # default synthesis style when text has no style tag
   default_style: neutral

@@ -47,9 +47,16 @@ def _resolve_device(pref: str) -> str:
         return pref
     try:
         import torch
-        return "cuda" if torch.cuda.is_available() else "cpu"
+        if torch.cuda.is_available():
+            return "cuda"
+        # Apple Silicon GPU. XTTS can hit unsupported-op errors on MPS; if you
+        # see one, set `device: cpu` in config.yaml.
+        mps = getattr(torch.backends, "mps", None)
+        if mps is not None and mps.is_available():
+            return "mps"
     except Exception:
-        return "cpu"
+        pass
+    return "cpu"
 
 
 def _pick_refs(clips: list[dict], per_style: int = 4) -> dict[str, list[str]]:

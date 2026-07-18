@@ -5,13 +5,16 @@
     "macOS": "~/Library/Application Support/Claude/claude_desktop_config.json",
     "Windows": "%APPDATA%\\Claude\\claude_desktop_config.json"
   },
-  "//_edit": "Replace /ABSOLUTE/PATH/TO with the real path to this folder on your machine.",
+  "//_edit": "Replace /ABSOLUTE/PATH/TO with the real path. 'command' should be the",
+  "//_edit2": "venv python that setup.sh created (.venv/bin/python), so the XTTS deps are found.",
+  "//_tos": "COQUI_TOS_AGREED=1 records your acceptance of Coqui's XTTS license (non-commercial). Remove it to be prompted instead.",
   "mcpServers": {
     "voice-orchestrator": {
-      "command": "python3",
+      "command": "/ABSOLUTE/PATH/TO/voice-orchestrator/.venv/bin/python",
       "args": ["/ABSOLUTE/PATH/TO/voice-orchestrator/mcp_server.py"],
       "env": {
-        "VOICE_CONFIG": "/ABSOLUTE/PATH/TO/voice-orchestrator/config.yaml"
+        "VOICE_CONFIG": "/ABSOLUTE/PATH/TO/voice-orchestrator/config.yaml",
+        "COQUI_TOS_AGREED": "1"
       }
     }
   }

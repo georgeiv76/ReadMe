@@ -71,45 +71,53 @@ attempt 1: sim=0.83 wps=2.6 knobs={'style_weight': 1.0, ...} ✓ passed
 ```
 See what it has learned: `python orchestrator.py stats`.
 
+## Local install (one command)
+
+On your own machine (macOS/Linux), from this folder:
+```bash
+bash setup.sh
+```
+This creates a `.venv`, installs the **Coqui XTTS** backend + the Claude Desktop
+MCP deps with validated version pins, and smoke-tests the imports. It then
+prints your exact next steps. (Needs Python 3.10–3.12.)
+
+> The pins matter: `transformers` is held at 4.57 because 5.x removes a symbol
+> Coqui imports, `torchcodec` is required by torch ≥2.9, and the first real
+> synthesis needs `COQUI_TOS_AGREED=1`. `setup.sh` handles all three.
+
 ## Use inside Claude Desktop (local MCP server)
 
-Deploy the whole thing **locally** so you can type in Claude Desktop and hear
-it in your voice. `mcp_server.py` is a stdio MCP server (no network) exposing
-four tools: `speak`, `voice_status`, `list_voice_styles`, `build_voice_profile`.
+`mcp_server.py` is a stdio MCP server (no network) exposing four tools:
+`speak`, `voice_status`, `list_voice_styles`, `build_voice_profile`.
 
-1. Install the dependency on your machine:
-   ```bash
-   pip install "mcp[cli]"
-   ```
+1. Run `bash setup.sh` (above).
 2. Copy the `voice-orchestrator` block from `claude_desktop_config.example.json`
-   into your Claude Desktop config, replacing `/ABSOLUTE/PATH/TO` with the real
-   path. Config location:
+   into your Claude Desktop config, replacing `/ABSOLUTE/PATH/TO` and pointing
+   `command` at `.venv/bin/python`. Config location:
    - **macOS:** `~/Library/Application Support/Claude/claude_desktop_config.json`
    - **Windows:** `%APPDATA%\Claude\claude_desktop_config.json`
-3. Fully quit and reopen Claude Desktop. You'll see the `voice-orchestrator`
-   tools available.
-4. In Claude Desktop, just ask: *"Read this in my voice: …"* → it calls
-   `speak`, saves a WAV to `data/output/`, and plays it locally
-   (afplay/aplay/default player).
+3. Fully quit and reopen Claude Desktop — the `voice-orchestrator` tools appear.
+4. Ask: *"Read this in my voice: …"* → it calls `speak`, saves a WAV to
+   `data/output/`, and plays it locally (afplay/aplay/default player).
 
 Recording still uses the CLI (`python orchestrator.py record`) because it needs
 your microphone; everything after that works from Claude Desktop.
 
-> Until you install a real backend (below), `speak` returns a placeholder tone
-> and says so — the wiring works, the voice becomes yours once a model is set.
+## Backends
 
-## Choosing a backend (the real cloning model)
+The pipeline runs immediately with a **stub** backend (placeholder tone, zero
+installs) so all logic is testable. For real audio in your voice, set
+`backend.engine` in `config.yaml`:
 
-The pipeline runs immediately with a **stub** backend (a placeholder tone) so
-you can test all the logic with zero installs. For real audio in your voice,
-install one backend and set `backend.engine` in `config.yaml`:
+- **`xtts`** (default) — Coqui XTTS-v2, strong few-shot clone; installed by
+  `setup.sh`. First run downloads ~1.8 GB and requires accepting Coqui's
+  non-commercial model license (`COQUI_TOS_AGREED=1`).
+- **`openvoice`** — best control over intonation/emotion; separates tone color
+  from prosody. Install from source: https://github.com/myshell-ai/OpenVoice
+- **`stub`** — no model; for testing the pipeline.
 
-- **`openvoice`** — best control over intonation/emotion; separates your tone
-  color from prosody. https://github.com/myshell-ai/OpenVoice
-- **`xtts`** — Coqui XTTS-v2, strong few-shot clone. `pip install TTS`
-
-Both need PyTorch and are much faster on a GPU. Because they're multi-GB, run
-build/say on your own machine or a GPU box — not in this ephemeral container.
+Both real backends use PyTorch (GPU/Apple-Silicon MPS accelerate it; CPU works
+but is slower). If XTTS errors on MPS, set `device: cpu` in `config.yaml`.
 
 ## Configuration
 Everything is in `config.yaml`: audio format, backend, and the refinement loop
