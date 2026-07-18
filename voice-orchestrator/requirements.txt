@@ -9,6 +9,9 @@ numpy>=1.24
 # --- Config (optional; a built-in mini-parser is used if absent) ---
 PyYAML>=6.0
 
+# --- Claude Desktop integration (local MCP server) ---
+mcp[cli]>=1.2.0
+
 # --- Voice-clone backend: pick ONE ---
 # OpenVoice (best intonation/style control) — install from source per its repo:
 #   https://github.com/myshell-ai/OpenVoice  (needs torch + GPU recommended)

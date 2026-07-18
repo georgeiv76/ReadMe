@@ -71,6 +71,33 @@ attempt 1: sim=0.83 wps=2.6 knobs={'style_weight': 1.0, ...} ✓ passed
 ```
 See what it has learned: `python orchestrator.py stats`.
 
+## Use inside Claude Desktop (local MCP server)
+
+Deploy the whole thing **locally** so you can type in Claude Desktop and hear
+it in your voice. `mcp_server.py` is a stdio MCP server (no network) exposing
+four tools: `speak`, `voice_status`, `list_voice_styles`, `build_voice_profile`.
+
+1. Install the dependency on your machine:
+   ```bash
+   pip install "mcp[cli]"
+   ```
+2. Copy the `voice-orchestrator` block from `claude_desktop_config.example.json`
+   into your Claude Desktop config, replacing `/ABSOLUTE/PATH/TO` with the real
+   path. Config location:
+   - **macOS:** `~/Library/Application Support/Claude/claude_desktop_config.json`
+   - **Windows:** `%APPDATA%\Claude\claude_desktop_config.json`
+3. Fully quit and reopen Claude Desktop. You'll see the `voice-orchestrator`
+   tools available.
+4. In Claude Desktop, just ask: *"Read this in my voice: …"* → it calls
+   `speak`, saves a WAV to `data/output/`, and plays it locally
+   (afplay/aplay/default player).
+
+Recording still uses the CLI (`python orchestrator.py record`) because it needs
+your microphone; everything after that works from Claude Desktop.
+
+> Until you install a real backend (below), `speak` returns a placeholder tone
+> and says so — the wiring works, the voice becomes yours once a model is set.
+
 ## Choosing a backend (the real cloning model)
 
 The pipeline runs immediately with a **stub** backend (a placeholder tone) so

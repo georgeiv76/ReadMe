@@ -68,6 +68,17 @@ def _mini_yaml(path: str) -> dict:
     return root
 
 
+def resolved_config(path: str = None) -> dict:
+    """Load config and make all paths absolute (relative to this file).
+    Shared by the CLI and the MCP server so behavior is identical."""
+    cfg = load_config(path)
+    here = os.path.dirname(os.path.abspath(__file__))
+    for k, v in cfg.get("paths", {}).items():
+        if isinstance(v, str) and not os.path.isabs(v):
+            cfg["paths"][k] = os.path.join(here, v)
+    return cfg
+
+
 def _coerce(v: str):
     if v.startswith("[") and v.endswith("]"):
         inner = v[1:-1].strip()
@@ -277,12 +288,7 @@ def main(argv=None):
     sub.add_parser("stats", help="show what the orchestrator has learned")
 
     args = p.parse_args(argv)
-    cfg = load_config(args.config)
-    # resolve relative paths against this file's directory
-    here = os.path.dirname(os.path.abspath(__file__))
-    for k, v in cfg.get("paths", {}).items():
-        if isinstance(v, str) and not os.path.isabs(v):
-            cfg["paths"][k] = os.path.join(here, v)
+    cfg = resolved_config(args.config)
 
     return {
         "record": cmd_record, "ingest": cmd_ingest, "build": cmd_build,
