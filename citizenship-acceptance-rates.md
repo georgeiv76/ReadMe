@@ -16,17 +16,41 @@ There is a critical data-availability point that shapes this entire report:
 
 **Bottom line:** across the EU you can rigorously compare *grants* and the *naturalisation rate*. A genuine EU-wide "acceptance rate" **cannot** be sourced from Eurostat, OECD, EMN, or GLOBALCIT — it only exists, with caveats, in a few national datasets.
 
-### The few countries that DO publish an application-level acceptance rate
+### Acceptance rate — applications vs. accepted vs. rejected, by country
 
-| Country | Published acceptance figure | Basis | Year |
-|---|---|---|---|
-| 🇳🇱 **Netherlands** | **~97% of decisions positive** | 53,590 decisions, 43,930 applications | 2023 |
-| 🇬🇷 **Greece** | **71.3% positive** (ordinary route); **97.3%** (2nd-generation route) | 4,931 ordinary decisions, 3,515 positive | 2023 |
-| 🇪🇸 **Spain** | *Approximable* — publishes grants **and** denials (denials 7,400 → **20,099** from 2023 to 2024) | residence route resolved files | 2023–24 |
-| 🇮🇪 **Ireland** | Decisions ≈ applications (near-total approval); explicit % not stated | ~31,000 processed, >30,000 decisions | 2024 |
-| 🇫🇮 **Finland** | 84% positive **across all permit types** (not citizenship-specific) | Migri decision data | 2024 |
+This is the table most people actually want: of the people who **applied**, what share were **accepted**. It can only be built where a country publishes both a numerator (grants) and a denominator (applications or total decisions). Where it does, here are the real figures.
 
-Every other member state publishes **grant counts only**.
+**TIER 1 — a genuine acceptance percentage is published or directly derivable:**
+
+| Country | Year | Applications / decisions | Accepted | Rejected | **Acceptance %** | Basis |
+|---|---|---|---|---|---|---|
+| 🇳🇱 Netherlands | 2024 | 53,590 decisions | ~51,982 | ~1,608 | **~97%** | of decisions |
+| 🇨🇿 Czechia | 2023 | 4,570 decided | 4,426 | 144 | **96.9%** | of decided cases |
+| 🇮🇪 Ireland | 2024 | 30,000+ decisions | 24,000+ | not published | **~95%** (est.) | analyst estimate |
+| 🇪🇸 Spain | 2022 | 130,425 resolved | 122,236 | 7,057 | **94.5%** | clean single series |
+| 🇵🇹 Portugal | 2023 | ~122,800 decided | ~114,671 | 8,129 | **~93.4%** | of decided cases |
+| 🇩🇪 Germany | 2025 | 371,100 completed | ~334,000 | ~11,000 | **90%** | first year data exists |
+| 🇱🇹 Lithuania (reinstatement) | recent | 1,242 | 1,121 | 121 | **~90%** | reinstatement route |
+| 🇫🇮 Finland | 2024 | 14,112 decided | 12,417 | ~1,695 | **~88%** | citizenship-specific |
+| 🇸🇪 Sweden | 2023 | ~75,000 decided | ~68,000 | ~15,000 | **80%** | official "bifallsandel" |
+| 🇩🇰 Denmark | 2024 | 5,841 decided | 4,068 | 1,773 | **~70%** | of decided cases |
+| 🇬🇷 Greece (ordinary) | 2023 | 4,931 decisions | 3,515 | 1,416 | **71.3%** | ordinary route only |
+| 🇬🇷 Greece (2nd-gen) | 2023 | ~7,722 decisions | 7,514 | ~208 | **97.3%** | second-generation route |
+| 🇫🇷 France | 2023 | ~70,000–90,000 files | — | ~35,000 | **~55–60%** (unofficial est.) | practitioner estimate, not official |
+
+*Note on "basis": most rates are **acceptances ÷ decisions in a year**, not ÷ applications filed that year — because of multi-year backlogs the two cohorts differ. Spain 2022 and Germany 2025 are the cleanest single-series figures.*
+
+**TIER 2 — publishes accept/reject counts but no single clean rate:**
+- 🇵🇱 **Poland** — President's route (2025): 999 granted vs 1,335 refused; voivode route reports rising refusals separately. No consolidated rate.
+- 🇷🇴 **Romania** — ANC publishes approvals and rejections (2023 saw a record number of rejections), but mixes filing-year vs decision-year cohorts, so no single reconcilable rate.
+- 🇱🇻 **Latvia** — cumulative since 1995: 152,638 applications received → 150,497 persons granted (~98.6% cumulative); no clean annual rate.
+
+**TIER 3 — GRANTS ONLY published — no acceptance percentage can be calculated:**
+🇮🇹 **Italy** · 🇲🇹 **Malta** · 🇧🇪 Belgium · 🇱🇺 Luxembourg · 🇦🇹 Austria · 🇨🇾 Cyprus · 🇸🇰 Slovakia · 🇭🇺 Hungary · 🇸🇮 Slovenia · 🇭🇷 Croatia · 🇧🇬 Bulgaria · 🇪🇪 Estonia.
+
+⚠️ **Note on your two highlighted countries:** both **Italy and Malta fall in Tier 3** — their authorities publish only how many people were *granted* citizenship, never how many *applied* or were *rejected*, so a true acceptance percentage genuinely cannot be produced from official data. (Italy's only public rejection figures are FOIA-obtained *security-based* refusals — 247 in 2023 — with no total-applications denominator.)
+
+Every Tier-3 state publishes **grant counts only**.
 
 ---
 
