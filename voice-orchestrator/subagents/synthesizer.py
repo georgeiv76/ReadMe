@@ -74,18 +74,70 @@ def _synth_openvoice(cfg, profile, text, style, knobs, out_path) -> SynthResult:
     return SynthResult(out_path, _wav_seconds(out_path), "openvoice", knobs)
 
 
+_XTTS_CACHE: dict = {}  # loaded models, keyed by checkpoint dir — load once, reuse
+
+
 def _synth_xtts(cfg, profile, text, style, knobs, out_path) -> SynthResult:
+    """XTTS synthesis. Two modes:
+
+    - fine-tuned: `backend.finetuned_dir` in config points at a directory with
+      model.pth + config.json + vocab.json produced by the Colab fine-tune
+      notebook. This is YOUR voice baked into the weights — highest fidelity.
+    - zero-shot: stock XTTS-v2 conditioned on your reference clips.
+    """
+    device = profile.meta.get("device", "cpu")
+    ft_dir = cfg["backend"].get("finetuned_dir", "")
+    refs = profile.style_refs.get(style) or next(iter(profile.style_refs.values()), [])
+    if ft_dir and os.path.isdir(ft_dir):
+        try:
+            return _synth_xtts_finetuned(ft_dir, refs, text, knobs, device, out_path)
+        except Exception as e:
+            print(f"[synth] fine-tuned checkpoint failed ({e}); falling back to zero-shot.")
     try:
         from TTS.api import TTS  # type: ignore
     except Exception as e:
         print(f"[synth] Coqui TTS unavailable ({e}); stub audio.")
         return _synth_stub(cfg, profile, text, style, knobs, out_path)
     ref = _pick_reference(profile, style, knobs.get("reference_pick", "best"))
-    device = profile.meta.get("device", "cpu")
-    tts = TTS("tts_models/multilingual/multi-dataset/xtts_v2").to(device)
-    tts.tts_to_file(text=text, speaker_wav=ref, language="en", file_path=out_path,
-                    temperature=knobs.get("temperature", 0.65))
+    if "stock" not in _XTTS_CACHE:
+        _XTTS_CACHE["stock"] = TTS("tts_models/multilingual/multi-dataset/xtts_v2").to(device)
+    _XTTS_CACHE["stock"].tts_to_file(
+        text=text, speaker_wav=ref, language="en", file_path=out_path,
+        temperature=knobs.get("temperature", 0.65))
     return SynthResult(out_path, _wav_seconds(out_path), "xtts", knobs)
+
+
+def _synth_xtts_finetuned(ft_dir, refs, text, knobs, device, out_path) -> SynthResult:
+    """Load a fine-tuned XTTS checkpoint (from the Colab notebook) and speak.
+    Conditions on MULTIPLE reference clips — get_conditioning_latents accepts a
+    list, which stabilizes the voice identity."""
+    import torch
+    import torchaudio
+    from TTS.tts.configs.xtts_config import XttsConfig  # type: ignore
+    from TTS.tts.models.xtts import Xtts  # type: ignore
+
+    if ft_dir not in _XTTS_CACHE:
+        xcfg = XttsConfig()
+        xcfg.load_json(os.path.join(ft_dir, "config.json"))
+        model = Xtts.init_from_config(xcfg)
+        model.load_checkpoint(
+            xcfg,
+            checkpoint_path=os.path.join(ft_dir, "model.pth"),
+            vocab_path=os.path.join(ft_dir, "vocab.json"),
+            use_deepspeed=False,
+        )
+        model.to(device)
+        _XTTS_CACHE[ft_dir] = (model, xcfg)
+    model, xcfg = _XTTS_CACHE[ft_dir]
+    gpt_cond, spk_emb = model.get_conditioning_latents(
+        audio_path=refs[:4] if refs else [], max_ref_length=30, gpt_cond_len=6)
+    out = model.inference(
+        text=text, language="en",
+        gpt_cond_latent=gpt_cond, speaker_embedding=spk_emb,
+        temperature=knobs.get("temperature", 0.65))
+    wav = torch.tensor(out["wav"]).unsqueeze(0)
+    torchaudio.save(out_path, wav, 24000)
+    return SynthResult(out_path, _wav_seconds(out_path), "xtts-finetuned", knobs)
 
 
 def _synth_stub(cfg, profile, text, style, knobs, out_path) -> SynthResult:

@@ -22,6 +22,10 @@ audio:
 backend:
   engine: xtts               # xtts | openvoice | stub  (xtts = easiest real clone)
   device: auto               # auto | cpu | cuda
+  # After running the Colab fine-tune notebook, unzip its export and point
+  # this at the folder containing model.pth + config.json + vocab.json.
+  # When set, synthesis uses YOUR fine-tuned voice (highest fidelity).
+  finetuned_dir: ""
   # default synthesis style when text has no style tag
   default_style: neutral
 

@@ -70,7 +70,7 @@ def _speaker_similarity(profile: VoiceProfile, result: SynthResult, style: str) 
     except Exception:
         # Deterministic proxy: real engines start "closer" than the stub, and
         # a higher style_weight nudges similarity up — enough to drive the loop.
-        base = {"openvoice": 0.86, "xtts": 0.84}.get(result.engine, 0.5)
+        base = {"openvoice": 0.86, "xtts": 0.84, "xtts-finetuned": 0.90}.get(result.engine, 0.5)
         knob = 0.06 * result.knobs.get("style_weight", 0.7)
         seed = int(hashlib.sha256(result.audio_path.encode()).hexdigest(), 16) % 1000
         jitter = (seed / 1000.0 - 0.5) * 0.08

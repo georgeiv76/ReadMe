@@ -103,6 +103,17 @@ prints your exact next steps. (Needs Python 3.10–3.12.)
 Recording still uses the CLI (`python orchestrator.py record`) because it needs
 your microphone; everything after that works from Claude Desktop.
 
+## Path to ~100%: fine-tune on YOUR voice (Colab, free GPU)
+
+Zero-shot cloning tops out around "clearly resembles you." The
+`colab/Train_My_Voice_XTTS_Finetune.ipynb` notebook closes the rest: a guided
+recording session (it tells you what to read, records you in the browser),
+Whisper-built dataset, **GPU fine-tune of XTTS-v2 on your voice**, evaluation
+against your real recordings, and an article-narration cell. See
+`colab/README.md`. The resulting bundle plugs into `backend.finetuned_dir`
+below — after that, the CLI and the Claude Desktop MCP speak with your
+*trained* voice.
+
 ## Backends
 
 The pipeline runs immediately with a **stub** backend (placeholder tone, zero
