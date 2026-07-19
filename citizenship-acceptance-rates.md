@@ -20,37 +20,49 @@ There is a critical data-availability point that shapes this entire report:
 
 This is the table most people actually want: of the people who **applied**, what share were **accepted**. It can only be built where a country publishes both a numerator (grants) and a denominator (applications or total decisions). Where it does, here are the real figures.
 
-**TIER 1 — a genuine acceptance percentage is published or directly derivable:**
+### FINAL TABLE — applications, acceptances & acceptance rate, all 27 EU states
 
-| Country | Year | Applications / decisions | Accepted | Rejected | **Acceptance %** | Basis |
+Sorted from highest to lowest acceptance rate. Where a country doesn't publish "applications submitted," the denominator is **decisions taken** in the year (grants + refusals). Most rates are therefore *acceptance of decided cases*; because of multi-year backlogs, that differs from the share of a given year's *filings* that eventually succeed. Figures come from national statistics offices, immigration authorities, parliamentary questions, national press, and programme regulators (full sourcing in the report and commit history).
+
+| # | Country | Year | Applications / decisions | Accepted | Acceptance rate | Source type |
 |---|---|---|---|---|---|---|
-| 🇳🇱 Netherlands | 2024 | 53,590 decisions | ~51,982 | ~1,608 | **~97%** | of decisions |
-| 🇨🇿 Czechia | 2023 | 4,570 decided | 4,426 | 144 | **96.9%** | of decided cases |
-| 🇮🇪 Ireland | 2024 | 30,000+ decisions | 24,000+ | not published | **~95%** (est.) | analyst estimate |
-| 🇪🇸 Spain | 2022 | 130,425 resolved | 122,236 | 7,057 | **94.5%** | clean single series |
-| 🇵🇹 Portugal | 2023 | ~122,800 decided | ~114,671 | 8,129 | **~93.4%** | of decided cases |
-| 🇩🇪 Germany | 2025 | 371,100 completed | ~334,000 | ~11,000 | **90%** | first year data exists |
-| 🇱🇹 Lithuania (reinstatement) | recent | 1,242 | 1,121 | 121 | **~90%** | reinstatement route |
-| 🇫🇮 Finland | 2024 | 14,112 decided | 12,417 | ~1,695 | **~88%** | citizenship-specific |
-| 🇸🇪 Sweden | 2023 | ~75,000 decided | ~68,000 | ~15,000 | **80%** | official "bifallsandel" |
-| 🇩🇰 Denmark | 2024 | 5,841 decided | 4,068 | 1,773 | **~70%** | of decided cases |
-| 🇬🇷 Greece (ordinary) | 2023 | 4,931 decisions | 3,515 | 1,416 | **71.3%** | ordinary route only |
-| 🇬🇷 Greece (2nd-gen) | 2023 | ~7,722 decisions | 7,514 | ~208 | **97.3%** | second-generation route |
-| 🇫🇷 France | 2023 | ~70,000–90,000 files | — | ~35,000 | **~55–60%** (unofficial est.) | practitioner estimate, not official |
+| 1 | 🇭🇺 Hungary (simplified route) | 2024 | ~grants + 42 rejected | ~grants | **~99%** | AIDA / press (FOI-forced) |
+| 2 | 🇬🇷 Greece (2nd-generation) | 2023 | ~7,722 decisions | 7,514 | **97.3%** | Min. Interior / ELIAMEP |
+| 3 | 🇳🇱 Netherlands | 2024 | 53,590 decisions | ~51,982 | **~97%** | IND official |
+| 4 | 🇨🇿 Czechia | 2023 | 4,570 decided | 4,426 | **96.9%** | Min. Interior FOI |
+| 5 | 🇸🇰 Slovakia | 2022 | 704 decided (+80 halted) | 677 | **~96%** | Min. Interior |
+| 6 | 🇮🇪 Ireland | 2024 | ~30,000+ decisions | ~24,000+ | **~95%** (est.) | gov.ie + analyst est. |
+| 7 | 🇪🇸 Spain | 2022 | 130,425 resolved | 122,236 | **94.5%** | Min. Justice (clean series) |
+| 8 | 🇵🇹 Portugal | 2023 | ~122,800 decided | ~114,671 | **~93%** | IRN |
+| 9 | 🇷🇴 Romania | 2023 | ~44,171 decided | 40,740 | **~92%** | ANC (via press) |
+| 10 | 🇸🇮 Slovenia | annual avg | — | — | **~92%** (8% rejected) | Delo / MNZ dataset |
+| 11 | 🇩🇪 Germany | 2025 | 371,100 completed | ~334,000 | **90%** | Destatis (1st year) |
+| 12 | 🇱🇹 Lithuania (reinstatement) | recent | 1,242 | 1,121 | **~90%** | Migration Dept |
+| 13 | 🇫🇮 Finland | 2024 | 14,112 decided | 12,417 | **~88%** | Migri |
+| 14 | 🇭🇷 Croatia (descent route) | ~3-yr agg | 16,531 resolved | 14,307 | **~87%** | MUP / press |
+| 15 | 🇸🇪 Sweden | 2023 | ~75,000 decided | ~68,000 | **80%** | Migrationsverket |
+| 16 | 🇪🇪 Estonia | 2025 | 998 applications | 781 | **~78%** | EMN / PPA |
+| 17 | 🇧🇬 Bulgaria | ~2021–23 | files published | — | **~75–80%** (20–25% rejected) | President's Commission |
+| 18 | 🇬🇷 Greece (ordinary route) | 2023 | 4,931 decisions | 3,515 | **71.3%** | Min. Interior / ELIAMEP |
+| 19 | 🇩🇰 Denmark | 2024 | 5,841 decided | 4,068 | **~70%** | Integrationsbarometer |
+| 20 | 🇫🇷 France | 2023 | ~70,000–90,000 files | — | **~55–60%** (unofficial) | practitioner est. |
+| 21 | 🇮🇹 **Italy** | 2024 | (rate published, counts not) | — | **~36%** (64% rejected) | ISMU 31° Rapporto |
+| 22 | 🇲🇹 **Malta** (ordinary route) | 2022 | 1,711 decisions | 339 | **~20%** | PQ via MaltaToday |
 
-*Note on "basis": most rates are **acceptances ÷ decisions in a year**, not ÷ applications filed that year — because of multi-year backlogs the two cohorts differ. Spain 2022 and Germany 2025 are the cleanest single-series figures.*
+**Countries where a clean acceptance rate still cannot be calculated (grants published, but not a matching applications or rejections figure):**
 
-**TIER 2 — publishes accept/reject counts but no single clean rate:**
-- 🇵🇱 **Poland** — President's route (2025): 999 granted vs 1,335 refused; voivode route reports rising refusals separately. No consolidated rate.
-- 🇷🇴 **Romania** — ANC publishes approvals and rejections (2023 saw a record number of rejections), but mixes filing-year vs decision-year cohorts, so no single reconcilable rate.
-- 🇱🇻 **Latvia** — cumulative since 1995: 152,638 applications received → 150,497 persons granted (~98.6% cumulative); no clean annual rate.
+| Country | What IS published | Why no rate |
+|---|---|---|
+| 🇵🇱 Poland | Grants by route (2024: 16,647); refusal datasets exist | Refusal figures in non-readable open-data sets; routes report differently. President's route 2025 signal: 999 granted vs 1,335 refused |
+| 🇱🇻 Latvia | 2023: 1,280 applications received, 595 granted | Gap is mostly *pending* + failed language exams, not clean rejections; cumulative since 1995 ≈ 98.6% |
+| 🇧🇪 Belgium | Declarations + parket positive/negative advice | Exact positive/negative counts sit in Myria reports (not extractable here) |
+| 🇨🇾 Cyprus | Grants + backlog (11,891 pending, 2026) | No annual rejected count disclosed; rising refusals only described qualitatively |
+| 🇱🇺 Luxembourg | Grants only (2024: 7,415) | No refused-application count published |
+| 🇦🇹 Austria | Grants only (2024: 21,891) | No national applications/rejections dataset; only 4 Länder track rejection reasons |
 
-**TIER 3 — GRANTS ONLY published — no acceptance percentage can be calculated:**
-🇮🇹 **Italy** · 🇲🇹 **Malta** · 🇧🇪 Belgium · 🇱🇺 Luxembourg · 🇦🇹 Austria · 🇨🇾 Cyprus · 🇸🇰 Slovakia · 🇭🇺 Hungary · 🇸🇮 Slovenia · 🇭🇷 Croatia · 🇧🇬 Bulgaria · 🇪🇪 Estonia.
-
-⚠️ **Note on your two highlighted countries:** the NSO statistics office publishes grants only, BUT for **Malta** the press and the investment-scheme regulator do publish refusal figures — see the dedicated Malta section below, which shows a strikingly *low* ordinary-naturalisation acceptance rate. **Italy** remains a true Tier-3 case (its only public rejection figures are FOIA-obtained *security-based* refusals — 247 in 2023 — with no total-applications denominator).
-
-Every other Tier-3 state publishes **grant counts only**.
+⚠️ **Your two highlighted countries — the finding you pushed for:** both look like "grants only" in the statistics office, but the **press and parliamentary/programme records tell a very different story, and both turn out to have among the LOWEST acceptance rates in the EU:**
+- **🇮🇹 Italy — ~36% accepted in 2024** (64.1% rejected, rising to ~70% in 2025), per the ISMU Foundation's 31° Rapporto sulle Migrazioni mining Interior Ministry data — *not* visible in the ISTAT grant tables.
+- **🇲🇹 Malta — ~20% accepted for ordinary naturalisation in 2022** (339 granted vs 1,372 refused), from a parliamentary question — *not* in the NSO tables; the golden-passport scheme separately ran a ~1-in-3 rejection rate.
 
 ### 🇲🇹 Malta — the numbers the statistics office omits (from parliamentary questions & the CBI regulator)
 
