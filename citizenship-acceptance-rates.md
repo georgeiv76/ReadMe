@@ -47,7 +47,7 @@ Sorted from highest to lowest acceptance rate. Where a country doesn't publish "
 | 19 | 🇩🇰 Denmark | 2024 | 5,841 decided | 4,068 | **~70%** | Integrationsbarometer |
 | 20 | 🇫🇷 France | 2023 | ~70,000–90,000 files | — | **~55–60%** (unofficial) | practitioner est. |
 | 21 | 🇮🇹 **Italy** | 2024 | (rate published, counts not) | — | **~36%** (64% rejected) | ISMU 31° Rapporto |
-| 22 | 🇲🇹 **Malta** (ordinary route) | 2022 | 1,711 decisions | 339 | **~20%** | PQ via MaltaToday |
+| 22 | 🇲🇹 **Malta** (ordinary route) | 2020–24 / 2022 | 2,752 refused over 5 yrs; 1,711 decided in 2022 | 339 (2022) | **~20%** (2022) | 2025 PQ (Lovin Malta) + 2022 PQ |
 
 **Countries where a clean acceptance rate still cannot be calculated (grants published, but not a matching applications or rejections figure):**
 
@@ -62,7 +62,7 @@ Sorted from highest to lowest acceptance rate. Where a country doesn't publish "
 
 ⚠️ **Your two highlighted countries — the finding you pushed for:** both look like "grants only" in the statistics office, but the **press and parliamentary/programme records tell a very different story, and both turn out to have among the LOWEST acceptance rates in the EU:**
 - **🇮🇹 Italy — ~36% accepted in 2024** (64.1% rejected, rising to ~70% in 2025), per the ISMU Foundation's 31° Rapporto sulle Migrazioni mining Interior Ministry data — *not* visible in the ISTAT grant tables.
-- **🇲🇹 Malta — ~20% accepted for ordinary naturalisation in 2022** (339 granted vs 1,372 refused), from a parliamentary question — *not* in the NSO tables; the golden-passport scheme separately ran a ~1-in-3 rejection rate.
+- **🇲🇹 Malta — 2,752 refused** for ordinary naturalisation over 2020–2024 (October 2025 parliamentary reply — the most recent figure), ~550 refusals/year against only low-hundreds of grants; in 2022, the one fully-split year, just **~20% accepted** (339 granted vs 1,372 refused) — *not* in the NSO tables. The golden-passport scheme separately ran a ~1-in-3 rejection rate (2024: 409 received, 183 approved, ~23% non-approval).
 
 ### 🇲🇹 Malta — the numbers the statistics office omits (from parliamentary questions & the CBI regulator)
 
@@ -70,13 +70,18 @@ Malta's NSO reports only grants, but Home Affairs ministers have disclosed **ref
 
 **Ordinary naturalisation (residence-based) — from PQs:**
 
-| Year | Granted | Refused | Implied acceptance (of decisions) | Source |
-|---|---|---|---|---|
-| 2021 | 421 | — | — | MaltaToday (Buttigieg PQ, 18 Jan 2023) |
-| 2022 | 339 | **1,372** | **~20%** | MaltaToday (Buttigieg PQ, 18 Jan 2023) |
-| 2020–2024 (5-yr) | — | **2,752 refused** (756 dependants) | — | Lovin Malta (Attard Previ PQ, 2025) |
+The most recent and authoritative figure comes from an **October 2025 parliamentary reply** by Home Affairs Minister Byron Camilleri (to MP Graziella Attard Previ):
 
-**In 2022 refusals (1,372) outnumbered grants (339) by four to one** — an ordinary-naturalisation acceptance rate of only ~20% of decisions, far below any Tier-1 country. (Caveat: grants and refusals may be different-timing cohorts, and refusals can include incomplete files; the minister noted a refusal "had no effect on these people's immigration status.") Malta does **not** disclose a clean per-year "applications submitted" or pending-backlog figure for ordinary naturalisation.
+> **2,752 people were denied Maltese citizenship by naturalisation over 2020–2024** — of whom **756 were dependants.** *(Lovin Malta, Oct 2025)*
+
+| Year(s) | Granted | Refused | Implied acceptance | Source |
+|---|---|---|---|---|
+| **2020–2024 (5-yr total)** | — | **2,752 refused** (756 dependants) | see note | **Lovin Malta (Attard Previ PQ, Oct 2025)** — most recent |
+| 2022 (only year with both sides) | 339 | **1,372** | **~20%** | MaltaToday (Buttigieg PQ, Jan 2023) |
+| 2021 | 421 | — | — | MaltaToday (Buttigieg PQ, Jan 2023) |
+| 2023 (all routes) | 2,511 acquisitions | — | — | Malta Independent (Galea PQ, Jan 2024) |
+
+**Reading the numbers:** the 2025 PQ confirms refusals ran at roughly **550/year on average across 2020–2024** — very high against ordinary-naturalisation grants that were only in the low hundreds (421 in 2021, 339 in 2022). In **2022, the one year with both figures, refusals (1,372) outnumbered grants (339) by four to one — an acceptance rate of only ~20%.** Two honest limits: (1) the minister released only the five-year refusal *total*, with no year-by-year split and no matching five-year grant total, so a clean five-year acceptance % cannot be computed — the ~20% is the 2022 single year; (2) grants and refusals may be different-timing cohorts, and refusals can include incomplete files (the minister noted a refusal "had no effect on immigration status"). The raw PQ text on parlament.mt would be needed for the year-by-year split.
 
 **Citizenship by investment (golden passport) — from the Regulator's Annual Reports:**
 
