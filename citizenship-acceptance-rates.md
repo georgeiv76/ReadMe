@@ -48,9 +48,42 @@ This is the table most people actually want: of the people who **applied**, what
 **TIER 3 — GRANTS ONLY published — no acceptance percentage can be calculated:**
 🇮🇹 **Italy** · 🇲🇹 **Malta** · 🇧🇪 Belgium · 🇱🇺 Luxembourg · 🇦🇹 Austria · 🇨🇾 Cyprus · 🇸🇰 Slovakia · 🇭🇺 Hungary · 🇸🇮 Slovenia · 🇭🇷 Croatia · 🇧🇬 Bulgaria · 🇪🇪 Estonia.
 
-⚠️ **Note on your two highlighted countries:** both **Italy and Malta fall in Tier 3** — their authorities publish only how many people were *granted* citizenship, never how many *applied* or were *rejected*, so a true acceptance percentage genuinely cannot be produced from official data. (Italy's only public rejection figures are FOIA-obtained *security-based* refusals — 247 in 2023 — with no total-applications denominator.)
+⚠️ **Note on your two highlighted countries:** the NSO statistics office publishes grants only, BUT for **Malta** the press and the investment-scheme regulator do publish refusal figures — see the dedicated Malta section below, which shows a strikingly *low* ordinary-naturalisation acceptance rate. **Italy** remains a true Tier-3 case (its only public rejection figures are FOIA-obtained *security-based* refusals — 247 in 2023 — with no total-applications denominator).
 
-Every Tier-3 state publishes **grant counts only**.
+Every other Tier-3 state publishes **grant counts only**.
+
+### 🇲🇹 Malta — the numbers the statistics office omits (from parliamentary questions & the CBI regulator)
+
+Malta's NSO reports only grants, but Home Affairs ministers have disclosed **refusals** in answers to parliamentary questions (PQs), and the citizenship-by-investment regulator publishes full received/approved/rejected tables. These reveal a picture the grant-only data completely hides:
+
+**Ordinary naturalisation (residence-based) — from PQs:**
+
+| Year | Granted | Refused | Implied acceptance (of decisions) | Source |
+|---|---|---|---|---|
+| 2021 | 421 | — | — | MaltaToday (Buttigieg PQ, 18 Jan 2023) |
+| 2022 | 339 | **1,372** | **~20%** | MaltaToday (Buttigieg PQ, 18 Jan 2023) |
+| 2020–2024 (5-yr) | — | **2,752 refused** (756 dependants) | — | Lovin Malta (Attard Previ PQ, 2025) |
+
+**In 2022 refusals (1,372) outnumbered grants (339) by four to one** — an ordinary-naturalisation acceptance rate of only ~20% of decisions, far below any Tier-1 country. (Caveat: grants and refusals may be different-timing cohorts, and refusals can include incomplete files; the minister noted a refusal "had no effect on these people's immigration status.") Malta does **not** disclose a clean per-year "applications submitted" or pending-backlog figure for ordinary naturalisation.
+
+**Citizenship by investment (golden passport) — from the Regulator's Annual Reports:**
+
+| Period | Applications received | Approved | Rejected/withdrawn | Rejection rate |
+|---|---|---|---|---|
+| 2016–17 (IIP) | 377 | 422* | 83 | — |
+| 2019 (IIP) | 311 | — | 115 | **~33%** |
+| Cumulative to Dec 2019 | 1,742 | 1,198 | — | — |
+| 18 mths to Dec 2020 | 340 | 207 | 101 + 32 withdrawn | **~33%** |
+| 2021 (MEIN) | 23 | — | 112 not approved | **51% not-approved** |
+| 2022 (MEIN) | 175 | — | 17 | — |
+| 2023 (MEIN) | 299 | — | — | — |
+| 2024 (MEIN) | 409 | 183 | 50 rejections + withdrawals | **~23% non-approval** |
+
+*Approvals in a year can exceed that year's receipts because they clear earlier applications. The investment scheme ran a consistent ~1-in-3 rejection rate — the regulator said the IIP "turned down €250m" through high rejections. Figures are main-applicant counts; dependants are counted separately (e.g. 2024: 179 main applicants + 362 dependants naturalised).
+
+**Post-CJEU:** the golden-passport scheme was ruled illegal by the CJEU on 29 April 2025 (C-181/23); new investment applications stopped, and Malta passed a "Citizenship by Merit" law (effective 26 July 2025). Pre-ruling applications reportedly remain in limbo.
+
+*Method note: Maltese outlets and the regulator's PDFs were not directly fetchable from the research environment (site-side Cloudflare + egress policy), so these figures come from search summaries citing MaltaToday, Lovin Malta, The Malta Independent and IMI Daily reporting of the primary PQs and regulator reports; the highest-value primary documents to confirm against are the OR-GCES/ORGCEM annual reports 2019–2024 and the full PQ articles.*
 
 ---
 
