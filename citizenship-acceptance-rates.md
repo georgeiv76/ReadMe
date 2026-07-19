@@ -72,7 +72,7 @@ Malta's NSO reports only grants, but Home Affairs ministers have disclosed **ref
 
 The most recent and authoritative figure comes from an **October 2025 parliamentary reply** by Home Affairs Minister Byron Camilleri (to MP Graziella Attard Previ):
 
-> **2,752 people were denied Maltese citizenship by naturalisation over 2020–2024** — of whom **756 were dependants.** *(Lovin Malta, Oct 2025)*
+> **2,752 people were denied Maltese citizenship by naturalisation over 2020–2024** — of whom **756 were dependants.** The minister did not disclose the applicants' countries of origin, their length of residence, a year-by-year split, or a matching grant total. *(Lovin Malta, 30 October 2025)*
 
 | Year(s) | Granted | Refused | Implied acceptance | Source |
 |---|---|---|---|---|
