@@ -20,7 +20,7 @@ concentrated, reachable market of ~2,000 accounts.
 | 02 | [Add-on portfolio](./02-addon-portfolio.md) | 11 single-problem add-ons (Know→Find→Time→Reach) |
 | 03 | [Multichannel Campaign — brief](./03-multichannel-campaign-brief.md) | Product/feature description + 8-vendor competitive analysis |
 | 04 | [Multichannel Campaign — MVP PRD](./04-multichannel-campaign-prd.md) | The MVP spec (email + Telegram + X, supervised agent) |
-| 05 | [Buying Signal Trigger](./05-buying-signal-trigger.md) | Consolidated lead-discovery orchestrator |
+| 05 | [Buying Signal Trigger](./05-buying-signal-trigger.md) | Consolidated lead-discovery orchestrator + end-to-end routine (discovery → activation) |
 
 Visual one-pager (HTML) versions of docs 02–05 live in [`artifacts/`](./artifacts/) — open
 them in a browser for the styled, theme-aware layouts.

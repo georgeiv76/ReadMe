@@ -4,6 +4,21 @@ The consolidated lead-discovery engine. It watches every Web3 signal that means 
 is worth talking to now," turns each into a scored, HubSpot-ready lead, and hands it to the
 Multichannel Campaign. **One engine — replacing four separate discovery add-ons.**
 
+## 0 · In plain terms
+
+This is the **find** half of a two-engine system:
+
+- **Buying Signal Trigger (this doc)** — finds *who* to contact and *why today*.
+- **Multichannel Campaign** — does the *reaching out*, across email + Telegram + X.
+
+```
+Buying Signal Trigger  →  HubSpot  →  Multichannel Campaign
+  (find + why-now)         (record)      (warm + reach out)
+```
+
+The "why now" this engine produces becomes the opener the campaign sends. Discovery feeds
+activation — the two run as **one routine** (see §6).
+
 ## 1 · The idea: one engine, not four add-ons
 
 A lead is rarely one signal. It's the convergence of **fit** (does this account match us),
@@ -62,13 +77,27 @@ Fit → apollo · tokin · allium. Funding → defillama-raise · grant-hunter. 
 → clay-waterfall · web3-osint · hubspot-crm-ref (ICP scoring). Emit/dedupe/sync → hubspot-crm-ref ·
 tg-finder. **The orchestrator is glue + scoring over orchestrators that already exist.**
 
-## 6 · How it feeds activation
+## 6 · The end-to-end routine (discovery → activation)
 
-`Buying Signal Trigger → HubSpot → Multichannel Campaign`
+The orchestrator runs as **one repeatable routine**, not a set of manual steps. On each cycle:
 
-Two halves of one motion — discovery and activation — both HubSpot-native, agent-driven,
-enrichment-powered. The **"why now"** the trigger emits becomes the campaign's opener. Worth
-more together than apart, but each still sells alone.
+1. **Scan** — poll every signal source (§2) for new events (continuous, or on a schedule).
+2. **Detect → Enrich → Resolve → Score → Dedupe → Emit** — run the pipeline (§3) on each hit.
+3. **Rank** — order emitted leads A/B/C by the priority score (§4), boosting convergence.
+4. **Hand off** — push each qualified lead into HubSpot with its **"why now"**, and (optionally)
+   auto-trigger the **Multichannel Campaign** with the recommended play as the opener.
+5. **Learn** — record which signals/plays converted, and feed that back into scoring.
+
+```
+[ scan sources ] → [ pipeline: enrich·resolve·score·dedupe ] → [ rank A/B/C ]
+        → HubSpot lead (+ why-now) → Multichannel Campaign (warm + reach)
+        → outcomes feed back into scoring
+```
+
+**Cadence:** continuous for high-value signals (security/risk, raises), scheduled scans for the
+rest — a cost/coverage trade-off to settle (see §7). Two halves of one motion, both
+HubSpot-native, agent-driven, enrichment-powered — worth more together than apart, but each
+still sells alone.
 
 ## 7 · Open questions
 
