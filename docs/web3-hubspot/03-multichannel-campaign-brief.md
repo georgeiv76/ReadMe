@@ -2,6 +2,22 @@
 
 The lead add-on. Product + feature description, then every vendor doing something close.
 
+## In plain terms
+
+This is the **reach** half of a two-engine system:
+
+- **Buying Signal Trigger** — finds *who* to contact and *why today*.
+- **Multichannel Campaign (this doc)** — does the *reaching out*, across email + Telegram + X.
+
+```
+Buying Signal Trigger  →  HubSpot  →  Multichannel Campaign
+  (find + why-now)         (record)      (warm + reach out)
+```
+
+It picks up the qualified lead + "why now" the trigger produced and turns it into a warmed,
+personalized, multichannel outreach play — the two run as one routine (see "The end-to-end
+routine" below).
+
 ## Product description
 
 **Positioning:** the only multichannel campaign engine that is **HubSpot-native, Web3-first,
@@ -34,6 +50,28 @@ HubSpot itself into the command center: one play, multiple channels, one supervi
    timeline logging; marketplace-app packaging (displaces NisWire).
 6. **Safety & compliance layer** — rate limits, warm-up, account rotation, opt-out, hard
    approval gate on the riskiest actions. Engagement automation sold as *assisted*.
+
+## The end-to-end routine (per target)
+
+The campaign runs as a supervised agent loop — one pass per target:
+
+1. **Ingest** — receive a lead or list (from Buying Signal Trigger, a HubSpot list, or a signal).
+2. **Resolve** — enrich to the right people + email/Telegram/X handles (via Web3 Enrich); dedupe.
+3. **Plan** — the Planner agent builds the per-target play: channel order, warming steps, timing,
+   message intent — seeded by the incoming "why now".
+4. **Warm** — assisted engagement first: X follow/like, Telegram join — through the approval gate.
+5. **Message** — personalized email / Telegram DM / X DM, within per-account rate limits.
+6. **Supervise** — every sensitive touch waits in the approval queue for one-click approve/edit/skip.
+7. **Handle replies** — the Reply handler reads responses, logs to the HubSpot timeline, routes hot
+   leads to a human, or advances the sequence.
+8. **Log & learn** — all touches/outcomes write back to HubSpot; results inform the next play.
+
+```
+lead/list → resolve → plan → warm → message → [approval gate] → reply-handle → log → next step
+```
+
+**Cadence:** event-driven — a campaign fires when a lead lands or a signal triggers, then runs its
+steps on a paced schedule (rate-limited, warmed, quiet-hours aware) until reply or exhaustion.
 
 ## Competitive matrix
 

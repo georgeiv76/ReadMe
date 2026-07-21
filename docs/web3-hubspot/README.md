@@ -18,7 +18,7 @@ concentrated, reachable market of ~2,000 accounts.
 | 00 | [Market sizing](./00-market-sizing.md) | How many Web3 companies use HubSpot; the ~2,000 ICP |
 | 01 | [Market needs](./01-market-needs.md) | The 5 gaps HubSpot leaves for Web3, with sources |
 | 02 | [Add-on portfolio](./02-addon-portfolio.md) | 11 single-problem add-ons (Know→Find→Time→Reach) |
-| 03 | [Multichannel Campaign — brief](./03-multichannel-campaign-brief.md) | Product/feature description + 8-vendor competitive analysis |
+| 03 | [Multichannel Campaign — brief](./03-multichannel-campaign-brief.md) | Product/feature description + end-to-end routine + 8-vendor competitive analysis |
 | 04 | [Multichannel Campaign — MVP PRD](./04-multichannel-campaign-prd.md) | The MVP spec (email + Telegram + X, supervised agent) |
 | 05 | [Buying Signal Trigger](./05-buying-signal-trigger.md) | Consolidated lead-discovery orchestrator + end-to-end routine (discovery → activation) |
 
