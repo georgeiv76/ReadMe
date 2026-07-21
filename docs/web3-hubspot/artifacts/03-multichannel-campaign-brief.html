@@ -1,0 +1,412 @@
+<title>Multichannel Campaign — Product Brief &amp; Competitive Landscape</title>
+<style>
+  :root{
+    --bg:#0B0E14;--surface:#131924;--surface-2:#1A2230;--border:#26303F;--border-strong:#33404F;
+    --text:#E7ECF4;--muted:#96A2B6;--faint:#6C7789;
+    --accent:#2DD4BF;--accent-ink:#0B0E14;--accent-soft:rgba(45,212,191,.10);
+    --moat:#F5B451;--moat-soft:rgba(245,180,81,.12);
+    --good:#56C98A;--warn:#E7B45A;--none:#5A6576;
+    --shadow:0 1px 0 rgba(255,255,255,.02),0 8px 30px rgba(0,0,0,.35);
+    --maxw:1140px;
+    --mono:ui-monospace,"SF Mono","JetBrains Mono",Menlo,Consolas,monospace;
+    --sans:"SF Pro Display",system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  }
+  @media (prefers-color-scheme: light){:root{
+    --bg:#F4F7FA;--surface:#FFFFFF;--surface-2:#EEF2F7;--border:#DCE3EC;--border-strong:#C7D1DE;
+    --text:#131A26;--muted:#586275;--faint:#8A94A6;
+    --accent:#0E9E8E;--accent-ink:#FFFFFF;--accent-soft:rgba(14,158,142,.08);
+    --moat:#B9760F;--moat-soft:rgba(185,118,15,.10);
+    --good:#2F9B63;--warn:#B9760F;--none:#A7B0BF;
+    --shadow:0 1px 2px rgba(16,24,40,.05),0 10px 28px rgba(16,24,40,.08);
+  }}
+  :root[data-theme="dark"]{
+    --bg:#0B0E14;--surface:#131924;--surface-2:#1A2230;--border:#26303F;--border-strong:#33404F;
+    --text:#E7ECF4;--muted:#96A2B6;--faint:#6C7789;
+    --accent:#2DD4BF;--accent-ink:#0B0E14;--accent-soft:rgba(45,212,191,.10);
+    --moat:#F5B451;--moat-soft:rgba(245,180,81,.12);
+    --good:#56C98A;--warn:#E7B45A;--none:#5A6576;
+    --shadow:0 1px 0 rgba(255,255,255,.02),0 8px 30px rgba(0,0,0,.35);
+  }
+  :root[data-theme="light"]{
+    --bg:#F4F7FA;--surface:#FFFFFF;--surface-2:#EEF2F7;--border:#DCE3EC;--border-strong:#C7D1DE;
+    --text:#131A26;--muted:#586275;--faint:#8A94A6;
+    --accent:#0E9E8E;--accent-ink:#FFFFFF;--accent-soft:rgba(14,158,142,.08);
+    --moat:#B9760F;--moat-soft:rgba(185,118,15,.10);
+    --good:#2F9B63;--warn:#B9760F;--none:#A7B0BF;
+    --shadow:0 1px 2px rgba(16,24,40,.05),0 10px 28px rgba(16,24,40,.08);
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased;background-image:radial-gradient(1100px 460px at 82% -10%,var(--accent-soft),transparent 60%)}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+  a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+
+  .eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);font-weight:600}
+  h1{font-weight:800;font-size:clamp(2rem,5vw,3.3rem);line-height:1.03;letter-spacing:-.025em;margin:.35em 0 .25em;text-wrap:balance}
+  h2{font-weight:800;font-size:clamp(1.35rem,3vw,1.9rem);letter-spacing:-.02em;margin:0;text-wrap:balance}
+  h3{font-weight:750;font-size:1.1rem;letter-spacing:-.01em;margin:0}
+  .lede{font-size:clamp(1.02rem,2.1vw,1.25rem);color:var(--muted);max-width:62ch;line-height:1.5}
+
+  header{padding:64px 0 30px;border-bottom:1px solid var(--border)}
+  .topbar{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:40px}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:-.01em}
+  .brand .sep{color:var(--faint);font-weight:400}
+  .brand .tag{font-family:var(--mono);font-size:11px;color:var(--muted);border:1px solid var(--border);padding:4px 8px;border-radius:999px}
+  .theme-toggle{font-family:var(--mono);font-size:12px;color:var(--muted);background:var(--surface);border:1px solid var(--border);border-radius:999px;padding:7px 13px;cursor:pointer}
+  .theme-toggle:hover{border-color:var(--border-strong);color:var(--text)}
+  .stat-row{display:flex;gap:26px;margin-top:22px;flex-wrap:wrap}
+  .stat b{display:block;font-family:var(--mono);font-size:1.5rem;font-weight:700;color:var(--text);letter-spacing:-.02em}
+  .stat span{font-size:.8rem;color:var(--faint)}
+
+  section{padding:52px 0;border-bottom:1px solid var(--border)}
+  .sec-head{display:flex;align-items:baseline;gap:14px;margin-bottom:8px;flex-wrap:wrap}
+  .sec-head .idx{font-family:var(--mono);font-size:.8rem;color:var(--accent);font-weight:600}
+  .sec-sub{color:var(--muted);max-width:70ch;margin:10px 0 0}
+
+  .posbox{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:12px;padding:20px 22px;margin-top:22px;box-shadow:var(--shadow)}
+  .posbox .l{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+  .posbox p{margin:8px 0 0;font-size:1.08rem;line-height:1.5}
+  .posbox p b{color:var(--text)}
+
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:22px}
+  @media (max-width:760px){.two{grid-template-columns:1fr}}
+  .mini{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:18px 20px}
+  .mini h4{margin:0 0 8px;font-size:.95rem;font-family:var(--mono);letter-spacing:.04em;text-transform:uppercase;color:var(--muted)}
+  .mini p{margin:0;color:var(--text);font-size:.95rem}
+  .mini .who{color:var(--muted);font-size:.9rem}
+
+  /* feature blocks */
+  .feat{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:24px}
+  @media (max-width:820px){.feat{grid-template-columns:1fr}}
+  .fcard{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:20px 21px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:10px}
+  .fcard .ft{display:flex;align-items:center;gap:10px}
+  .fcard .ft .num{font-family:var(--mono);font-size:.78rem;color:var(--accent);border:1px solid var(--border);border-radius:6px;padding:2px 7px}
+  .fcard h3{font-size:1.08rem}
+  .fcard p{margin:0;color:var(--muted);font-size:.92rem;line-height:1.5}
+  .fcard ul{margin:2px 0 0;padding-left:0;list-style:none;display:flex;flex-direction:column;gap:6px}
+  .fcard li{font-size:.88rem;color:var(--muted);display:flex;gap:8px;align-items:baseline}
+  .fcard li::before{content:"›";color:var(--faint);font-family:var(--mono)}
+  .fcard.span2{grid-column:1/-1;border-color:color-mix(in srgb,var(--accent) 35%,var(--border));background:linear-gradient(180deg,var(--accent-soft),transparent 60%),var(--surface)}
+  .agent-badge{margin-left:auto;font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;background:var(--accent);color:var(--accent-ink);font-weight:700;padding:3px 10px;border-radius:999px}
+
+  .actions{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-top:4px}
+  .chan{background:var(--surface-2);border:1px solid var(--border);border-radius:11px;padding:12px 13px}
+  .chan .ch{font-family:var(--mono);font-size:11px;letter-spacing:.05em;text-transform:uppercase;color:var(--accent);font-weight:600}
+  .chan ul{margin:9px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:4px}
+  .chan li{font-size:.82rem;color:var(--text)}
+  .chan li::before{content:"› ";color:var(--faint);font-family:var(--mono)}
+  .chan .warm{color:var(--warn)}
+  .legend-inline{font-size:.8rem;color:var(--faint);margin-top:10px}
+  .legend-inline b{color:var(--warn)}
+
+  .flow{display:flex;flex-wrap:wrap;gap:8px;align-items:stretch;margin-top:6px}
+  .flow .node{flex:1;min-width:150px;background:var(--surface-2);border:1px solid var(--border);border-radius:10px;padding:12px 13px}
+  .flow .node .k{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+  .flow .node .d{font-size:.85rem;color:var(--muted);margin-top:5px;line-height:1.4}
+  .flow .arr{align-self:center;color:var(--faint);font-family:var(--mono)}
+
+  /* comparison matrix */
+  .table-scroll{overflow-x:auto;border:1px solid var(--border);border-radius:14px;margin-top:22px;box-shadow:var(--shadow)}
+  table{border-collapse:collapse;width:100%;min-width:940px;font-size:.85rem}
+  thead th{text-align:center;font-family:var(--mono);font-size:10.5px;letter-spacing:.03em;text-transform:uppercase;color:var(--faint);font-weight:600;padding:12px 10px;background:var(--surface-2);border-bottom:1px solid var(--border);white-space:nowrap}
+  thead th:first-child{text-align:left}
+  tbody td{padding:11px 10px;border-bottom:1px solid var(--border);text-align:center;vertical-align:middle}
+  tbody tr:last-child td{border-bottom:none}
+  tbody td:first-child{text-align:left;color:var(--text);font-weight:650;white-space:nowrap}
+  tbody td:first-child small{display:block;font-weight:400;color:var(--faint);font-family:var(--mono);font-size:10px;letter-spacing:.02em}
+  .dot{font-size:1.05rem;line-height:1}
+  .full{color:var(--good)}.part{color:var(--warn)}.no{color:var(--none)}
+  .deploy{font-family:var(--mono);font-size:10.5px;color:var(--muted)}
+  tr.ours{background:var(--accent-soft)}
+  tr.ours td:first-child{color:var(--accent)}
+  .legend{display:flex;gap:18px;flex-wrap:wrap;margin-top:14px;font-size:.82rem;color:var(--muted)}
+  .legend span b{font-family:var(--mono)}
+
+  .whitebox{background:var(--surface);border:1px solid color-mix(in srgb,var(--accent) 40%,var(--border));border-radius:14px;padding:22px 24px;margin-top:24px;box-shadow:var(--shadow)}
+  .whitebox h3{margin:0 0 8px}
+  .whitebox p{margin:0;color:var(--muted);font-size:.95rem;line-height:1.55}
+  .whitebox p b{color:var(--text)}
+
+  .caveat{background:var(--surface-2);border:1px solid var(--border);border-left:3px solid var(--moat);border-radius:10px;padding:15px 17px;margin-top:20px;color:var(--muted);font-size:.9rem;line-height:1.55}
+  .caveat b{color:var(--text)}
+
+  .verdict{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:22px}
+  @media (max-width:760px){.verdict{grid-template-columns:1fr}}
+  .vc{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:18px}
+  .vc .h{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:8px}
+  .vc.win .h{color:var(--good)}.vc.risk .h{color:var(--warn)}.vc.watch .h{color:var(--muted)}
+  .vc ul{margin:0;padding-left:0;list-style:none;display:flex;flex-direction:column;gap:7px}
+  .vc li{font-size:.88rem;color:var(--muted);display:flex;gap:8px;align-items:baseline}
+  .vc li::before{content:"—";color:var(--faint)}
+
+  footer{padding:36px 0 60px}
+  .foot{color:var(--faint);font-size:.82rem;line-height:1.7}
+  .foot a{color:var(--muted)}
+  .srcs{margin-top:10px;font-size:.8rem;color:var(--faint);word-spacing:.1em;line-height:1.9}
+</style>
+
+<header>
+  <div class="wrap">
+    <div class="topbar">
+      <div class="brand">🔐 Dedaub <span class="sep">/</span> <span class="tag">Product Brief · Multichannel Campaign</span></div>
+      <button class="theme-toggle" id="tt" type="button">◐ theme</button>
+    </div>
+    <div class="eyebrow">Add-on #1 · product research</div>
+    <h1>Multichannel Campaign: the outreach engine that lives inside HubSpot and speaks every channel Web3 uses.</h1>
+    <p class="lede">Give it a company or a list. It warms and reaches each prospect across email, Telegram, Discord, X and LinkedIn — driven by a supervised AI agent, logged back to HubSpot. This brief covers the product, the features, and every vendor doing something close.</p>
+    <div class="stat-row">
+      <div class="stat"><b>5</b><span>channels in one play</span></div>
+      <div class="stat"><b>8</b><span>competitors reviewed</span></div>
+      <div class="stat"><b>0</b><span>own the full stack</span></div>
+    </div>
+  </div>
+</header>
+
+<!-- 01 PRODUCT -->
+<section>
+  <div class="wrap">
+    <div class="sec-head"><span class="idx">01</span><h2>Product description</h2></div>
+    <p class="sec-sub">What it is, who it's for, and why it exists as a HubSpot add-on rather than yet another standalone platform.</p>
+
+    <div class="posbox">
+      <span class="l">Positioning</span>
+      <p><b>The only multichannel campaign engine that is HubSpot-native, Web3-first, and agent-driven.</b> Web3 teams already keep HubSpot as their system of record. Today they bolt on a standalone Telegram tool, leave the CRM to run Discord and X by hand, and get no help warming a prospect before the pitch. Multichannel Campaign turns HubSpot itself into the command center: one play, five channels, one supervised AI agent doing the work.</p>
+    </div>
+
+    <div class="two">
+      <div class="mini">
+        <h4>The one job</h4>
+        <p>Given a company — or a whole list — run a coordinated, personalized play across every channel a Web3 buyer actually uses, and warm them before you ask for anything.</p>
+      </div>
+      <div class="mini">
+        <h4>Who it's for</h4>
+        <p class="who">Growth, BD and community leads at the ~2,000 Web3-native companies already on HubSpot. Small teams who can't hire an SDR per channel and won't rip out their CRM to get Telegram.</p>
+      </div>
+      <div class="mini">
+        <h4>Why an add-on, not a platform</h4>
+        <p class="who">The Web3 leaders (Spredo, Enreach, CRMChat) make you leave HubSpot. We layer onto it — no migration, no second source of truth, install-and-go from the marketplace.</p>
+      </div>
+      <div class="mini">
+        <h4>What makes it defensible</h4>
+        <p class="who">Web3 channel depth (incl. Discord) + engagement warming + a supervised agent, all native to HubSpot. No competitor combines all four (see §03).</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 02 FEATURES -->
+<section>
+  <div class="wrap">
+    <div class="sec-head"><span class="idx">02</span><h2>Feature description</h2></div>
+    <p class="sec-sub">Six feature groups. The engine that makes them work — and the reason this is a real build, not a macro — is the AI agent orchestrator in the middle.</p>
+
+    <div class="feat">
+      <div class="fcard">
+        <div class="ft"><span class="num">F1</span><h3>Audience &amp; input</h3></div>
+        <p>Start from one company, a HubSpot list, a saved segment, or a signal (a raise, a ship event). The agent resolves each account into the real people — and their wallets, Telegram / Discord / X / GitHub handles — before anything sends.</p>
+        <ul><li>Company, list, segment or signal as input</li><li>Auto-resolves contacts &amp; handles (via Web3 Enrich)</li><li>Dedupes against what's already in HubSpot</li></ul>
+      </div>
+
+      <div class="fcard">
+        <div class="ft"><span class="num">F2</span><h3>Channel action catalog</h3></div>
+        <p>Not just messaging — the follows, likes, connects and reactions that warm a prospect first. Warming actions are marked <b style="color:var(--warn)">amber</b>.</p>
+        <div class="actions">
+          <div class="chan"><div class="ch">✉ Email</div><ul><li>send</li><li>sequence / follow-up</li></ul></div>
+          <div class="chan"><div class="ch">✈ Telegram</div><ul><li>DM · group message</li><li class="warm">follow / join</li></ul></div>
+          <div class="chan"><div class="ch">❖ Discord</div><ul><li>DM · server post</li><li class="warm">join · react</li></ul></div>
+          <div class="chan"><div class="ch">𝕏 X</div><ul><li>reply / DM</li><li class="warm">follow · like</li></ul></div>
+          <div class="chan"><div class="ch">in LinkedIn</div><ul><li>message</li><li class="warm">connect · like</li></ul></div>
+        </div>
+        <p class="legend-inline"><b>amber</b> = engagement / warming action (ToS-sensitive — see §04).</p>
+      </div>
+
+      <div class="fcard span2">
+        <div class="ft"><span class="num">F3</span><h3>AI agent orchestrator — the core engine</h3><span class="agent-badge">required, not optional</span></div>
+        <p>Every action above is decided and carried out by an agent, not a static if-then flow. Choosing who to touch, on which channel, in what order; writing each message in context; timing a like before a DM; reading the reply and picking the next step — that is agentic work. This is the difference between a campaign tool and a sequence macro, and it's precisely what we already build.</p>
+        <div class="flow">
+          <div class="node"><div class="k">Planner</div><div class="d">Builds the play per target: channel order, warming steps, timing, message intent.</div></div>
+          <div class="arr">→</div>
+          <div class="node"><div class="k">Channel agents</div><div class="d">Per-channel executors (email · TG · Discord · X · LinkedIn) run steps within guardrails.</div></div>
+          <div class="arr">→</div>
+          <div class="node"><div class="k">Supervisor gate</div><div class="d">Routes anything sensitive to a human for one-click approve / edit / skip.</div></div>
+          <div class="arr">→</div>
+          <div class="node"><div class="k">Reply handler</div><div class="d">Reads responses, updates HubSpot, decides the next move or hands off to a rep.</div></div>
+        </div>
+        <ul style="margin-top:12px">
+          <li>Human-in-the-loop by default — mirrors the market's proven-safe posture (Spredo, Enreach, CRMChat all run <em>supervised</em> agents; consensus is hybrid &gt; fully autonomous)</li>
+          <li>Guardrails per channel: rate limits, warm-up, sending-account rotation, quiet hours</li>
+          <li>Runs 24/7 but never sends anything a human hasn't set a policy for</li>
+        </ul>
+      </div>
+
+      <div class="fcard">
+        <div class="ft"><span class="num">F4</span><h3>Personalization &amp; signal triggers</h3></div>
+        <p>Each touch is written from the contact's real context — chain, TVL, last raise, recent GitHub ship, the group they're in — and campaigns can fire off a signal instead of a manual push.</p>
+        <ul><li>On-chain &amp; social context injected per message</li><li>Triggered by Raise Radar / Ship Signal / Risk Trigger</li><li>A/B variants, tone control, language</li></ul>
+      </div>
+
+      <div class="fcard">
+        <div class="ft"><span class="num">F5</span><h3>HubSpot-native integration</h3></div>
+        <p>HubSpot stays the system of record. Every touch, reply and outcome writes to the contact timeline; campaigns enroll from HubSpot lists and workflows.</p>
+        <ul><li>Custom objects/properties for handles &amp; channels</li><li>Two-way sync · workflow enrollment · timeline logging</li><li>Marketplace-app packaging (displaces NisWire)</li></ul>
+      </div>
+
+      <div class="fcard span2">
+        <div class="ft"><span class="num">F6</span><h3>Safety &amp; compliance layer</h3></div>
+        <p>The one thing that decides whether this is a growth tool or a banned-account generator. Built in from day one, not bolted on: per-account rate limits and warm-up, sending-account rotation, opt-out capture across every channel, and a hard human-approval gate on the highest-risk actions (LinkedIn connects, X/Telegram/Discord mass DM). Engagement automation is sold as <b>assisted</b>, not fully autonomous.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 COMPETITION -->
+<section>
+  <div class="wrap">
+    <div class="sec-head"><span class="idx">03</span><h2>Competitive landscape</h2></div>
+    <p class="sec-sub">Eight vendors doing something adjacent, scored on the capabilities that matter for this product. Read across the rows: every competitor has a hole in a column we fill.</p>
+
+    <div class="table-scroll">
+      <table>
+        <thead>
+          <tr>
+            <th>Vendor</th><th>Web3</th><th>HubSpot-native</th><th>✉</th><th>TG</th><th>Discord</th><th>X</th><th>LinkedIn</th><th>Warming</th><th>AI agent</th><th>Web3 DB</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="ours">
+            <td>Multichannel Campaign <small>ours</small></td>
+            <td><span class="dot full">●</span></td><td><span class="dot full">●</span></td><td><span class="dot full">●</span></td><td><span class="dot full">●</span></td><td><span class="dot full">●</span></td><td><span class="dot full">●</span></td><td><span class="dot full">●</span></td><td><span class="dot full">●</span></td><td><span class="dot full">●</span></td><td><span class="dot part">◐</span></td>
+          </tr>
+          <tr>
+            <td>NisWire <small>niswey · HS app</small></td>
+            <td><span class="dot part">◐</span></td><td><span class="dot full">●</span></td><td><span class="dot no">○</span></td><td><span class="dot full">●</span></td><td><span class="dot no">○</span></td><td><span class="dot no">○</span></td><td><span class="dot no">○</span></td><td><span class="dot no">○</span></td><td><span class="dot no">○</span></td><td><span class="dot no">○</span></td>
+          </tr>
+          <tr>
+            <td>Spredo <small>web3</small></td>
+            <td><span class="dot full">●</span></td><td><span class="dot part">◐</span></td><td><span class="dot part">◐</span></td><td><span class="dot full">●</span></td><td><span class="dot no">○</span></td><td><span class="dot part">◐</span></td><td><span class="dot part">◐</span></td><td><span class="dot part">◐</span></td><td><span class="dot full">●</span></td><td><span class="dot full">●</span></td>
+          </tr>
+          <tr>
+            <td>Enreach <small>web3</small></td>
+            <td><span class="dot full">●</span></td><td><span class="dot part">◐</span></td><td><span class="dot part">◐</span></td><td><span class="dot full">●</span></td><td><span class="dot no">○</span></td><td><span class="dot full">●</span></td><td><span class="dot full">●</span></td><td><span class="dot part">◐</span></td><td><span class="dot full">●</span></td><td><span class="dot full">●</span></td>
+          </tr>
+          <tr>
+            <td>CRMChat <small>web3</small></td>
+            <td><span class="dot full">●</span></td><td><span class="dot part">◐</span></td><td><span class="dot no">○</span></td><td><span class="dot full">●</span></td><td><span class="dot part">◐</span></td><td><span class="dot no">○</span></td><td><span class="dot no">○</span></td><td><span class="dot part">◐</span></td><td><span class="dot full">●</span></td><td><span class="dot full">●</span></td>
+          </tr>
+          <tr>
+            <td>La Growth Machine <small>general</small></td>
+            <td><span class="dot no">○</span></td><td><span class="dot full">●</span></td><td><span class="dot full">●</span></td><td><span class="dot no">○</span></td><td><span class="dot no">○</span></td><td><span class="dot full">●</span></td><td><span class="dot full">●</span></td><td><span class="dot full">●</span></td><td><span class="dot part">◐</span></td><td><span class="dot no">○</span></td>
+          </tr>
+          <tr>
+            <td>11x / Artisan <small>AI SDR</small></td>
+            <td><span class="dot no">○</span></td><td><span class="dot part">◐</span></td><td><span class="dot full">●</span></td><td><span class="dot no">○</span></td><td><span class="dot no">○</span></td><td><span class="dot part">◐</span></td><td><span class="dot full">●</span></td><td><span class="dot part">◐</span></td><td><span class="dot full">●</span></td><td><span class="dot no">○</span></td>
+          </tr>
+          <tr>
+            <td>DM Dad / Xreacher <small>X point tools</small></td>
+            <td><span class="dot no">○</span></td><td><span class="dot no">○</span></td><td><span class="dot no">○</span></td><td><span class="dot part">◐</span></td><td><span class="dot no">○</span></td><td><span class="dot full">●</span></td><td><span class="dot no">○</span></td><td><span class="dot full">●</span></td><td><span class="dot part">◐</span></td><td><span class="dot no">○</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="legend">
+      <span><b class="full">●</b> full &nbsp;native capability</span>
+      <span><b class="part">◐</b> partial / via sync / unverified</span>
+      <span><b class="no">○</b> none</span>
+      <span style="color:var(--faint)">Cells inferred from public marketing pages — not hands-on tested.</span>
+    </div>
+
+    <div class="whitebox">
+      <h3>The white space</h3>
+      <p><b>No vendor combines HubSpot-native + Web3 + all five channels + engagement warming + a supervised AI agent.</b> The Web3 leaders — <b>Spredo, Enreach, CRMChat</b> — are strong on Telegram and AI but are <b>standalone platforms that ask you to leave HubSpot</b>, and all three are weak-to-absent on Discord and on LinkedIn/X <em>engagement</em> actions. The only HubSpot-native option, <b>NisWire</b>, is Telegram-only with no agent and no warming. The best engagement engine, <b>La Growth Machine</b>, has <b>zero Web3 channels</b> (no Telegram, no Discord). Discord outbound is barely served by anyone — a differentiator and the biggest ToS risk at once.</p>
+    </div>
+
+    <div class="caveat"><b>Two honest reads.</b> (1) The AI agent is now <b>table stakes</b> — everyone has one; our edge is channel breadth + HubSpot-native + Web3 depth, with the agent as the delivery mechanism, not the pitch. (2) The reason no one does "all five channels + warming" may partly be that <b>Discord/X/LinkedIn engagement automation is ToS-risky</b> — so leading with it is both our opening and our exposure.</p></div>
+  </div>
+</section>
+
+<!-- 04 AI SDR DEEP DIVE -->
+<section>
+  <div class="wrap">
+    <div class="sec-head"><span class="idx">04</span><h2>Inside their AI SDR agents</h2></div>
+    <p class="sec-sub">"AI agent" is the column everyone claims. Here's what those agents actually <em>do</em> — the shared capability stack, and the two moats we don't have yet.</p>
+
+    <div class="flow" style="margin-top:22px">
+      <div class="node"><div class="k">1 · Discover</div><div class="d">Build &amp; refresh a contact DB — scrape Telegram groups, aggregators, LinkedIn.</div></div><div class="arr">→</div>
+      <div class="node"><div class="k">2 · Research</div><div class="d">Pull per-prospect context to personalize.</div></div><div class="arr">→</div>
+      <div class="node"><div class="k">3 · Write</div><div class="d">Generate first-touch + follow-ups, trained on domain conversations.</div></div><div class="arr">→</div>
+      <div class="node"><div class="k">4 · Send</div><div class="d">Multi-account, rate-managed, across channels.</div></div><div class="arr">→</div>
+      <div class="node"><div class="k">5 · Qualify</div><div class="d">Answer FAQs, ask discovery questions, assess fit.</div></div><div class="arr">→</div>
+      <div class="node"><div class="k">6 · Route &amp; book</div><div class="d">Escalate hot leads, book meetings via calendar.</div></div>
+    </div>
+
+    <div class="two" style="margin-top:20px">
+      <div class="mini"><h4>Spredo · Web3</h4><p class="who">AI SDR (beta) answers FAQs &amp; pre-qualifies before escalating to a human. A proprietary algorithm scrapes <b style="color:var(--text)">300+ curated Telegram groups</b> (incl. private conference groups) + LinkedIn into a live Web3 DB with 30+ filters. Supervised, with per-campaign account governance. Ships a <b style="color:var(--text)">Claude MCP</b> — Claude itself selects contacts, builds campaigns and runs outreach.</p></div>
+      <div class="mini"><h4>Enreach · Web3</h4><p class="who">Agents <b style="color:var(--text)">trained on 30M sales conversations + 25M historical Telegram messages</b> — a domain-tuned model. Auto-engages inbound, asks discovery questions, assesses fit, routes hot leads; runs follow-up sequences + calendar booking; up to 12 TG accounts / 5k msgs/mo; a <b style="color:var(--text)">500M-lead</b> database.</p></div>
+      <div class="mini"><h4>11x · Alice (general)</h4><p class="who"><b style="color:var(--text)">Autonomous</b> end-to-end: research → write → send across email, LinkedIn, SMS, WhatsApp and voice (with Julian); reply handling, CRM updates, meeting booking, multilingual. Positioned to <b style="color:var(--text)">replace headcount</b>, minimal oversight. Not Web3.</p></div>
+      <div class="mini"><h4>Artisan · Ava (general)</h4><p class="who">Email + LinkedIn SDR: finds &amp; researches prospects, writes personalized emails, sends follow-ups at scale. Lighter than 11x on channels, CRM breadth and orchestration. Not Web3.</p></div>
+    </div>
+
+    <div class="two" style="margin-top:16px">
+      <div class="mini"><h4>Two philosophies</h4><p class="who"><b style="color:var(--text)">Supervised / hybrid</b> (Spredo, Enreach, Artisan) — a human refines, brand-safe; the Web3 default. &nbsp;vs&nbsp; <b style="color:var(--text)">Autonomous</b> (11x Alice) — minimal oversight, replace headcount. For Web3's pseudonymous, community-sensitive buyers, supervised is winning.</p></div>
+      <div class="mini"><h4>What this means for us</h4><p class="who">The capability stack above is <b style="color:var(--text)">table stakes</b> — we must match it. The two moats we <b style="color:var(--text)">don't</b> have: Enreach's Web3-conversation-trained model, and the big proprietary contact DBs (Spredo 300k, Enreach 500M). We'd lean on enrichment + the customer's own HubSpot data — so "own vs partner for a Web3 dataset" is a real decision. Upside: Spredo shipping a Claude MCP proves the agent-orchestrator direction — and that's the exact stack we already run on.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 05 VERDICT -->
+<section>
+  <div class="wrap">
+    <div class="sec-head"><span class="idx">05</span><h2>Where we win, where we're exposed</h2></div>
+    <div class="verdict">
+      <div class="vc win">
+        <div class="h">▲ Where we win</div>
+        <ul>
+          <li>Only HubSpot-native, Web3-first, all-channel option</li>
+          <li>Discord + engagement warming that Web3 rivals lack</li>
+          <li>No rip-and-replace — install onto existing CRM</li>
+          <li>Agent orchestration is literally what we build</li>
+        </ul>
+      </div>
+      <div class="vc risk">
+        <div class="h">▼ Where we're exposed</div>
+        <ul>
+          <li>ToS / ban risk on Discord, X, LinkedIn automation</li>
+          <li>Spredo &amp; Enreach have huge Web3 contact databases; we don't (yet)</li>
+          <li>Discord Hub is net-new build, not productized</li>
+          <li>Incumbents have brand &amp; head start in Telegram</li>
+        </ul>
+      </div>
+      <div class="vc watch">
+        <div class="h">◆ Open questions</div>
+        <ul>
+          <li>MVP channel set — start narrow (email+TG+X) or go wide?</li>
+          <li>Build the warming engine, or partner/wrap point tools?</li>
+          <li>Own a Web3 contact DB, or lean on enrichment?</li>
+          <li>Fully-native HubSpot app vs. companion app + sync?</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      Dedaub · Multichannel Campaign product brief · internal research · Jul 2026 · sources are public vendor pages, not hands-on tests
+      <div class="srcs">
+        Sources: spredo.io · enreach.ai · crmchat.ai · niswey.com/telegram-hubspot-integration-niswire · lagrowthmachine.com · 11x.ai · dmdad.com · xreacher.com · eakdigital.com (Top Web3 marketing tools)
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    var btn=document.getElementById('tt');
+    btn.addEventListener('click',function(){
+      var r=document.documentElement,c=r.getAttribute('data-theme');
+      if(!c){c=window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}
+      r.setAttribute('data-theme',c==='dark'?'light':'dark');
+    });
+  })();
+</script>

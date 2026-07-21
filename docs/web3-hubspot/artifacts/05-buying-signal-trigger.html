@@ -1,0 +1,311 @@
+<title>Buying Signal Trigger — Lead Discovery Orchestrator</title>
+<style>
+  :root{
+    --bg:#0B0E14;--surface:#131924;--surface-2:#1A2230;--border:#26303F;--border-strong:#33404F;
+    --text:#E7ECF4;--muted:#96A2B6;--faint:#6C7789;
+    --accent:#2DD4BF;--accent-ink:#0B0E14;--accent-soft:rgba(45,212,191,.10);
+    --moat:#F5B451;--moat-soft:rgba(245,180,81,.12);
+    --shadow:0 1px 0 rgba(255,255,255,.02),0 8px 30px rgba(0,0,0,.32);
+    --maxw:1080px;
+    --mono:ui-monospace,"SF Mono","JetBrains Mono",Menlo,Consolas,monospace;
+    --sans:"SF Pro Text",system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    --disp:"SF Pro Display",system-ui,-apple-system,"Segoe UI",sans-serif;
+  }
+  @media (prefers-color-scheme: light){:root{
+    --bg:#F4F7FA;--surface:#FFFFFF;--surface-2:#EEF3F7;--border:#DCE3EC;--border-strong:#C7D1DE;
+    --text:#141B27;--muted:#556074;--faint:#8A94A6;
+    --accent:#0E9E8E;--accent-ink:#FFFFFF;--accent-soft:rgba(14,158,142,.07);
+    --moat:#B9760F;--moat-soft:rgba(185,118,15,.09);
+    --shadow:0 1px 2px rgba(16,24,40,.04),0 8px 24px rgba(16,24,40,.07);
+  }}
+  :root[data-theme="dark"]{
+    --bg:#0B0E14;--surface:#131924;--surface-2:#1A2230;--border:#26303F;--border-strong:#33404F;
+    --text:#E7ECF4;--muted:#96A2B6;--faint:#6C7789;
+    --accent:#2DD4BF;--accent-ink:#0B0E14;--accent-soft:rgba(45,212,191,.10);
+    --moat:#F5B451;--moat-soft:rgba(245,180,81,.12);
+    --shadow:0 1px 0 rgba(255,255,255,.02),0 8px 30px rgba(0,0,0,.32);
+  }
+  :root[data-theme="light"]{
+    --bg:#F4F7FA;--surface:#FFFFFF;--surface-2:#EEF3F7;--border:#DCE3EC;--border-strong:#C7D1DE;
+    --text:#141B27;--muted:#556074;--faint:#8A94A6;
+    --accent:#0E9E8E;--accent-ink:#FFFFFF;--accent-soft:rgba(14,158,142,.07);
+    --moat:#B9760F;--moat-soft:rgba(185,118,15,.09);
+    --shadow:0 1px 2px rgba(16,24,40,.04),0 8px 24px rgba(16,24,40,.07);
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);font-size:16px;line-height:1.58;-webkit-font-smoothing:antialiased;background-image:radial-gradient(1100px 480px at 80% -10%,var(--accent-soft),transparent 60%)}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+  a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+
+  .eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);font-weight:600}
+  h1{font-family:var(--disp);font-weight:800;font-size:clamp(2rem,5vw,3.4rem);line-height:1.02;letter-spacing:-.025em;margin:.3em 0 .2em;text-wrap:balance}
+  h2{font-family:var(--disp);font-weight:800;font-size:clamp(1.35rem,3vw,1.95rem);letter-spacing:-.02em;margin:0;text-wrap:balance}
+  h3{font-family:var(--disp);font-weight:700;font-size:1.1rem;letter-spacing:-.01em;margin:0}
+  .lede{font-size:clamp(1.02rem,2.1vw,1.28rem);color:var(--muted);max-width:64ch;line-height:1.5}
+  code{font-family:var(--mono);font-size:.85em;background:var(--surface-2);border:1px solid var(--border);border-radius:5px;padding:1px 6px;color:var(--text)}
+
+  header{padding:62px 0 30px;border-bottom:1px solid var(--border)}
+  .topbar{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:38px}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:700}
+  .brand .sep{color:var(--faint);font-weight:400}
+  .brand .tag{font-family:var(--mono);font-size:11px;color:var(--muted);border:1px solid var(--border);padding:4px 8px;border-radius:999px}
+  .theme-toggle{font-family:var(--mono);font-size:12px;color:var(--muted);background:var(--surface);border:1px solid var(--border);border-radius:999px;padding:7px 13px;cursor:pointer}
+  .theme-toggle:hover{border-color:var(--border-strong);color:var(--text)}
+  .pipe-hero{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:22px;font-family:var(--mono);font-size:.82rem;color:var(--muted)}
+  .pipe-hero .b{background:var(--surface);border:1px solid var(--border);border-radius:999px;padding:6px 13px;color:var(--text)}
+  .pipe-hero .b.accent{border-color:color-mix(in srgb,var(--accent) 45%,var(--border));color:var(--accent)}
+  .pipe-hero .x{color:var(--faint)}
+
+  section{padding:52px 0;border-bottom:1px solid var(--border)}
+  .sec-head{display:flex;align-items:baseline;gap:14px;margin-bottom:8px;flex-wrap:wrap}
+  .sec-head .idx{font-family:var(--mono);font-size:.8rem;color:var(--accent);font-weight:600}
+  .sec-sub{color:var(--muted);max-width:70ch;margin:10px 0 0}
+
+  .callout{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:12px;padding:18px 20px;margin-top:20px;box-shadow:var(--shadow)}
+  .callout .l{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+  .callout p{margin:8px 0 0;font-size:1.04rem;line-height:1.5}.callout p b{color:var(--text)}
+
+  /* signal taxonomy cards */
+  .sig-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:22px}
+  @media (max-width:800px){.sig-grid{grid-template-columns:1fr}}
+  .sig{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:18px 20px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:9px}
+  .sig .top{display:flex;align-items:center;gap:10px}
+  .sig .ic{font-size:1.15rem}
+  .sig h3{font-size:1.06rem}
+  .sig .tt{margin-left:auto;font-family:var(--mono);font-size:10px;letter-spacing:.05em;text-transform:uppercase;color:var(--faint);border:1px solid var(--border);border-radius:999px;padding:2px 8px}
+  .sig .tt.fit{color:var(--accent);border-color:color-mix(in srgb,var(--accent) 40%,var(--border))}
+  .sig .tt.time{color:var(--moat);border-color:color-mix(in srgb,var(--moat) 40%,var(--border))}
+  .sig ul{margin:0;padding-left:0;list-style:none;display:flex;flex-direction:column;gap:5px}
+  .sig li{font-size:.88rem;color:var(--muted);display:flex;gap:8px;align-items:baseline}
+  .sig li::before{content:"›";color:var(--faint);font-family:var(--mono)}
+  .sig .src{font-family:var(--mono);font-size:10.5px;color:var(--faint);margin-top:auto;padding-top:4px}
+  .sig .src .chip{display:inline-block;background:var(--surface-2);border:1px solid var(--border);border-radius:5px;padding:1px 6px;margin:2px 3px 0 0;color:var(--muted)}
+  .sig.moat{border-color:color-mix(in srgb,var(--moat) 45%,var(--border));background:linear-gradient(180deg,var(--moat-soft),transparent 70%),var(--surface)}
+  .sig.moat .badge{margin-left:auto;font-family:var(--mono);font-size:10px;letter-spacing:.06em;text-transform:uppercase;background:var(--moat);color:#1a1204;font-weight:700;padding:2px 8px;border-radius:999px}
+
+  /* pipeline */
+  .pipeline{display:flex;flex-wrap:wrap;gap:8px;align-items:stretch;margin-top:22px}
+  .pipeline .step{flex:1;min-width:135px;background:var(--surface);border:1px solid var(--border);border-radius:11px;padding:14px 14px}
+  .pipeline .step .n{font-family:var(--mono);font-size:10px;color:var(--faint)}
+  .pipeline .step .k{font-family:var(--disp);font-weight:700;font-size:.98rem;margin-top:3px}
+  .pipeline .step .d{font-size:.8rem;color:var(--muted);margin-top:5px;line-height:1.4}
+  .pipeline .arr{align-self:center;color:var(--faint);font-family:var(--mono)}
+
+  /* lead anatomy */
+  .lead{display:grid;grid-template-columns:1.1fr .9fr;gap:16px;margin-top:22px}
+  @media (max-width:760px){.lead{grid-template-columns:1fr}}
+  .leadcard{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:20px;box-shadow:var(--shadow)}
+  .leadcard h4{margin:0 0 12px;font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+  .field{display:flex;gap:10px;padding:7px 0;border-bottom:1px dashed var(--border);font-size:.9rem}
+  .field:last-child{border-bottom:none}
+  .field .k{font-family:var(--mono);font-size:.78rem;color:var(--faint);min-width:104px;flex-shrink:0}
+  .field .v{color:var(--text)}
+  .field .v .pill{font-family:var(--mono);font-size:.75rem;background:var(--accent);color:var(--accent-ink);border-radius:5px;padding:1px 7px;font-weight:700}
+  .score-eq{background:var(--surface-2);border:1px solid var(--border);border-radius:10px;padding:14px 16px;font-family:var(--mono);font-size:.86rem;color:var(--text);line-height:1.7}
+  .score-eq b{color:var(--accent)}
+  .score-note{font-size:.85rem;color:var(--muted);margin-top:10px}
+
+  .map{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:18px}
+  @media (max-width:700px){.map{grid-template-columns:1fr}}
+  .mapcard{background:var(--surface);border:1px solid var(--border);border-radius:11px;padding:14px 16px}
+  .mapcard .k{font-family:var(--disp);font-weight:700;font-size:.95rem;color:var(--text)}
+  .mapcard .v{font-family:var(--mono);font-size:11px;color:var(--muted);margin-top:5px;line-height:1.6}
+  .mapcard .v .chip{display:inline-block;background:var(--surface-2);border:1px solid var(--border);border-radius:5px;padding:1px 6px;margin:2px 3px 0 0;color:var(--text)}
+
+  .handoff{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:20px}
+  .handoff .box{flex:1;min-width:200px;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px 18px}
+  .handoff .box.accent{border-color:color-mix(in srgb,var(--accent) 45%,var(--border));background:linear-gradient(180deg,var(--accent-soft),transparent 60%),var(--surface)}
+  .handoff .box .k{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--accent)}
+  .handoff .box .d{font-size:.9rem;color:var(--muted);margin-top:6px}
+  .handoff .arr{font-family:var(--mono);color:var(--faint);font-size:1.3rem}
+
+  .caveat{background:var(--surface-2);border:1px solid var(--border);border-left:3px solid var(--moat);border-radius:10px;padding:15px 17px;margin-top:20px;color:var(--muted);font-size:.9rem;line-height:1.55}
+  .caveat b{color:var(--text)}
+  footer{padding:36px 0 60px}.foot{color:var(--faint);font-size:.82rem;line-height:1.7}
+</style>
+
+<header>
+  <div class="wrap">
+    <div class="topbar">
+      <div class="brand">🔐 Dedaub <span class="sep">/</span> <span class="tag">Lead Discovery · consolidated</span></div>
+      <button class="theme-toggle" id="tt" type="button">◐ theme</button>
+    </div>
+    <div class="eyebrow">Orchestrator · one engine, every signal</div>
+    <h1>Buying Signal Trigger</h1>
+    <p class="lede">The lead-discovery orchestrator. It watches every Web3 signal that means "this company is worth talking to now," turns each into a scored, HubSpot-ready lead, and hands it to the Multichannel Campaign. One engine — replacing four separate discovery add-ons.</p>
+    <div class="pipe-hero">
+      <span class="b">signal fires</span><span class="x">→</span>
+      <span class="b">enrich</span><span class="x">→</span>
+      <span class="b">resolve</span><span class="x">→</span>
+      <span class="b accent">score</span><span class="x">→</span>
+      <span class="b">dedupe</span><span class="x">→</span>
+      <span class="b accent">emit lead</span>
+    </div>
+  </div>
+</header>
+
+<!-- 01 CONCEPT -->
+<section>
+  <div class="wrap">
+    <div class="sec-head"><span class="idx">01</span><h2>The idea: one engine, not four add-ons</h2></div>
+    <p class="sec-sub">A lead is rarely one signal. It's the convergence of <b>fit</b> (does this account match us), <b>timing</b> (is something happening now), and <b>risk</b> (is there a reason to talk today). So the separate discovery add-ons collapse into a single orchestrator.</p>
+    <div class="callout">
+      <span class="l">Consolidation</span>
+      <p><b>Stack Finder + Raise Radar + Ship Signal + Risk Trigger → Buying Signal Trigger.</b> Instead of four tools each watching one thing, one engine ingests every signal source, scores the convergence, and emits a single ranked lead with a "why now." It sits <b>upstream of the Multichannel Campaign</b> — discovery feeds activation.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 02 SIGNAL TAXONOMY -->
+<section>
+  <div class="wrap">
+    <div class="sec-head"><span class="idx">02</span><h2>The signal taxonomy — everything we know about lead discovery</h2></div>
+    <p class="sec-sub">Seven signal families. <span style="color:var(--accent)">Fit</span> signals say <em>who</em>; <span style="color:var(--moat)">timing</span> signals say <em>when</em>. Each maps to an orchestrator we already run.</p>
+    <div class="sig-grid">
+
+      <div class="sig">
+        <div class="top"><span class="ic">🧩</span><h3>Fit / technographic</h3><span class="tt fit">fit</span></div>
+        <ul><li>Runs a specific chain, oracle, bridge or tool</li><li>Uses a competitor's product (displacement)</li><li>Matches ICP size / stage / vertical</li></ul>
+        <div class="src">source → <span class="chip">apollo-technographics</span> <span class="chip">tokin-competitor-finder</span> <span class="chip">allium-customer-finder</span></div>
+      </div>
+
+      <div class="sig">
+        <div class="top"><span class="ic">💰</span><h3>Funding</h3><span class="tt time">timing</span></div>
+        <ul><li>Raise (pre-seed → Series X)</li><li>Grant award / ecosystem program</li><li>Treasury top-up</li></ul>
+        <div class="src">source → <span class="chip">defillama-raise-campaign</span> <span class="chip">grant-hunter</span></div>
+      </div>
+
+      <div class="sig">
+        <div class="top"><span class="ic">🚢</span><h3>Build / shipping</h3><span class="tt time">timing</span></div>
+        <ul><li>GitHub release, commit spike, new repo</li><li>New contract deployment / mainnet launch</li><li>Dependency or upgrade change</li></ul>
+        <div class="src">source → <span class="chip">defi-security-intel (monitoring)</span> <span class="chip">defillama-github-extract</span></div>
+      </div>
+
+      <div class="sig moat">
+        <div class="top"><span class="ic">🛡️</span><h3>Security / risk</h3><span class="badge">Dedaub moat</span></div>
+        <ul><li>Unaudited deployment</li><li>Fork of audited code</li><li>Live incident / exploit</li><li>Audit gone stale · upgradeable contract change</li></ul>
+        <div class="src">source → <span class="chip">defi-security-intelligence</span> <span class="chip">evm-trace-intelligence</span> <span class="chip">protocol-internals</span></div>
+      </div>
+
+      <div class="sig">
+        <div class="top"><span class="ic">📈</span><h3>On-chain / traction</h3><span class="tt time">timing</span></div>
+        <ul><li>TVL surge or drop</li><li>Token launch</li><li>User / volume growth</li></ul>
+        <div class="src">source → <span class="chip">defillama</span> <span class="chip">on-chain data</span></div>
+      </div>
+
+      <div class="sig">
+        <div class="top"><span class="ic">👔</span><h3>Hiring / intent</h3><span class="tt time">timing</span></div>
+        <ul><li>Hiring BD, security, growth, devrel</li><li>Job-post volume spike</li><li>Key-person move</li></ul>
+        <div class="src">source → <span class="chip">apollo-job-postings</span> <span class="chip">web3-osint</span></div>
+      </div>
+
+      <div class="sig">
+        <div class="top"><span class="ic">💬</span><h3>Community / social</h3><span class="tt fit">fit + timing</span></div>
+        <ul><li>Telegram / Discord / X growth &amp; engagement</li><li>Announcement or campaign spike</li><li>New group / channel activity</li></ul>
+        <div class="src">source → <span class="chip">tg-finder</span> <span class="chip">web3-osint</span></div>
+      </div>
+
+      <div class="sig">
+        <div class="top"><span class="ic">🎯</span><h3>Convergence</h3><span class="tt fit">meta</span></div>
+        <ul><li>Two+ signals on one account in a window</li><li>e.g. raise <b>+</b> hiring security <b>+</b> unaudited deploy</li><li>Highest-priority leads live here</li></ul>
+        <div class="src">source → <span class="chip">the orchestrator itself</span></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- 03 PIPELINE -->
+<section>
+  <div class="wrap">
+    <div class="sec-head"><span class="idx">03</span><h2>The pipeline</h2></div>
+    <p class="sec-sub">Every signal, whatever the source, runs the same path from raw event to a lead a human (or the campaign) can act on.</p>
+    <div class="pipeline">
+      <div class="step"><div class="n">01</div><div class="k">Detect</div><div class="d">A signal fires from any family in §02.</div></div><div class="arr">→</div>
+      <div class="step"><div class="n">02</div><div class="k">Enrich</div><div class="d">Append company, contacts, wallets, handles, context.</div></div><div class="arr">→</div>
+      <div class="step"><div class="n">03</div><div class="k">Resolve</div><div class="d">Identity resolution — one company, real people, clean handles.</div></div><div class="arr">→</div>
+      <div class="step"><div class="n">04</div><div class="k">Score</div><div class="d">ICP × signal strength × recency → priority.</div></div><div class="arr">→</div>
+      <div class="step"><div class="n">05</div><div class="k">Dedupe</div><div class="d">Check against existing HubSpot records; merge, don't duplicate.</div></div><div class="arr">→</div>
+      <div class="step"><div class="n">06</div><div class="k">Emit</div><div class="d">Create/update the HubSpot lead + "why now" + recommended play.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 04 LEAD ANATOMY + SCORING -->
+<section>
+  <div class="wrap">
+    <div class="sec-head"><span class="idx">04</span><h2>What it emits, and how it ranks</h2></div>
+    <div class="lead">
+      <div class="leadcard">
+        <h4>Anatomy of an emitted lead</h4>
+        <div class="field"><span class="k">company</span><span class="v">domain + entity, deduped to HubSpot</span></div>
+        <div class="field"><span class="k">contacts</span><span class="v">people + email / Telegram / X handles</span></div>
+        <div class="field"><span class="k">signal(s)</span><span class="v">what fired + timestamp(s)</span></div>
+        <div class="field"><span class="k">why now</span><span class="v">one-line narrative, ready to send</span></div>
+        <div class="field"><span class="k">priority</span><span class="v"><span class="pill">A / B / C</span> from the score</span></div>
+        <div class="field"><span class="k">play</span><span class="v">recommended channel &amp; opener</span></div>
+        <div class="field"><span class="k">handoff</span><span class="v">HubSpot lead → Multichannel Campaign</span></div>
+      </div>
+      <div class="leadcard">
+        <h4>Priority score</h4>
+        <div class="score-eq">priority =<br><b>ICP fit</b> &nbsp;×&nbsp; <b>signal strength</b> &nbsp;×&nbsp; <b>recency</b></div>
+        <p class="score-note"><b>ICP fit</b> — does the account match (chain, size, stage, tech)?<br><b>Signal strength</b> — how strongly does the event predict a buy? (a raise &gt; a commit)<br><b>Recency</b> — fresh events outrank stale ones.<br><br><b>Convergence multiplier:</b> two+ signals on one account in a window jump it to the top. A raise + hiring-security + unaudited-deploy is an A-lead every time.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 05 BUILT FROM -->
+<section>
+  <div class="wrap">
+    <div class="sec-head"><span class="idx">05</span><h2>Built from what we already run</h2></div>
+    <p class="sec-sub">The orchestrator is glue + scoring over orchestrators that already exist. Little of this is net-new.</p>
+    <div class="map">
+      <div class="mapcard"><div class="k">Fit / technographic</div><div class="v"><span class="chip">apollo</span> <span class="chip">tokin-competitor-finder</span> <span class="chip">allium-customer-finder</span></div></div>
+      <div class="mapcard"><div class="k">Funding</div><div class="v"><span class="chip">defillama-raise-campaign</span> <span class="chip">grant-hunter</span></div></div>
+      <div class="mapcard"><div class="k">Build / shipping</div><div class="v"><span class="chip">defi-security-intel</span> <span class="chip">defillama-github-extract</span></div></div>
+      <div class="mapcard"><div class="k">Security / risk (moat)</div><div class="v"><span class="chip">defi-security-intel</span> <span class="chip">evm-trace</span> <span class="chip">protocol-internals</span></div></div>
+      <div class="mapcard"><div class="k">Enrich · resolve · score</div><div class="v"><span class="chip">clay-waterfall</span> <span class="chip">web3-osint</span> <span class="chip">hubspot-crm-ref (ICP scoring)</span></div></div>
+      <div class="mapcard"><div class="k">Emit · dedupe · sync</div><div class="v"><span class="chip">hubspot-crm-ref</span> <span class="chip">tg-finder</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 06 HANDOFF -->
+<section>
+  <div class="wrap">
+    <div class="sec-head"><span class="idx">06</span><h2>How it feeds activation</h2></div>
+    <p class="sec-sub">Buying Signal Trigger and Multichannel Campaign are two halves of one motion — discovery and activation — both HubSpot-native, both agent-driven, both enrichment-powered.</p>
+    <div class="handoff">
+      <div class="box accent"><div class="k">Buying Signal Trigger</div><div class="d">Finds &amp; ranks the lead. Emits it with a "why now" into HubSpot.</div></div>
+      <div class="arr">→</div>
+      <div class="box"><div class="k">HubSpot</div><div class="d">System of record. Holds the lead, the signal, the score.</div></div>
+      <div class="arr">→</div>
+      <div class="box accent"><div class="k">Multichannel Campaign</div><div class="d">Warms &amp; reaches across email · Telegram · X, supervised.</div></div>
+    </div>
+    <div class="caveat"><b>Why this order matters:</b> the "why now" narrative the trigger emits becomes the campaign's opener. Discovery that carries its own reason-to-reach makes activation convert — the two add-ons are worth more together than apart, but each still sells alone.</div>
+  </div>
+</section>
+
+<!-- 07 OPEN QUESTIONS -->
+<section>
+  <div class="wrap">
+    <div class="sec-head"><span class="idx">07</span><h2>Open questions</h2></div>
+    <p class="sec-sub">Where the consolidation still needs decisions.</p>
+    <div class="map">
+      <div class="mapcard"><div class="k">One product or a family?</div><div class="v" style="font-family:var(--sans);font-size:.88rem;color:var(--muted)">Sell Buying Signal Trigger as one add-on, or as tiers (fit-only, +timing, +security-moat)?</div></div>
+      <div class="mapcard"><div class="k">Security signal: feature or internal?</div><div class="v" style="font-family:var(--sans);font-size:.88rem;color:var(--muted)">Is the risk-signal family a customer capability, or Dedaub's own pipeline engine?</div></div>
+      <div class="mapcard"><div class="k">Real-time vs batch</div><div class="v" style="font-family:var(--sans);font-size:.88rem;color:var(--muted)">Continuous monitoring (costly) or scheduled scans (cheaper, slower to fire)?</div></div>
+      <div class="mapcard"><div class="k">Scoring transparency</div><div class="v" style="font-family:var(--sans);font-size:.88rem;color:var(--muted)">Show the customer the score math, or keep it a black box?</div></div>
+    </div>
+  </div>
+</section>
+
+<footer><div class="wrap"><div class="foot">
+  Dedaub · Buying Signal Trigger — lead discovery orchestrator · consolidates Stack Finder + Raise Radar + Ship Signal + Risk Trigger · upstream of Multichannel Campaign · Jul 2026
+</div></div></footer>
+
+<script>
+  (function(){var b=document.getElementById('tt');b.addEventListener('click',function(){var r=document.documentElement,c=r.getAttribute('data-theme');if(!c){c=window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}r.setAttribute('data-theme',c==='dark'?'light':'dark');});})();
+</script>
