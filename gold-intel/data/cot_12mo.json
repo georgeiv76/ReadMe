@@ -1,11 +1,1313 @@
 {
   "rows": [
     {
-      "date": "2025-12-09",
-      "mm_long": 946.0,
-      "mm_short": 0.0,
-      "mm_net": 946.0,
-      "open_interest": 54042.0
+      "date": "2022-05-10",
+      "mm_long": 123931.0,
+      "mm_short": 61939.0,
+      "mm_net": 61992.0,
+      "open_interest": 571447.0
+    },
+    {
+      "date": "2022-05-17",
+      "mm_long": 115572.0,
+      "mm_short": 72212.0,
+      "mm_net": 43360.0,
+      "open_interest": 555756.0
+    },
+    {
+      "date": "2022-05-24",
+      "mm_long": 121174.0,
+      "mm_short": 60117.0,
+      "mm_net": 61057.0,
+      "open_interest": 530098.0
+    },
+    {
+      "date": "2022-05-31",
+      "mm_long": 112731.0,
+      "mm_short": 61938.0,
+      "mm_net": 50793.0,
+      "open_interest": 513722.0
+    },
+    {
+      "date": "2022-06-07",
+      "mm_long": 115215.0,
+      "mm_short": 57684.0,
+      "mm_net": 57531.0,
+      "open_interest": 494130.0
+    },
+    {
+      "date": "2022-06-14",
+      "mm_long": 109111.0,
+      "mm_short": 72206.0,
+      "mm_net": 36905.0,
+      "open_interest": 497456.0
+    },
+    {
+      "date": "2022-06-21",
+      "mm_long": 113220.0,
+      "mm_short": 63417.0,
+      "mm_net": 49803.0,
+      "open_interest": 500276.0
+    },
+    {
+      "date": "2022-06-28",
+      "mm_long": 110850.0,
+      "mm_short": 74748.0,
+      "mm_net": 36102.0,
+      "open_interest": 497005.0
+    },
+    {
+      "date": "2022-07-05",
+      "mm_long": 103472.0,
+      "mm_short": 86438.0,
+      "mm_net": 17034.0,
+      "open_interest": 498210.0
+    },
+    {
+      "date": "2022-07-12",
+      "mm_long": 91669.0,
+      "mm_short": 97802.0,
+      "mm_net": -6133.0,
+      "open_interest": 542493.0
+    },
+    {
+      "date": "2022-07-19",
+      "mm_long": 91056.0,
+      "mm_short": 109794.0,
+      "mm_net": -18738.0,
+      "open_interest": 524786.0
+    },
+    {
+      "date": "2022-07-26",
+      "mm_long": 92216.0,
+      "mm_short": 111309.0,
+      "mm_net": -19093.0,
+      "open_interest": 487515.0
+    },
+    {
+      "date": "2022-08-02",
+      "mm_long": 96634.0,
+      "mm_short": 80779.0,
+      "mm_net": 15855.0,
+      "open_interest": 459649.0
+    },
+    {
+      "date": "2022-08-09",
+      "mm_long": 100013.0,
+      "mm_short": 59279.0,
+      "mm_net": 40734.0,
+      "open_interest": 453540.0
+    },
+    {
+      "date": "2022-08-16",
+      "mm_long": 96765.0,
+      "mm_short": 60392.0,
+      "mm_net": 36373.0,
+      "open_interest": 453960.0
+    },
+    {
+      "date": "2022-08-23",
+      "mm_long": 95850.0,
+      "mm_short": 73739.0,
+      "mm_net": 22111.0,
+      "open_interest": 457762.0
+    },
+    {
+      "date": "2022-08-30",
+      "mm_long": 91761.0,
+      "mm_short": 79973.0,
+      "mm_net": 11788.0,
+      "open_interest": 459165.0
+    },
+    {
+      "date": "2022-09-06",
+      "mm_long": 85842.0,
+      "mm_short": 92804.0,
+      "mm_net": -6962.0,
+      "open_interest": 465908.0
+    },
+    {
+      "date": "2022-09-13",
+      "mm_long": 80300.0,
+      "mm_short": 98637.0,
+      "mm_net": -18337.0,
+      "open_interest": 463674.0
+    },
+    {
+      "date": "2022-09-20",
+      "mm_long": 78544.0,
+      "mm_short": 115239.0,
+      "mm_net": -36695.0,
+      "open_interest": 469395.0
+    },
+    {
+      "date": "2022-09-27",
+      "mm_long": 74171.0,
+      "mm_short": 117265.0,
+      "mm_net": -43094.0,
+      "open_interest": 457061.0
+    },
+    {
+      "date": "2022-10-04",
+      "mm_long": 82806.0,
+      "mm_short": 89681.0,
+      "mm_net": -6875.0,
+      "open_interest": 437065.0
+    },
+    {
+      "date": "2022-10-11",
+      "mm_long": 78365.0,
+      "mm_short": 83945.0,
+      "mm_net": -5580.0,
+      "open_interest": 431395.0
+    },
+    {
+      "date": "2022-10-18",
+      "mm_long": 73344.0,
+      "mm_short": 99042.0,
+      "mm_net": -25698.0,
+      "open_interest": 434701.0
+    },
+    {
+      "date": "2022-10-25",
+      "mm_long": 72016.0,
+      "mm_short": 110804.0,
+      "mm_net": -38788.0,
+      "open_interest": 456072.0
+    },
+    {
+      "date": "2022-11-01",
+      "mm_long": 78213.0,
+      "mm_short": 119614.0,
+      "mm_net": -41401.0,
+      "open_interest": 467276.0
+    },
+    {
+      "date": "2022-11-08",
+      "mm_long": 88059.0,
+      "mm_short": 104405.0,
+      "mm_net": -16346.0,
+      "open_interest": 488471.0
+    },
+    {
+      "date": "2022-11-15",
+      "mm_long": 95065.0,
+      "mm_short": 69608.0,
+      "mm_net": 25457.0,
+      "open_interest": 495171.0
+    },
+    {
+      "date": "2022-11-22",
+      "mm_long": 92161.0,
+      "mm_short": 72730.0,
+      "mm_net": 19431.0,
+      "open_interest": 449542.0
+    },
+    {
+      "date": "2022-11-29",
+      "mm_long": 88032.0,
+      "mm_short": 73312.0,
+      "mm_net": 14720.0,
+      "open_interest": 433661.0
+    },
+    {
+      "date": "2022-12-06",
+      "mm_long": 93629.0,
+      "mm_short": 70142.0,
+      "mm_net": 23487.0,
+      "open_interest": 422100.0
+    },
+    {
+      "date": "2022-12-13",
+      "mm_long": 103737.0,
+      "mm_short": 66288.0,
+      "mm_net": 37449.0,
+      "open_interest": 437040.0
+    },
+    {
+      "date": "2022-12-20",
+      "mm_long": 104813.0,
+      "mm_short": 65718.0,
+      "mm_net": 39095.0,
+      "open_interest": 436653.0
+    },
+    {
+      "date": "2022-12-27",
+      "mm_long": 106983.0,
+      "mm_short": 56106.0,
+      "mm_net": 50877.0,
+      "open_interest": 440040.0
+    },
+    {
+      "date": "2023-01-03",
+      "mm_long": 109140.0,
+      "mm_short": 54559.0,
+      "mm_net": 54581.0,
+      "open_interest": 449393.0
+    },
+    {
+      "date": "2023-01-10",
+      "mm_long": 116604.0,
+      "mm_short": 54795.0,
+      "mm_net": 61809.0,
+      "open_interest": 481519.0
+    },
+    {
+      "date": "2023-01-17",
+      "mm_long": 124222.0,
+      "mm_short": 54845.0,
+      "mm_net": 69377.0,
+      "open_interest": 491818.0
+    },
+    {
+      "date": "2023-01-24",
+      "mm_long": 131501.0,
+      "mm_short": 51622.0,
+      "mm_net": 79879.0,
+      "open_interest": 499927.0
+    },
+    {
+      "date": "2023-01-31",
+      "mm_long": 138125.0,
+      "mm_short": 53678.0,
+      "mm_net": 84447.0,
+      "open_interest": 471642.0
+    },
+    {
+      "date": "2023-02-07",
+      "mm_long": 115521.0,
+      "mm_short": 55945.0,
+      "mm_net": 59576.0,
+      "open_interest": 439755.0
+    },
+    {
+      "date": "2023-02-14",
+      "mm_long": 106106.0,
+      "mm_short": 64933.0,
+      "mm_net": 41173.0,
+      "open_interest": 426116.0
+    },
+    {
+      "date": "2023-02-21",
+      "mm_long": 104710.0,
+      "mm_short": 68004.0,
+      "mm_net": 36706.0,
+      "open_interest": 422648.0
+    },
+    {
+      "date": "2023-02-28",
+      "mm_long": 99425.0,
+      "mm_short": 72850.0,
+      "mm_net": 26575.0,
+      "open_interest": 426890.0
+    },
+    {
+      "date": "2023-03-07",
+      "mm_long": 103439.0,
+      "mm_short": 89040.0,
+      "mm_net": 14399.0,
+      "open_interest": 458474.0
+    },
+    {
+      "date": "2023-03-14",
+      "mm_long": 118560.0,
+      "mm_short": 58839.0,
+      "mm_net": 59721.0,
+      "open_interest": 459064.0
+    },
+    {
+      "date": "2023-03-21",
+      "mm_long": 125090.0,
+      "mm_short": 43861.0,
+      "mm_net": 81229.0,
+      "open_interest": 469874.0
+    },
+    {
+      "date": "2023-03-28",
+      "mm_long": 130530.0,
+      "mm_short": 31370.0,
+      "mm_net": 99160.0,
+      "open_interest": 478611.0
+    },
+    {
+      "date": "2023-04-04",
+      "mm_long": 142348.0,
+      "mm_short": 32217.0,
+      "mm_net": 110131.0,
+      "open_interest": 476592.0
+    },
+    {
+      "date": "2023-04-11",
+      "mm_long": 135015.0,
+      "mm_short": 30409.0,
+      "mm_net": 104606.0,
+      "open_interest": 476567.0
+    },
+    {
+      "date": "2023-04-18",
+      "mm_long": 137170.0,
+      "mm_short": 34474.0,
+      "mm_net": 102696.0,
+      "open_interest": 482254.0
+    },
+    {
+      "date": "2023-04-25",
+      "mm_long": 135979.0,
+      "mm_short": 33176.0,
+      "mm_net": 102803.0,
+      "open_interest": 473209.0
+    },
+    {
+      "date": "2023-05-02",
+      "mm_long": 143191.0,
+      "mm_short": 29401.0,
+      "mm_net": 113790.0,
+      "open_interest": 493804.0
+    },
+    {
+      "date": "2023-05-09",
+      "mm_long": 143463.0,
+      "mm_short": 32477.0,
+      "mm_net": 110986.0,
+      "open_interest": 518951.0
+    },
+    {
+      "date": "2023-05-16",
+      "mm_long": 139786.0,
+      "mm_short": 35803.0,
+      "mm_net": 103983.0,
+      "open_interest": 521832.0
+    },
+    {
+      "date": "2023-05-23",
+      "mm_long": 128550.0,
+      "mm_short": 35411.0,
+      "mm_net": 93139.0,
+      "open_interest": 479080.0
+    },
+    {
+      "date": "2023-05-30",
+      "mm_long": 122904.0,
+      "mm_short": 36201.0,
+      "mm_net": 86703.0,
+      "open_interest": 449515.0
+    },
+    {
+      "date": "2023-06-06",
+      "mm_long": 120985.0,
+      "mm_short": 27557.0,
+      "mm_net": 93428.0,
+      "open_interest": 436301.0
+    },
+    {
+      "date": "2023-06-13",
+      "mm_long": 110512.0,
+      "mm_short": 35869.0,
+      "mm_net": 74643.0,
+      "open_interest": 432898.0
+    },
+    {
+      "date": "2023-06-20",
+      "mm_long": 110314.0,
+      "mm_short": 34275.0,
+      "mm_net": 76039.0,
+      "open_interest": 438037.0
+    },
+    {
+      "date": "2023-06-27",
+      "mm_long": 108209.0,
+      "mm_short": 38534.0,
+      "mm_net": 69675.0,
+      "open_interest": 431861.0
+    },
+    {
+      "date": "2023-07-03",
+      "mm_long": 123017.0,
+      "mm_short": 39869.0,
+      "mm_net": 83148.0,
+      "open_interest": 448063.0
+    },
+    {
+      "date": "2023-07-11",
+      "mm_long": 124394.0,
+      "mm_short": 41951.0,
+      "mm_net": 82443.0,
+      "open_interest": 483170.0
+    },
+    {
+      "date": "2023-07-18",
+      "mm_long": 147644.0,
+      "mm_short": 32326.0,
+      "mm_net": 115318.0,
+      "open_interest": 482104.0
+    },
+    {
+      "date": "2023-07-25",
+      "mm_long": 132603.0,
+      "mm_short": 37316.0,
+      "mm_net": 95287.0,
+      "open_interest": 476176.0
+    },
+    {
+      "date": "2023-08-01",
+      "mm_long": 123802.0,
+      "mm_short": 43793.0,
+      "mm_net": 80009.0,
+      "open_interest": 439383.0
+    },
+    {
+      "date": "2023-08-08",
+      "mm_long": 114585.0,
+      "mm_short": 55979.0,
+      "mm_net": 58606.0,
+      "open_interest": 427759.0
+    },
+    {
+      "date": "2023-08-15",
+      "mm_long": 113146.0,
+      "mm_short": 83610.0,
+      "mm_net": 29536.0,
+      "open_interest": 433611.0
+    },
+    {
+      "date": "2023-08-22",
+      "mm_long": 105085.0,
+      "mm_short": 95976.0,
+      "mm_net": 9109.0,
+      "open_interest": 430239.0
+    },
+    {
+      "date": "2023-08-29",
+      "mm_long": 120609.0,
+      "mm_short": 81367.0,
+      "mm_net": 39242.0,
+      "open_interest": 442806.0
+    },
+    {
+      "date": "2023-09-05",
+      "mm_long": 120222.0,
+      "mm_short": 69857.0,
+      "mm_net": 50365.0,
+      "open_interest": 438672.0
+    },
+    {
+      "date": "2023-09-12",
+      "mm_long": 117737.0,
+      "mm_short": 83166.0,
+      "mm_net": 34571.0,
+      "open_interest": 441221.0
+    },
+    {
+      "date": "2023-09-19",
+      "mm_long": 121172.0,
+      "mm_short": 73782.0,
+      "mm_net": 47390.0,
+      "open_interest": 438078.0
+    },
+    {
+      "date": "2023-09-26",
+      "mm_long": 114668.0,
+      "mm_short": 91230.0,
+      "mm_net": 23438.0,
+      "open_interest": 435620.0
+    },
+    {
+      "date": "2023-10-03",
+      "mm_long": 100500.0,
+      "mm_short": 108061.0,
+      "mm_net": -7561.0,
+      "open_interest": 431226.0
+    },
+    {
+      "date": "2023-10-10",
+      "mm_long": 93934.0,
+      "mm_short": 120701.0,
+      "mm_net": -26767.0,
+      "open_interest": 436499.0
+    },
+    {
+      "date": "2023-10-17",
+      "mm_long": 104708.0,
+      "mm_short": 89605.0,
+      "mm_net": 15103.0,
+      "open_interest": 439581.0
+    },
+    {
+      "date": "2023-10-24",
+      "mm_long": 122456.0,
+      "mm_short": 66708.0,
+      "mm_net": 55748.0,
+      "open_interest": 463476.0
+    },
+    {
+      "date": "2023-10-31",
+      "mm_long": 140111.0,
+      "mm_short": 65271.0,
+      "mm_net": 74840.0,
+      "open_interest": 475808.0
+    },
+    {
+      "date": "2023-11-07",
+      "mm_long": 140609.0,
+      "mm_short": 62374.0,
+      "mm_net": 78235.0,
+      "open_interest": 484347.0
+    },
+    {
+      "date": "2023-11-14",
+      "mm_long": 132924.0,
+      "mm_short": 68609.0,
+      "mm_net": 64315.0,
+      "open_interest": 486634.0
+    },
+    {
+      "date": "2023-11-21",
+      "mm_long": 144381.0,
+      "mm_short": 65246.0,
+      "mm_net": 79135.0,
+      "open_interest": 508429.0
+    },
+    {
+      "date": "2023-11-28",
+      "mm_long": 169695.0,
+      "mm_short": 54802.0,
+      "mm_net": 114893.0,
+      "open_interest": 505658.0
+    },
+    {
+      "date": "2023-12-05",
+      "mm_long": 159907.0,
+      "mm_short": 50520.0,
+      "mm_net": 109387.0,
+      "open_interest": 487469.0
+    },
+    {
+      "date": "2023-12-12",
+      "mm_long": 149634.0,
+      "mm_short": 54106.0,
+      "mm_net": 95528.0,
+      "open_interest": 469939.0
+    },
+    {
+      "date": "2023-12-19",
+      "mm_long": 155697.0,
+      "mm_short": 47421.0,
+      "mm_net": 108276.0,
+      "open_interest": 481203.0
+    },
+    {
+      "date": "2023-12-26",
+      "mm_long": 152801.0,
+      "mm_short": 46347.0,
+      "mm_net": 106454.0,
+      "open_interest": 491343.0
+    },
+    {
+      "date": "2024-01-02",
+      "mm_long": 154384.0,
+      "mm_short": 45235.0,
+      "mm_net": 109149.0,
+      "open_interest": 500364.0
+    },
+    {
+      "date": "2024-01-09",
+      "mm_long": 134333.0,
+      "mm_short": 45874.0,
+      "mm_net": 88459.0,
+      "open_interest": 489849.0
+    },
+    {
+      "date": "2024-01-16",
+      "mm_long": 130931.0,
+      "mm_short": 47702.0,
+      "mm_net": 83229.0,
+      "open_interest": 489334.0
+    },
+    {
+      "date": "2024-01-23",
+      "mm_long": 111298.0,
+      "mm_short": 50265.0,
+      "mm_net": 61033.0,
+      "open_interest": 465872.0
+    },
+    {
+      "date": "2024-01-30",
+      "mm_long": 108093.0,
+      "mm_short": 52069.0,
+      "mm_net": 56024.0,
+      "open_interest": 430328.0
+    },
+    {
+      "date": "2024-02-06",
+      "mm_long": 114316.0,
+      "mm_short": 46247.0,
+      "mm_net": 68069.0,
+      "open_interest": 419121.0
+    },
+    {
+      "date": "2024-02-13",
+      "mm_long": 100642.0,
+      "mm_short": 66466.0,
+      "mm_net": 34176.0,
+      "open_interest": 420812.0
+    },
+    {
+      "date": "2024-02-20",
+      "mm_long": 98840.0,
+      "mm_short": 48917.0,
+      "mm_net": 49923.0,
+      "open_interest": 407063.0
+    },
+    {
+      "date": "2024-02-27",
+      "mm_long": 103885.0,
+      "mm_short": 47732.0,
+      "mm_net": 56153.0,
+      "open_interest": 411195.0
+    },
+    {
+      "date": "2024-03-05",
+      "mm_long": 145106.0,
+      "mm_short": 35343.0,
+      "mm_net": 109763.0,
+      "open_interest": 471616.0
+    },
+    {
+      "date": "2024-03-12",
+      "mm_long": 173994.0,
+      "mm_short": 32911.0,
+      "mm_net": 141083.0,
+      "open_interest": 516057.0
+    },
+    {
+      "date": "2024-03-19",
+      "mm_long": 172588.0,
+      "mm_short": 29692.0,
+      "mm_net": 142896.0,
+      "open_interest": 535047.0
+    },
+    {
+      "date": "2024-03-26",
+      "mm_long": 163006.0,
+      "mm_short": 27211.0,
+      "mm_net": 135795.0,
+      "open_interest": 503642.0
+    },
+    {
+      "date": "2024-04-02",
+      "mm_long": 173073.0,
+      "mm_short": 25993.0,
+      "mm_net": 147080.0,
+      "open_interest": 500045.0
+    },
+    {
+      "date": "2024-04-09",
+      "mm_long": 174617.0,
+      "mm_short": 32885.0,
+      "mm_net": 141732.0,
+      "open_interest": 505214.0
+    },
+    {
+      "date": "2024-04-16",
+      "mm_long": 169910.0,
+      "mm_short": 35174.0,
+      "mm_net": 134736.0,
+      "open_interest": 517193.0
+    },
+    {
+      "date": "2024-04-23",
+      "mm_long": 176400.0,
+      "mm_short": 34261.0,
+      "mm_net": 142139.0,
+      "open_interest": 516249.0
+    },
+    {
+      "date": "2024-04-30",
+      "mm_long": 171853.0,
+      "mm_short": 36826.0,
+      "mm_net": 135027.0,
+      "open_interest": 519791.0
+    },
+    {
+      "date": "2024-05-07",
+      "mm_long": 164780.0,
+      "mm_short": 38681.0,
+      "mm_net": 126099.0,
+      "open_interest": 529835.0
+    },
+    {
+      "date": "2024-05-14",
+      "mm_long": 171868.0,
+      "mm_short": 41433.0,
+      "mm_net": 130435.0,
+      "open_interest": 522952.0
+    },
+    {
+      "date": "2024-05-21",
+      "mm_long": 190605.0,
+      "mm_short": 42082.0,
+      "mm_net": 148523.0,
+      "open_interest": 530591.0
+    },
+    {
+      "date": "2024-05-28",
+      "mm_long": 174444.0,
+      "mm_short": 25616.0,
+      "mm_net": 148828.0,
+      "open_interest": 485430.0
+    },
+    {
+      "date": "2024-06-04",
+      "mm_long": 172560.0,
+      "mm_short": 20261.0,
+      "mm_net": 152299.0,
+      "open_interest": 447488.0
+    },
+    {
+      "date": "2024-06-11",
+      "mm_long": 168424.0,
+      "mm_short": 15459.0,
+      "mm_net": 152965.0,
+      "open_interest": 436857.0
+    },
+    {
+      "date": "2024-06-18",
+      "mm_long": 177639.0,
+      "mm_short": 17018.0,
+      "mm_net": 160621.0,
+      "open_interest": 444345.0
+    },
+    {
+      "date": "2024-06-25",
+      "mm_long": 174756.0,
+      "mm_short": 16554.0,
+      "mm_net": 158202.0,
+      "open_interest": 452190.0
+    },
+    {
+      "date": "2024-07-02",
+      "mm_long": 167688.0,
+      "mm_short": 16873.0,
+      "mm_net": 150815.0,
+      "open_interest": 454730.0
+    },
+    {
+      "date": "2024-07-09",
+      "mm_long": 181982.0,
+      "mm_short": 24515.0,
+      "mm_net": 157467.0,
+      "open_interest": 516324.0
+    },
+    {
+      "date": "2024-07-16",
+      "mm_long": 216502.0,
+      "mm_short": 31970.0,
+      "mm_net": 184532.0,
+      "open_interest": 579862.0
+    },
+    {
+      "date": "2024-07-23",
+      "mm_long": 197802.0,
+      "mm_short": 34942.0,
+      "mm_net": 162860.0,
+      "open_interest": 572306.0
+    },
+    {
+      "date": "2024-07-30",
+      "mm_long": 185586.0,
+      "mm_short": 33222.0,
+      "mm_net": 152364.0,
+      "open_interest": 510914.0
+    },
+    {
+      "date": "2024-08-06",
+      "mm_long": 180303.0,
+      "mm_short": 29517.0,
+      "mm_net": 150786.0,
+      "open_interest": 480645.0
+    },
+    {
+      "date": "2024-08-13",
+      "mm_long": 203844.0,
+      "mm_short": 25929.0,
+      "mm_net": 177915.0,
+      "open_interest": 505872.0
+    },
+    {
+      "date": "2024-08-20",
+      "mm_long": 222142.0,
+      "mm_short": 28837.0,
+      "mm_net": 193305.0,
+      "open_interest": 532867.0
+    },
+    {
+      "date": "2024-08-27",
+      "mm_long": 217976.0,
+      "mm_short": 17685.0,
+      "mm_net": 200291.0,
+      "open_interest": 521759.0
+    },
+    {
+      "date": "2024-09-03",
+      "mm_long": 212086.0,
+      "mm_short": 19996.0,
+      "mm_net": 192090.0,
+      "open_interest": 511136.0
+    },
+    {
+      "date": "2024-09-10",
+      "mm_long": 213645.0,
+      "mm_short": 23190.0,
+      "mm_net": 190455.0,
+      "open_interest": 511501.0
+    },
+    {
+      "date": "2024-09-17",
+      "mm_long": 241844.0,
+      "mm_short": 25489.0,
+      "mm_net": 216355.0,
+      "open_interest": 537627.0
+    },
+    {
+      "date": "2024-09-24",
+      "mm_long": 256435.0,
+      "mm_short": 37406.0,
+      "mm_net": 219029.0,
+      "open_interest": 564640.0
+    },
+    {
+      "date": "2024-10-01",
+      "mm_long": 247867.0,
+      "mm_short": 33405.0,
+      "mm_net": 214462.0,
+      "open_interest": 533107.0
+    },
+    {
+      "date": "2024-10-08",
+      "mm_long": 227596.0,
+      "mm_short": 33537.0,
+      "mm_net": 194059.0,
+      "open_interest": 520316.0
+    },
+    {
+      "date": "2024-10-15",
+      "mm_long": 233871.0,
+      "mm_short": 34450.0,
+      "mm_net": 199421.0,
+      "open_interest": 541232.0
+    },
+    {
+      "date": "2024-10-22",
+      "mm_long": 242427.0,
+      "mm_short": 37267.0,
+      "mm_net": 205160.0,
+      "open_interest": 573760.0
+    },
+    {
+      "date": "2024-10-29",
+      "mm_long": 234856.0,
+      "mm_short": 39683.0,
+      "mm_net": 195173.0,
+      "open_interest": 579468.0
+    },
+    {
+      "date": "2024-11-05",
+      "mm_long": 219687.0,
+      "mm_short": 36684.0,
+      "mm_net": 183003.0,
+      "open_interest": 558034.0
+    },
+    {
+      "date": "2024-11-12",
+      "mm_long": 203661.0,
+      "mm_short": 38365.0,
+      "mm_net": 165296.0,
+      "open_interest": 535981.0
+    },
+    {
+      "date": "2024-11-19",
+      "mm_long": 193355.0,
+      "mm_short": 38181.0,
+      "mm_net": 155174.0,
+      "open_interest": 502952.0
+    },
+    {
+      "date": "2024-11-26",
+      "mm_long": 203596.0,
+      "mm_short": 24306.0,
+      "mm_net": 179290.0,
+      "open_interest": 472660.0
+    },
+    {
+      "date": "2024-12-03",
+      "mm_long": 203580.0,
+      "mm_short": 22845.0,
+      "mm_net": 180735.0,
+      "open_interest": 462040.0
+    },
+    {
+      "date": "2024-12-10",
+      "mm_long": 218482.0,
+      "mm_short": 22404.0,
+      "mm_net": 196078.0,
+      "open_interest": 483346.0
+    },
+    {
+      "date": "2024-12-17",
+      "mm_long": 201880.0,
+      "mm_short": 18378.0,
+      "mm_net": 183502.0,
+      "open_interest": 466571.0
+    },
+    {
+      "date": "2024-12-24",
+      "mm_long": 186099.0,
+      "mm_short": 20602.0,
+      "mm_net": 165497.0,
+      "open_interest": 454646.0
+    },
+    {
+      "date": "2024-12-31",
+      "mm_long": 182128.0,
+      "mm_short": 15959.0,
+      "mm_net": 166169.0,
+      "open_interest": 458584.0
+    },
+    {
+      "date": "2025-01-07",
+      "mm_long": 191873.0,
+      "mm_short": 14232.0,
+      "mm_net": 177641.0,
+      "open_interest": 477043.0
+    },
+    {
+      "date": "2025-01-14",
+      "mm_long": 206968.0,
+      "mm_short": 11346.0,
+      "mm_net": 195622.0,
+      "open_interest": 526467.0
+    },
+    {
+      "date": "2025-01-21",
+      "mm_long": 226964.0,
+      "mm_short": 11095.0,
+      "mm_net": 215869.0,
+      "open_interest": 571387.0
+    },
+    {
+      "date": "2025-01-28",
+      "mm_long": 227871.0,
+      "mm_short": 17331.0,
+      "mm_net": 210540.0,
+      "open_interest": 577505.0
+    },
+    {
+      "date": "2025-02-04",
+      "mm_long": 240485.0,
+      "mm_short": 30952.0,
+      "mm_net": 209533.0,
+      "open_interest": 542004.0
+    },
+    {
+      "date": "2025-02-11",
+      "mm_long": 229071.0,
+      "mm_short": 34268.0,
+      "mm_net": 194803.0,
+      "open_interest": 528719.0
+    },
+    {
+      "date": "2025-02-18",
+      "mm_long": 222538.0,
+      "mm_short": 37209.0,
+      "mm_net": 185329.0,
+      "open_interest": 522330.0
+    },
+    {
+      "date": "2025-02-25",
+      "mm_long": 212694.0,
+      "mm_short": 32882.0,
+      "mm_net": 179812.0,
+      "open_interest": 512179.0
+    },
+    {
+      "date": "2025-03-04",
+      "mm_long": 204965.0,
+      "mm_short": 38307.0,
+      "mm_net": 166658.0,
+      "open_interest": 489270.0
+    },
+    {
+      "date": "2025-03-11",
+      "mm_long": 204907.0,
+      "mm_short": 37331.0,
+      "mm_net": 167576.0,
+      "open_interest": 511276.0
+    },
+    {
+      "date": "2025-03-18",
+      "mm_long": 220879.0,
+      "mm_short": 37045.0,
+      "mm_net": 183834.0,
+      "open_interest": 533566.0
+    },
+    {
+      "date": "2025-03-25",
+      "mm_long": 213505.0,
+      "mm_short": 38773.0,
+      "mm_net": 174732.0,
+      "open_interest": 511482.0
+    },
+    {
+      "date": "2025-04-01",
+      "mm_long": 204833.0,
+      "mm_short": 62834.0,
+      "mm_net": 141999.0,
+      "open_interest": 498746.0
+    },
+    {
+      "date": "2025-04-08",
+      "mm_long": 175393.0,
+      "mm_short": 44407.0,
+      "mm_net": 130986.0,
+      "open_interest": 445468.0
+    },
+    {
+      "date": "2025-04-15",
+      "mm_long": 168400.0,
+      "mm_short": 43546.0,
+      "mm_net": 124854.0,
+      "open_interest": 456628.0
+    },
+    {
+      "date": "2025-04-22",
+      "mm_long": 166360.0,
+      "mm_short": 45458.0,
+      "mm_net": 120902.0,
+      "open_interest": 465351.0
+    },
+    {
+      "date": "2025-04-29",
+      "mm_long": 150715.0,
+      "mm_short": 44820.0,
+      "mm_net": 105895.0,
+      "open_interest": 451868.0
+    },
+    {
+      "date": "2025-05-06",
+      "mm_long": 144383.0,
+      "mm_short": 42292.0,
+      "mm_net": 102091.0,
+      "open_interest": 452414.0
+    },
+    {
+      "date": "2025-05-13",
+      "mm_long": 144410.0,
+      "mm_short": 43183.0,
+      "mm_net": 101227.0,
+      "open_interest": 440842.0
+    },
+    {
+      "date": "2025-05-20",
+      "mm_long": 149149.0,
+      "mm_short": 41520.0,
+      "mm_net": 107629.0,
+      "open_interest": 448000.0
+    },
+    {
+      "date": "2025-05-27",
+      "mm_long": 147502.0,
+      "mm_short": 36686.0,
+      "mm_net": 110816.0,
+      "open_interest": 437538.0
+    },
+    {
+      "date": "2025-06-03",
+      "mm_long": 159966.0,
+      "mm_short": 36384.0,
+      "mm_net": 123582.0,
+      "open_interest": 415941.0
+    },
+    {
+      "date": "2025-06-10",
+      "mm_long": 160680.0,
+      "mm_short": 36589.0,
+      "mm_net": 124091.0,
+      "open_interest": 417143.0
+    },
+    {
+      "date": "2025-06-17",
+      "mm_long": 167646.0,
+      "mm_short": 37135.0,
+      "mm_net": 130511.0,
+      "open_interest": 441214.0
+    },
+    {
+      "date": "2025-06-24",
+      "mm_long": 163829.0,
+      "mm_short": 38701.0,
+      "mm_net": 125128.0,
+      "open_interest": 434958.0
+    },
+    {
+      "date": "2025-07-01",
+      "mm_long": 165086.0,
+      "mm_short": 34726.0,
+      "mm_net": 130360.0,
+      "open_interest": 437662.0
+    },
+    {
+      "date": "2025-07-08",
+      "mm_long": 164685.0,
+      "mm_short": 35743.0,
+      "mm_net": 128942.0,
+      "open_interest": 443144.0
+    },
+    {
+      "date": "2025-07-15",
+      "mm_long": 172657.0,
+      "mm_short": 35930.0,
+      "mm_net": 136727.0,
+      "open_interest": 448531.0
+    },
+    {
+      "date": "2025-07-22",
+      "mm_long": 194753.0,
+      "mm_short": 34819.0,
+      "mm_net": 159934.0,
+      "open_interest": 489423.0
+    },
+    {
+      "date": "2025-07-29",
+      "mm_long": 170918.0,
+      "mm_short": 36662.0,
+      "mm_net": 134256.0,
+      "open_interest": 445259.0
+    },
+    {
+      "date": "2025-08-05",
+      "mm_long": 186304.0,
+      "mm_short": 32317.0,
+      "mm_net": 153987.0,
+      "open_interest": 449647.0
+    },
+    {
+      "date": "2025-08-12",
+      "mm_long": 182337.0,
+      "mm_short": 34050.0,
+      "mm_net": 148287.0,
+      "open_interest": 446152.0
+    },
+    {
+      "date": "2025-08-19",
+      "mm_long": 173388.0,
+      "mm_short": 36003.0,
+      "mm_net": 137385.0,
+      "open_interest": 438541.0
+    },
+    {
+      "date": "2025-08-26",
+      "mm_long": 175494.0,
+      "mm_short": 33577.0,
+      "mm_net": 141917.0,
+      "open_interest": 443760.0
+    },
+    {
+      "date": "2025-09-02",
+      "mm_long": 196127.0,
+      "mm_short": 34625.0,
+      "mm_net": 161502.0,
+      "open_interest": 492908.0
+    },
+    {
+      "date": "2025-09-09",
+      "mm_long": 198907.0,
+      "mm_short": 35388.0,
+      "mm_net": 163519.0,
+      "open_interest": 509625.0
+    },
+    {
+      "date": "2025-09-16",
+      "mm_long": 195347.0,
+      "mm_short": 36376.0,
+      "mm_net": 158971.0,
+      "open_interest": 516221.0
+    },
+    {
+      "date": "2025-09-23",
+      "mm_long": 198826.0,
+      "mm_short": 38277.0,
+      "mm_net": 160549.0,
+      "open_interest": 528789.0
+    },
+    {
+      "date": "2025-09-30",
+      "mm_long": 184199.0,
+      "mm_short": 38972.0,
+      "mm_net": 145227.0,
+      "open_interest": 493748.0
+    },
+    {
+      "date": "2025-10-07",
+      "mm_long": 170587.0,
+      "mm_short": 40828.0,
+      "mm_net": 129759.0,
+      "open_interest": 485559.0
+    },
+    {
+      "date": "2025-10-14",
+      "mm_long": 152187.0,
+      "mm_short": 43877.0,
+      "mm_net": 108310.0,
+      "open_interest": 485788.0
+    },
+    {
+      "date": "2025-10-21",
+      "mm_long": 135503.0,
+      "mm_short": 43276.0,
+      "mm_net": 92227.0,
+      "open_interest": 472421.0
+    },
+    {
+      "date": "2025-10-28",
+      "mm_long": 138605.0,
+      "mm_short": 34446.0,
+      "mm_net": 104159.0,
+      "open_interest": 457122.0
+    },
+    {
+      "date": "2025-11-04",
+      "mm_long": 130688.0,
+      "mm_short": 30143.0,
+      "mm_net": 100545.0,
+      "open_interest": 450399.0
+    },
+    {
+      "date": "2025-11-10",
+      "mm_long": 134155.0,
+      "mm_short": 30068.0,
+      "mm_net": 104087.0,
+      "open_interest": 459997.0
+    },
+    {
+      "date": "2025-11-18",
+      "mm_long": 130222.0,
+      "mm_short": 32017.0,
+      "mm_net": 98205.0,
+      "open_interest": 471953.0
+    },
+    {
+      "date": "2025-11-25",
+      "mm_long": 136979.0,
+      "mm_short": 27670.0,
+      "mm_net": 109309.0,
+      "open_interest": 432946.0
+    },
+    {
+      "date": "2025-12-02",
+      "mm_long": 140143.0,
+      "mm_short": 19819.0,
+      "mm_net": 120324.0,
+      "open_interest": 418490.0
     },
     {
       "date": "2025-12-09",
@@ -16,24 +1318,10 @@
     },
     {
       "date": "2025-12-16",
-      "mm_long": 709.0,
-      "mm_short": 0.0,
-      "mm_net": 709.0,
-      "open_interest": 57894.0
-    },
-    {
-      "date": "2025-12-16",
       "mm_long": 152873.0,
       "mm_short": 20277.0,
       "mm_net": 132596.0,
       "open_interest": 471093.0
-    },
-    {
-      "date": "2025-12-23",
-      "mm_long": 681.0,
-      "mm_short": 0.0,
-      "mm_net": 681.0,
-      "open_interest": 65212.0
     },
     {
       "date": "2025-12-23",
@@ -50,25 +1338,11 @@
       "open_interest": 481866.0
     },
     {
-      "date": "2025-12-30",
-      "mm_long": 478.0,
-      "mm_short": 0.0,
-      "mm_net": 478.0,
-      "open_interest": 70021.0
-    },
-    {
       "date": "2026-01-06",
       "mm_long": 146445.0,
       "mm_short": 23232.0,
       "mm_net": 123213.0,
       "open_interest": 488116.0
-    },
-    {
-      "date": "2026-01-06",
-      "mm_long": 478.0,
-      "mm_short": 320.0,
-      "mm_net": 158.0,
-      "open_interest": 68733.0
     },
     {
       "date": "2026-01-13",
@@ -78,25 +1352,11 @@
       "open_interest": 527455.0
     },
     {
-      "date": "2026-01-13",
-      "mm_long": 636.0,
-      "mm_short": 0.0,
-      "mm_net": 636.0,
-      "open_interest": 72555.0
-    },
-    {
       "date": "2026-01-20",
       "mm_long": 163668.0,
       "mm_short": 26224.0,
       "mm_net": 137444.0,
       "open_interest": 528004.0
-    },
-    {
-      "date": "2026-01-20",
-      "mm_long": 1504.0,
-      "mm_short": 0.0,
-      "mm_net": 1504.0,
-      "open_interest": 78970.0
     },
     {
       "date": "2026-01-27",
@@ -106,25 +1366,11 @@
       "open_interest": 488463.0
     },
     {
-      "date": "2026-01-27",
-      "mm_long": 0.0,
-      "mm_short": 0.0,
-      "mm_net": 0.0,
-      "open_interest": 78421.0
-    },
-    {
       "date": "2026-02-03",
       "mm_long": 118936.0,
       "mm_short": 26864.0,
       "mm_net": 92072.0,
       "open_interest": 409694.0
-    },
-    {
-      "date": "2026-02-03",
-      "mm_long": 322.0,
-      "mm_short": 0.0,
-      "mm_net": 322.0,
-      "open_interest": 53594.0
     },
     {
       "date": "2026-02-10",
@@ -134,13 +1380,6 @@
       "open_interest": 404391.0
     },
     {
-      "date": "2026-02-10",
-      "mm_long": 218.0,
-      "mm_short": 611.0,
-      "mm_net": -393.0,
-      "open_interest": 60592.0
-    },
-    {
       "date": "2026-02-17",
       "mm_long": 123011.0,
       "mm_short": 27118.0,
@@ -148,32 +1387,11 @@
       "open_interest": 407078.0
     },
     {
-      "date": "2026-02-17",
-      "mm_long": 0.0,
-      "mm_short": 0.0,
-      "mm_net": 0.0,
-      "open_interest": 60814.0
-    },
-    {
-      "date": "2026-02-24",
-      "mm_long": 0.0,
-      "mm_short": 0.0,
-      "mm_net": 0.0,
-      "open_interest": 59925.0
-    },
-    {
       "date": "2026-02-24",
       "mm_long": 121233.0,
       "mm_short": 25259.0,
       "mm_net": 95974.0,
       "open_interest": 420182.0
-    },
-    {
-      "date": "2026-03-03",
-      "mm_long": 0.0,
-      "mm_short": 0.0,
-      "mm_net": 0.0,
-      "open_interest": 60931.0
     },
     {
       "date": "2026-03-03",
@@ -190,32 +1408,11 @@
       "open_interest": 413956.0
     },
     {
-      "date": "2026-03-10",
-      "mm_long": 841.0,
-      "mm_short": 509.0,
-      "mm_net": 332.0,
-      "open_interest": 58116.0
-    },
-    {
       "date": "2026-03-17",
       "mm_long": 130147.0,
       "mm_short": 28104.0,
       "mm_net": 102043.0,
       "open_interest": 411388.0
-    },
-    {
-      "date": "2026-03-17",
-      "mm_long": 0.0,
-      "mm_short": 0.0,
-      "mm_net": 0.0,
-      "open_interest": 64123.0
-    },
-    {
-      "date": "2026-03-24",
-      "mm_long": 561.0,
-      "mm_short": 0.0,
-      "mm_net": 561.0,
-      "open_interest": 71997.0
     },
     {
       "date": "2026-03-24",
@@ -232,32 +1429,11 @@
       "open_interest": 361409.0
     },
     {
-      "date": "2026-03-31",
-      "mm_long": 372.0,
-      "mm_short": 583.0,
-      "mm_net": -211.0,
-      "open_interest": 57288.0
-    },
-    {
       "date": "2026-04-07",
       "mm_long": 120726.0,
       "mm_short": 30694.0,
       "mm_net": 90032.0,
       "open_interest": 354877.0
-    },
-    {
-      "date": "2026-04-07",
-      "mm_long": 341.0,
-      "mm_short": 477.0,
-      "mm_net": -136.0,
-      "open_interest": 57228.0
-    },
-    {
-      "date": "2026-04-14",
-      "mm_long": 788.0,
-      "mm_short": 271.0,
-      "mm_net": 517.0,
-      "open_interest": 59913.0
     },
     {
       "date": "2026-04-14",
@@ -274,13 +1450,6 @@
       "open_interest": 365842.0
     },
     {
-      "date": "2026-04-21",
-      "mm_long": 604.0,
-      "mm_short": 604.0,
-      "mm_net": 0.0,
-      "open_interest": 60480.0
-    },
-    {
       "date": "2026-04-28",
       "mm_long": 122257.0,
       "mm_short": 32505.0,
@@ -288,32 +1457,11 @@
       "open_interest": 369530.0
     },
     {
-      "date": "2026-04-28",
-      "mm_long": 800.0,
-      "mm_short": 222.0,
-      "mm_net": 578.0,
-      "open_interest": 61830.0
-    },
-    {
       "date": "2026-05-05",
       "mm_long": 123353.0,
       "mm_short": 29099.0,
       "mm_net": 94254.0,
       "open_interest": 367932.0
-    },
-    {
-      "date": "2026-05-05",
-      "mm_long": 870.0,
-      "mm_short": 235.0,
-      "mm_net": 635.0,
-      "open_interest": 65308.0
-    },
-    {
-      "date": "2026-05-12",
-      "mm_long": 531.0,
-      "mm_short": 0.0,
-      "mm_net": 531.0,
-      "open_interest": 67067.0
     },
     {
       "date": "2026-05-12",
@@ -324,24 +1472,10 @@
     },
     {
       "date": "2026-05-19",
-      "mm_long": 756.0,
-      "mm_short": 1178.0,
-      "mm_net": -422.0,
-      "open_interest": 68209.0
-    },
-    {
-      "date": "2026-05-19",
       "mm_long": 122894.0,
       "mm_short": 29354.0,
       "mm_net": 93540.0,
       "open_interest": 379325.0
-    },
-    {
-      "date": "2026-05-26",
-      "mm_long": 1130.0,
-      "mm_short": 0.0,
-      "mm_net": 1130.0,
-      "open_interest": 65249.0
     },
     {
       "date": "2026-05-26",
@@ -358,32 +1492,11 @@
       "open_interest": 326052.0
     },
     {
-      "date": "2026-06-02",
-      "mm_long": 868.0,
-      "mm_short": 700.0,
-      "mm_net": 168.0,
-      "open_interest": 55714.0
-    },
-    {
-      "date": "2026-06-09",
-      "mm_long": 904.0,
-      "mm_short": 786.0,
-      "mm_net": 118.0,
-      "open_interest": 59682.0
-    },
-    {
       "date": "2026-06-09",
       "mm_long": 126280.0,
       "mm_short": 20417.0,
       "mm_net": 105863.0,
       "open_interest": 332709.0
-    },
-    {
-      "date": "2026-06-16",
-      "mm_long": 372.0,
-      "mm_short": 0.0,
-      "mm_net": 372.0,
-      "open_interest": 57461.0
     },
     {
       "date": "2026-06-16",
@@ -400,20 +1513,6 @@
       "open_interest": 352167.0
     },
     {
-      "date": "2026-06-23",
-      "mm_long": 1331.0,
-      "mm_short": 0.0,
-      "mm_net": 1331.0,
-      "open_interest": 61967.0
-    },
-    {
-      "date": "2026-06-30",
-      "mm_long": 1238.0,
-      "mm_short": 0.0,
-      "mm_net": 1238.0,
-      "open_interest": 64819.0
-    },
-    {
       "date": "2026-06-30",
       "mm_long": 134577.0,
       "mm_short": 14486.0,
@@ -428,32 +1527,11 @@
       "open_interest": 371776.0
     },
     {
-      "date": "2026-07-07",
-      "mm_long": 1172.0,
-      "mm_short": 863.0,
-      "mm_net": 309.0,
-      "open_interest": 70778.0
-    },
-    {
       "date": "2026-07-14",
       "mm_long": 136905.0,
       "mm_short": 16126.0,
       "mm_net": 120779.0,
       "open_interest": 383689.0
-    },
-    {
-      "date": "2026-07-14",
-      "mm_long": 1206.0,
-      "mm_short": 0.0,
-      "mm_net": 1206.0,
-      "open_interest": 74364.0
-    },
-    {
-      "date": "2026-07-21",
-      "mm_long": 2010.0,
-      "mm_short": 67.0,
-      "mm_net": 1943.0,
-      "open_interest": 77769.0
     },
     {
       "date": "2026-07-21",
@@ -463,5 +1541,5 @@
       "open_interest": 383368.0
     }
   ],
-  "n": 66
+  "n": 220
 }
