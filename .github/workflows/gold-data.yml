@@ -1,0 +1,43 @@
+name: Gold data collector
+
+# Hourly market-data snapshot for the gold-intel pipeline.
+# NOTE: GitHub only runs scheduled workflows from the DEFAULT branch,
+# so this file must be merged to main for the cron to activate.
+on:
+  schedule:
+    - cron: "7 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: gold-data
+  cancel-in-progress: false
+
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Collect market data
+        run: python scripts/collect_gold_data.py
+
+      - name: Commit snapshot
+        run: |
+          git config user.name "gold-data-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add gold-intel/data/
+          if git diff --cached --quiet; then
+            echo "No data changes to commit"
+          else
+            git commit -m "gold-data: hourly snapshot $(date -u +'%Y-%m-%dT%H:%M')"
+            git pull --rebase origin "${GITHUB_REF_NAME}"
+            git push origin "HEAD:${GITHUB_REF_NAME}"
+          fi

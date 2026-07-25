@@ -1,0 +1,10 @@
+{
+  "initialized_at": "2026-07-25T11:30:00Z",
+  "families": {
+    "tech": {"weight": 1.0, "hit_rate": 0.5, "n_scored": 0},
+    "macro": {"weight": 1.0, "hit_rate": 0.5, "n_scored": 0},
+    "news": {"weight": 1.0, "hit_rate": 0.5, "n_scored": 0}
+  },
+  "overall": {"hit_rate": 0.5, "n_scored": 0},
+  "notes": "Weights start neutral at 1.0; they move only from scored predictions per LEARNING.md."
+}
