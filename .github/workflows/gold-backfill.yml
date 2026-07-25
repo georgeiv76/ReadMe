@@ -1,0 +1,46 @@
+name: Gold history backfill
+
+# Push-triggered (works on ANY branch, unlike schedules): touching
+# gold-intel/data/backfill-request.txt requests a fresh 12-month backfill.
+on:
+  push:
+    branches:
+      - claude/cfd-trading-app-gold-ch5dvz
+    paths:
+      - "gold-intel/data/backfill-request.txt"
+      - ".github/workflows/gold-backfill.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: gold-backfill
+  cancel-in-progress: false
+
+jobs:
+  backfill:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Backfill 12 months of history
+        run: python scripts/backfill_history.py
+
+      - name: Commit history
+        run: |
+          git config user.name "gold-data-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add gold-intel/data/history_12mo.json
+          if git diff --cached --quiet; then
+            echo "No changes"
+          else
+            git commit -m "gold-backfill: 12-month history snapshot"
+            git pull --rebase origin "${GITHUB_REF_NAME}"
+            git push origin "HEAD:${GITHUB_REF_NAME}"
+          fi
