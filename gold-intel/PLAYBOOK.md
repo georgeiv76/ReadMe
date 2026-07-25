@@ -45,6 +45,26 @@ Score each signal, sum → `tech_score` (cap ±40):
 | Hourly RSI14 | < 30 | +10 (oversold bounce) |
 | Hourly MACD histogram | > 0 | +5 (else −5) |
 
+**Regime gate (research-mandated, see RESEARCH.md §3):** gold holds
+overbought in macro trends, so RSI counter-signals only score against the
+regime — in a bullish daily regime (spot > daily SMA200) the RSI>70 penalty
+scores 0; in a bearish regime the RSI<30 bonus scores 0.
+
+**Event mask (RESEARCH.md §4):** if the current hour is within ±1 bar of a
+scheduled 08:30 ET release (from `us_calendar_week` in latest.json) or a
+14:00 ET FOMC decision, mark `event_window: true` in the log, halve
+`tech_score`, and say so in the brief — those bars are news, not technicals.
+
+### 3b. Best buy / best sell levels (from latest.json `levels`)
+The collector clusters Fibonacci retracements (daily 90d + hourly 5d swings),
+classic floor pivots, daily SMAs, Bollinger bands, and $50 round numbers into
+confluence zones and pre-selects `best_buy_zone` (strongest support below
+spot) and `best_sell_zone` (strongest resistance above spot). The brief MUST
+present both with their confluence members spelled out (e.g. "buy zone
+$3,982 = pivot S1 + fib 61.8% + round $4,000 sweep"), plus ATR(14) 1h as the
+expected hourly range. If spot sits inside a zone, say so. These are
+technical reference levels, not guaranteed fills.
+
 ### 4. Compute macro and news bias
 - `macro_score` (cap ±30): DXY falling today +10 / rising −10; real 10Y yield
   (DFII10) down on the week +10 / up −10; dovish Fed signal +10 / hawkish −10.
@@ -73,7 +93,10 @@ Score each signal, sum → `tech_score` (cap ±40):
 ```
 # Gold Hourly Brief — <UTC timestamp>
 Spot: $X,XXX.XX (±X.X% 24h)  |  Bias: BULLISH/BEARISH/NEUTRAL (confidence)
-Technicals: RSI14(1h) XX · vs SMA50/200 · MACD ±
+BEST BUY:  $X,XXX (confluence: <members>)   ← strongest support below spot
+BEST SELL: $X,XXX (confluence: <members>)   ← strongest resistance above spot
+Expected 1h range (ATR14): ±$X.X
+Technicals: RSI14(1h) XX · vs SMA50/200 · MACD ± · event_window yes/no
 Macro: DXY XXX.XX (±X%) · 10Y real X.XX% · next event: <event, time UTC>
 News: <top 2-3 headlines with direction tags>
 Learning: last call <right/wrong>, rolling hit rate XX% (n=XX), weights t/m/n
