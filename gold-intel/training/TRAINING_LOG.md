@@ -54,7 +54,10 @@ cross-validated vs Dukascopy overlap: MAE 0.069% over 2,489 bars.
 Files: data/history_22y_hourly.json (training), data/xau_15m_2004_2026.csv.gz
 (15m, for finer fill simulation later).
 
-REVISED SPLIT for Block 2: train = 2004-2022, validation folds = 2023-2025,
-final holdout = Feb-Jul 2026 Dukascopy data — which the uploaded file
-physically cannot contain (ends 30 Jan 2026): a leak-proof holdout from an
-independent source and a later time period.
+SPLIT for Block 2 (USER DIRECTIVE 25 Jul: train on the last 12 months only —
+the current regime): dataset = history_12mo.json (Dukascopy, Jul 2025 - Jul
+2026). K-fold walk-forward folds inside the first 75%; final holdout stays
+the last 25% (Apr-Jul 2026), untouched by tuning. The 22-year corpus is
+retained as archive/reference only — NOT used for training. The 15m file's
+Jul 2025 - Jan 2026 portion may be used for finer fill simulation within the
+12-month window (it cross-validated against Dukascopy at 0.069% MAE).
