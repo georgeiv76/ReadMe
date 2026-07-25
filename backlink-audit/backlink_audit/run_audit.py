@@ -55,6 +55,8 @@ def build_parser():
                    help="Open PageRank API key (or env OPR_API_KEY)")
     p.add_argument("--skip-http", action="store_true", help="Skip HTTP liveness checks")
     p.add_argument("--skip-dbl", action="store_true", help="Skip Spamhaus DBL checks")
+    p.add_argument("--skip-dr", action="store_true",
+                   help="Skip the free Ahrefs Domain Rating lookups")
     p.add_argument("--config", help="JSON file overriding weights and lists")
     p.add_argument("--prev", help="Previous snapshot.json for trend comparison")
     p.add_argument("--out", default="output", help="Output directory (default: output)")
@@ -110,10 +112,13 @@ def main(argv=None):
     ip_counts = None
     if args.online:
         print("Enriching (DNS / HTTP / Spamhaus DBL"
+              + ("" if args.skip_dr else " / Domain Rating by Ahrefs")
               + (" / Open PageRank" if args.opr_key else "") + ") ...")
         ip_counts = enrich.enrich_domains(
             domains, opr_key=args.opr_key or None,
-            skip_http=args.skip_http, skip_dbl=args.skip_dbl, log=print)
+            ahrefs_key=args.ahrefs_key or None,
+            skip_http=args.skip_http, skip_dbl=args.skip_dbl,
+            skip_dr=args.skip_dr, log=print)
 
     score.score_all(domains, cfg, ip_counts)
     summary = score.profile_summary(domains, cfg)

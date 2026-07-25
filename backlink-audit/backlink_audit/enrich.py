@@ -12,11 +12,48 @@ Checks:
 import json
 import socket
 import ssl
+import time
 import urllib.request
 import urllib.error
 import urllib.parse
 
 OPR_ENDPOINT = "https://openpagerank.com/api/v1.0/getPageRank"
+# Free public endpoint, consumes no API units on any plan (free included).
+# Attribution required in outputs: "Domain Rating by Ahrefs" (ahrefs.com).
+# From 10 Aug 2026 requests must carry an API key (any plan's key works).
+AHREFS_DR_FREE = "https://api.ahrefs.com/v3/public/domain-rating-free"
+
+
+def _find_number(obj, key):
+    """Recursively find the first numeric value stored under `key`."""
+    if isinstance(obj, dict):
+        for k, v in obj.items():
+            if k == key and isinstance(v, (int, float)):
+                return float(v)
+            found = _find_number(v, key)
+            if found is not None:
+                return found
+    elif isinstance(obj, list):
+        for item in obj:
+            found = _find_number(item, key)
+            if found is not None:
+                return found
+    return None
+
+
+def ahrefs_dr_free(domain, api_key=None, timeout=10):
+    """Ahrefs Domain Rating via the free public endpoint. Returns float or None."""
+    url = f"{AHREFS_DR_FREE}?target={urllib.parse.quote(domain)}&output=json"
+    headers = {"Accept": "application/json"}
+    if api_key:
+        headers["Authorization"] = f"Bearer {api_key}"
+    req = urllib.request.Request(url, headers=headers)
+    try:
+        with urllib.request.urlopen(req, timeout=timeout) as resp:
+            payload = json.loads(resp.read().decode("utf-8"))
+        return _find_number(payload, "domain_rating")
+    except Exception:
+        return None
 
 
 def resolve_domain(domain, timeout=5):
@@ -99,8 +136,8 @@ def open_pagerank(domains, api_key, timeout=15, log=None):
     return scores
 
 
-def enrich_domains(domains, opr_key=None, skip_http=False, skip_dbl=False,
-                   log=None):
+def enrich_domains(domains, opr_key=None, ahrefs_key=None, skip_http=False,
+                   skip_dbl=False, skip_dr=False, log=None):
     """Run all enrichment passes over {domain: RefDomain}, in place.
 
     Also computes shared-IP clusters and stores the cluster size in
@@ -119,6 +156,9 @@ def enrich_domains(domains, opr_key=None, skip_http=False, skip_dbl=False,
             rd.http_status = http_status(name)
         if not skip_dbl:
             rd.dbl_listed = spamhaus_dbl(name)
+        if not skip_dr:
+            rd.dr = ahrefs_dr_free(name, api_key=ahrefs_key)
+            time.sleep(0.15)  # politeness: undocumented rate limit
         if (i + 1) % 25 == 0:
             _log(f"enriched {i + 1}/{len(names)} domains")
 

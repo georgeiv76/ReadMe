@@ -46,6 +46,7 @@ class RefDomain:
     ips: list = field(default_factory=list)
     http_status: object = None
     opr: object = None
+    dr: object = None  # Domain Rating by Ahrefs (free public endpoint)
     dbl_listed: object = None
     # scoring
     score: int = 0

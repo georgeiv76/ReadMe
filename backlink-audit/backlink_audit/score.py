@@ -75,12 +75,14 @@ DEFAULT_CONFIG = {
         "HTTP_DEAD": 8,
         "OPR_MISSING": 12,
         "OPR_LOW": 8,
+        "DR_ZERO": 10,
         "DBL_LISTED": 40,
         "SHARED_IP_CLUSTER": 15,
     },
     # A domain with real authority is capped below toxic unless it is
     # on the Spamhaus DBL
     "authority_cap_opr": 4.0,
+    "authority_cap_dr": 40.0,
     "authority_cap_score": 30,
     "thresholds": {"toxic": 60, "review": 45},
     "profile_bands": {"high": 0.10, "medium": 0.03},
@@ -176,6 +178,9 @@ def score_domain(rd, cfg, ip_counts=None):
             fire("OPR_MISSING", "no Open PageRank authority (unknown to Common Crawl)")
         elif rd.opr < 1.5:
             fire("OPR_LOW", f"Open PageRank {rd.opr:.1f}/10")
+    elif rd.dr is not None and rd.dr <= 0.5:
+        # only when OPR was unavailable, to avoid double-punishing
+        fire("DR_ZERO", "Domain Rating 0 (Domain Rating by Ahrefs)")
     if rd.dbl_listed is True:
         fire("DBL_LISTED", "listed on the Spamhaus Domain Block List")
     if ip_counts and rd.ips:
@@ -188,12 +193,16 @@ def score_domain(rd, cfg, ip_counts=None):
     if rd.total_links and rd.nofollow_links == rd.total_links:
         rd.score = max(0, rd.score - 10)
         rd.markers.append("ALL_NOFOLLOW: every observed link is nofollow (-10)")
-    if (rd.opr is not None and rd.opr >= cfg["authority_cap_opr"]
-            and rd.dbl_listed is not True):
+    has_authority = ((rd.opr is not None and rd.opr >= cfg["authority_cap_opr"])
+                     or (rd.dr is not None and rd.dr >= cfg["authority_cap_dr"]))
+    if has_authority and rd.dbl_listed is not True:
         if rd.score > cfg["authority_cap_score"]:
             rd.score = cfg["authority_cap_score"]
+            src = (f"Open PageRank {rd.opr:.1f}" if rd.opr is not None
+                   and rd.opr >= cfg["authority_cap_opr"]
+                   else f"Domain Rating {rd.dr:.0f}")
             rd.markers.append(
-                f"AUTHORITY_CAP: Open PageRank {rd.opr:.1f} caps score at {cfg['authority_cap_score']}")
+                f"AUTHORITY_CAP: {src} caps score at {cfg['authority_cap_score']}")
 
     rd.score = min(100, rd.score)
     th = cfg["thresholds"]

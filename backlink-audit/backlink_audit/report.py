@@ -17,11 +17,15 @@ def write_scored_csv(domains, path):
     with open(path, "w", encoding="utf-8", newline="") as fh:
         wr = csv.writer(fh)
         wr.writerow(["domain", "score", "bucket", "linking_pages",
-                     "target_pages", "origins", "markers", "sample_url"])
+                     "target_pages", "dr", "opr", "origins", "markers",
+                     "sample_url"])
         for rd in sorted(domains.values(), key=lambda r: -r.score):
             wr.writerow([
                 rd.domain, rd.score, rd.bucket, rd.linking_pages,
-                rd.target_pages, "|".join(sorted(rd.origins)),
+                rd.target_pages,
+                ("" if rd.dr is None else rd.dr),
+                ("" if rd.opr is None else rd.opr),
+                "|".join(sorted(rd.origins)),
                 "; ".join(rd.markers),
                 rd.sample_urls[0] if rd.sample_urls else "",
             ])
@@ -149,9 +153,13 @@ def write_report(domains, summary, path, trend=None, enriched=False):
     healthy_top = sorted(healthy, key=lambda r: -r.linking_pages)[:15]
     lines.append(_md_table(
         [[r.domain, r.linking_pages, r.target_pages,
+          (f"{r.dr:.0f}" if r.dr is not None else "-"),
           (f"{r.opr:.1f}" if r.opr is not None else "-")] for r in healthy_top],
-        ["Domain", "Linking pages", "Target pages", "Open PageRank"]))
+        ["Domain", "Linking pages", "Target pages", "DR", "Open PageRank"]))
     lines.append("")
+    if any(r.dr is not None for r in ranked):
+        lines.append("Authority data: Domain Rating by Ahrefs "
+                     "(https://ahrefs.com/), free public endpoint.\n")
 
     lines.append("## What to do with this report\n")
     lines.append("1. Read the toxic table. Delete from the disavow candidate "

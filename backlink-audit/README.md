@@ -48,17 +48,24 @@ Research verified: 25 July 2026. All factual claims carry inline sources.
   unlimited verified sites. Source: [Allable AWT review](https://www.allable.ai/blog/ahrefs-webmaster-tools/).
 - This is the strongest single free replacement for the Semrush link
   index and the main reason the setup checklist below matters.
-- The **Ahrefs API is NOT free** (verified 25 July 2026): the free plan
-  and AWT have no API access at all. API v3 starts at the Lite plan
-  (about $129/month, 10,000 units/month, minimum 50 units per request),
-  and the documented "free test queries" only work against Ahrefs' own
-  domains (ahrefs.com, yep.com, firehose.com), so they cannot return
-  dedaub.com data. Sources: [Ahrefs free test queries](https://docs.ahrefs.com/en/api/docs/free-test-queries),
+- The **Ahrefs backlink API is NOT free** (verified twice, latest 25
+  July 2026 against a real free-plan key): a free account CAN generate
+  an "API v3 for public endpoints" key, but Site Explorer endpoints
+  (all-backlinks, refdomains) require a paid plan's API units; on the
+  free plan every such call answers 401 Unauthorized. The Ahrefs MCP
+  server likewise requires Lite or higher. Sources:
+  [Ahrefs public endpoints reference](https://docs.ahrefs.com/en/api/reference/public),
+  [Ahrefs MCP introduction](https://docs.ahrefs.com/en/mcp/docs/introduction),
   [Topicfinder Ahrefs API guide](https://www.topicfinder.com/ahrefs-api-guide/),
   [ThatMarketingBuddy Ahrefs API pricing](https://thatmarketingbuddy.com/api/ahrefs).
-  Consequence: for Ahrefs data the free path is and stays the UI CSV
-  export. The free programmatic path for automation remains the Bing
-  Webmaster API (roadmap item 1).
+- The one genuinely free Ahrefs API: **domain-rating-free**
+  (`/v3/public/domain-rating-free?target=X`), which returns Domain
+  Rating for any domain, consumes zero units on every plan, and from
+  10 Aug 2026 requires any API key (a free-plan key works). Attribution
+  "Domain Rating by Ahrefs" is required and included in the report.
+  Source: [Domain rating free reference](https://docs.ahrefs.com/en/api/reference/public/get-domain-rating-free).
+  The enrichment now queries it for every referring domain as a second
+  authority signal next to Open PageRank.
 
 ### Bing Webmaster Tools
 - Free backlinks report: referring pages, referring domains, anchor
