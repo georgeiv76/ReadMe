@@ -21,7 +21,7 @@ concurrency:
 jobs:
   backfill:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 25
     steps:
       - uses: actions/checkout@v4
 
@@ -29,8 +29,14 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Backfill 12 months of history
-        run: python scripts/backfill_history.py
+      - name: Backfill 12 months of history (retry wrapper)
+        run: |
+          for i in 1 2 3; do
+            python scripts/backfill_history.py && exit 0
+            echo "attempt $i failed; cooling down before retry"
+            sleep 90
+          done
+          exit 1
 
       - name: Commit history
         run: |
