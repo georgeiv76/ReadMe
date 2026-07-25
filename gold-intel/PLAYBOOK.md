@@ -17,6 +17,15 @@ directional bias with a learning feedback loop.
 
 ## Per-run procedure
 
+### 0. Market-hours guard
+XAU/USD trades **Sunday 22:00 UTC → Friday 21:00 UTC** (with a daily
+21:00–22:00 UTC settlement pause in US summer). If the market is closed
+(Saturday; Sunday before 22:00 UTC; Friday after 21:00 UTC), do NOT spawn
+agents or write a brief — append a one-line `{"t": ..., "market": "closed"}`
+entry to signals-log.jsonl only if the previous entry isn't already a closed
+marker, and end the run. The Routine schedule already avoids most closed
+hours; this guard catches the rest.
+
 ### 1. Sync and read data
 - `git pull` the working branch.
 - Read `gold-intel/data/latest.json`. If `collected_at_utc` is older than
