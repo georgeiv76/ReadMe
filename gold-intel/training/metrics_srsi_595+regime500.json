@@ -1,0 +1,93 @@
+{
+  "fold1": {
+    "cycles": 27,
+    "win_rate_pct": 81.5,
+    "avg_net_ret_pct": 0.444,
+    "median_net_ret_pct": 0.457,
+    "pnl_usd_per_oz": 423.67,
+    "bottom_call_within": {
+      "<=0.1%": 0.0,
+      "<=0.25%": 29.6,
+      "<=0.5%": 59.3,
+      "<=1.0%": 85.2
+    },
+    "top_call_within": {
+      "<=0.1%": 0.0,
+      "<=0.25%": 40.7,
+      "<=0.5%": 70.4,
+      "<=1.0%": 85.2
+    },
+    "avg_capture_pct_of_range": 30.6
+  },
+  "fold2": {
+    "cycles": 21,
+    "win_rate_pct": 66.7,
+    "avg_net_ret_pct": 0.335,
+    "median_net_ret_pct": 0.433,
+    "pnl_usd_per_oz": 334.66,
+    "bottom_call_within": {
+      "<=0.1%": 0.0,
+      "<=0.25%": 9.5,
+      "<=0.5%": 33.3,
+      "<=1.0%": 57.1
+    },
+    "top_call_within": {
+      "<=0.1%": 0.0,
+      "<=0.25%": 9.5,
+      "<=0.5%": 47.6,
+      "<=1.0%": 76.2
+    },
+    "avg_capture_pct_of_range": 18.9
+  },
+  "fold3": {
+    "cycles": 15,
+    "win_rate_pct": 40.0,
+    "avg_net_ret_pct": -0.926,
+    "median_net_ret_pct": -0.104,
+    "pnl_usd_per_oz": -729.86,
+    "bottom_call_within": {
+      "<=0.1%": 0.0,
+      "<=0.25%": 13.3,
+      "<=0.5%": 20.0,
+      "<=1.0%": 40.0
+    },
+    "top_call_within": {
+      "<=0.1%": 6.7,
+      "<=0.25%": 13.3,
+      "<=0.5%": 33.3,
+      "<=1.0%": 66.7
+    },
+    "avg_capture_pct_of_range": 0.4
+  },
+  "holdout": {
+    "cycles": 1,
+    "win_rate_pct": 0.0,
+    "avg_net_ret_pct": -1.878,
+    "median_net_ret_pct": -1.878,
+    "pnl_usd_per_oz": -77.61,
+    "bottom_call_within": {
+      "<=0.1%": 0.0,
+      "<=0.25%": 0.0,
+      "<=0.5%": 0.0,
+      "<=1.0%": 0.0
+    },
+    "top_call_within": {
+      "<=0.1%": 0.0,
+      "<=0.25%": 0.0,
+      "<=0.5%": 0.0,
+      "<=1.0%": 0.0
+    },
+    "avg_capture_pct_of_range": -64.7
+  },
+  "params": {
+    "rsi_period": 14,
+    "stoch_period": 14,
+    "smooth": 3,
+    "max_hold_bars": 48,
+    "cost_per_trade_usd": 0.5,
+    "os_th": 5,
+    "ob_th": 95,
+    "use_wavg3": false,
+    "regime_sma_bars": 500
+  }
+}

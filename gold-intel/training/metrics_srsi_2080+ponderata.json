@@ -1,0 +1,92 @@
+{
+  "fold1": {
+    "cycles": 47,
+    "win_rate_pct": 57.4,
+    "avg_net_ret_pct": 0.226,
+    "median_net_ret_pct": 0.128,
+    "pnl_usd_per_oz": 393.41,
+    "bottom_call_within": {
+      "<=0.1%": 6.4,
+      "<=0.25%": 34.0,
+      "<=0.5%": 66.0,
+      "<=1.0%": 85.1
+    },
+    "top_call_within": {
+      "<=0.1%": 0.0,
+      "<=0.25%": 12.8,
+      "<=0.5%": 61.7,
+      "<=1.0%": 83.0
+    },
+    "avg_capture_pct_of_range": 12.4
+  },
+  "fold2": {
+    "cycles": 43,
+    "win_rate_pct": 55.8,
+    "avg_net_ret_pct": 0.214,
+    "median_net_ret_pct": 0.208,
+    "pnl_usd_per_oz": 406.9,
+    "bottom_call_within": {
+      "<=0.1%": 4.7,
+      "<=0.25%": 11.6,
+      "<=0.5%": 46.5,
+      "<=1.0%": 76.7
+    },
+    "top_call_within": {
+      "<=0.1%": 2.3,
+      "<=0.25%": 4.7,
+      "<=0.5%": 41.9,
+      "<=1.0%": 86.0
+    },
+    "avg_capture_pct_of_range": 9.4
+  },
+  "fold3": {
+    "cycles": 42,
+    "win_rate_pct": 33.3,
+    "avg_net_ret_pct": -0.553,
+    "median_net_ret_pct": -0.183,
+    "pnl_usd_per_oz": -1194.1,
+    "bottom_call_within": {
+      "<=0.1%": 4.8,
+      "<=0.25%": 9.5,
+      "<=0.5%": 21.4,
+      "<=1.0%": 57.1
+    },
+    "top_call_within": {
+      "<=0.1%": 0.0,
+      "<=0.25%": 2.4,
+      "<=0.5%": 9.5,
+      "<=1.0%": 47.6
+    },
+    "avg_capture_pct_of_range": -11.1
+  },
+  "holdout": {
+    "cycles": 39,
+    "win_rate_pct": 30.8,
+    "avg_net_ret_pct": -0.276,
+    "median_net_ret_pct": -0.234,
+    "pnl_usd_per_oz": -453.36,
+    "bottom_call_within": {
+      "<=0.1%": 2.6,
+      "<=0.25%": 2.6,
+      "<=0.5%": 28.2,
+      "<=1.0%": 56.4
+    },
+    "top_call_within": {
+      "<=0.1%": 0.0,
+      "<=0.25%": 5.1,
+      "<=0.5%": 10.3,
+      "<=1.0%": 61.5
+    },
+    "avg_capture_pct_of_range": -16.5
+  },
+  "params": {
+    "rsi_period": 14,
+    "stoch_period": 14,
+    "smooth": 3,
+    "max_hold_bars": 48,
+    "cost_per_trade_usd": 0.5,
+    "os_th": 20,
+    "ob_th": 80,
+    "use_wavg3": true
+  }
+}

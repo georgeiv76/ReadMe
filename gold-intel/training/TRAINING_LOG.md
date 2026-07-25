@@ -140,3 +140,23 @@ downtrends unresolved; PnL still negative without a stop.
 NEXT (iteration 2, continuation armed): structural stop-loss below predicted
 low (0.5-0.75 ATR or swing low), prediction metrics must stay byte-identical;
 then regime gate (spot<SMA200) with coverage reported.
+
+## Block 3b — USER'S METHOD: StochRSI cycle trading (buy ~0, sell ~100)
+
+New evaluator backtest_srsi_cycle.py (state machine on SRSI %K cycles,
+optional 3-bar weighted 'ponderata' smoothing, costed, fold+holdout).
+
+RAW (no regime gate): user's 80% CONFIRMED IN UPTREND — fold1 win rate 82.8%
+at 5/95 thresholds (+$475). But inverted in bear/chop: holdout 28-40% wins,
+-$450..-$795 across every variant. Oscillator cycles fail against the tide.
+
+REGIME-GATED (long only when close > SMA(1000h)): folds 1-2 keep 65-74%
+wins (+$392/+$624); HOLDOUT: 0 cycles, $0 — the gate correctly refuses the
+entire bear regime. Remaining problem: fold3 transition bleed (-$809) — the
+SMA gate lags the January regime turn.
+
+NEXT (agents, redirected continuation): (1) faster regime exit (SMA slope /
+50h-200h cross, exit-all on regime flip); (2) bear-side mirror — short the
+cycle (enter at overbought, cover at oversold) when regime is down, per the
+user's own symmetric logic; (3) Improver/Critic verdicts with fold majority;
+holdout stays sacred.
