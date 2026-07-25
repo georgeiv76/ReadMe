@@ -207,3 +207,26 @@ measured on training folds (bear holdout has zero trades BY DESIGN — the
 gate refuses; out-of-sample proof must come from the live journal). Formal
 Critic ruling + overfit audit due at next wake; config pre-registered here
 before any live claim.
+
+## FALSIFICATION RUN — frozen 3c champion on 2004-2024 virgin archive — FAIL
+
+Pre-declared criteria (before results): FAIL if win<55%, any year <-$500,
+or total <=0. RESULT: 729 trades, win 53.9%, net -$404/oz, losing years
+15 of 21, worst year -$127 (2021). Even cost-free: ~breakeven (-$40).
+The 4-gate champion's +$447/12mo was regime luck + selection pressure on
+three folds. Critic's suspicion CONFIRMED by the user's own 20-year data.
+
+## PROJECT TERMINAL CONCLUSION (training phase closed)
+
+Two independent terminal verdicts now agree: price-derived hourly gold
+systems (levels/confluence family AND oscillator-cycle family, with any
+tested gating) show no edge that survives regime diversity and honest
+measurement. What the project delivered instead: a rigorous falsification
+harness that convicted every candidate BEFORE real money was risked —
+including one that looked like +93.6% in a leveraged money sim. The
+methodology (sacred holdouts, pre-registration, adversarial verification,
+virgin-data falsification) is the durable asset. Entry-price prediction
+layer (median 0.31% error to the 10-candle low) retained as a fill-pricing
+module for the live intelligence briefs. No further training wakes armed;
+the live hourly journal remains the only open evidence channel, and it
+reports — it does not claim edge.

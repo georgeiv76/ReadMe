@@ -286,7 +286,8 @@ def run(params, data):
 
 def main():
     params = json.loads(Path(sys.argv[1]).read_text())
-    result = run(params, json.loads(HISTORY.read_text()))
+    hist = Path(sys.argv[3]) if len(sys.argv) > 3 else HISTORY
+    result = run(params, json.loads(hist.read_text()))
     result["params"] = params
     out = json.dumps(result, indent=2)
     print(out)

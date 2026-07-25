@@ -239,10 +239,22 @@ def run(params, data, m15_map=None):
             z["fills"] += 1
             hi_after = max(h_high[fill_at: i + 1 + HORIZON])
             z["bounce_pct"].append((hi_after - bhat) / bhat * 100)
+            # Structural stop (Critic-mandated): below the predicted low by a
+            # fraction of ATR. None = off (legacy behavior). Stop checked
+            # before target within each sub-bar — conservative.
+            stop_px = (bhat - params["stop_atr_frac"] * a
+                       if params.get("stop_atr_frac") else None)
             exit_px = h_close[i + HORIZON]
+            done = False
             for j in range(fill_at, i + 1 + HORIZON):
-                if any(sh >= target for sh, _sl in granular_low_high(j)):
-                    exit_px = target
+                for sh, sl in granular_low_high(j):
+                    if stop_px is not None and sl <= stop_px:
+                        exit_px, done = stop_px, True
+                        break
+                    if sh >= target:
+                        exit_px, done = target, True
+                        break
+                if done:
                     break
             pnl = exit_px - bhat - params["cost_per_trade_usd"]
             z["pnl"] += pnl

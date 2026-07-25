@@ -1,0 +1,170 @@
+{
+  "objective": "best-buy over next 10 candles",
+  "hours": 6003,
+  "split_at": 4552,
+  "fold1": {
+    "signals": 358,
+    "suppressed_overbought": 126,
+    "tolerance_curve_model": {
+      "<=0.05%": 13.1,
+      "<=0.1%": 26.3,
+      "<=0.25%": 60.3,
+      "<=0.5%": 82.1,
+      "<=1.0%": 92.5
+    },
+    "tolerance_curve_naive_spot": {
+      "<=0.05%": 8.7,
+      "<=0.1%": 17.0,
+      "<=0.25%": 43.9,
+      "<=0.5%": 68.2,
+      "<=1.0%": 86.3
+    },
+    "tolerance_curve_naive_atr": {
+      "<=0.05%": 14.2,
+      "<=0.1%": 26.0,
+      "<=0.25%": 62.3,
+      "<=0.5%": 82.1,
+      "<=1.0%": 92.7
+    },
+    "median_err_pct": 0.197,
+    "fill_rate_pct": 50.8,
+    "avg_bounce_after_fill_pct": 0.585,
+    "trades": {
+      "fills": 182,
+      "wins": 89,
+      "losses": 93,
+      "win_rate_pct": 48.9,
+      "pnl_usd_per_oz": 494.6
+    }
+  },
+  "fold2": {
+    "signals": 367,
+    "suppressed_overbought": 116,
+    "tolerance_curve_model": {
+      "<=0.05%": 11.2,
+      "<=0.1%": 18.5,
+      "<=0.25%": 48.0,
+      "<=0.5%": 79.3,
+      "<=1.0%": 93.2
+    },
+    "tolerance_curve_naive_spot": {
+      "<=0.05%": 6.0,
+      "<=0.1%": 12.5,
+      "<=0.25%": 32.4,
+      "<=0.5%": 55.6,
+      "<=1.0%": 83.9
+    },
+    "tolerance_curve_naive_atr": {
+      "<=0.05%": 12.3,
+      "<=0.1%": 22.6,
+      "<=0.25%": 47.7,
+      "<=0.5%": 78.7,
+      "<=1.0%": 92.6
+    },
+    "median_err_pct": 0.259,
+    "fill_rate_pct": 50.7,
+    "avg_bounce_after_fill_pct": 0.681,
+    "trades": {
+      "fills": 186,
+      "wins": 87,
+      "losses": 99,
+      "win_rate_pct": 46.8,
+      "pnl_usd_per_oz": 648.97
+    }
+  },
+  "fold3": {
+    "signals": 397,
+    "suppressed_overbought": 87,
+    "tolerance_curve_model": {
+      "<=0.05%": 5.8,
+      "<=0.1%": 11.3,
+      "<=0.25%": 27.5,
+      "<=0.5%": 52.1,
+      "<=1.0%": 71.8
+    },
+    "tolerance_curve_naive_spot": {
+      "<=0.05%": 4.0,
+      "<=0.1%": 7.8,
+      "<=0.25%": 18.9,
+      "<=0.5%": 35.0,
+      "<=1.0%": 61.2
+    },
+    "tolerance_curve_naive_atr": {
+      "<=0.05%": 6.8,
+      "<=0.1%": 12.8,
+      "<=0.25%": 28.2,
+      "<=0.5%": 53.1,
+      "<=1.0%": 72.0
+    },
+    "median_err_pct": 0.469,
+    "fill_rate_pct": 58.4,
+    "avg_bounce_after_fill_pct": 1.094,
+    "trades": {
+      "fills": 232,
+      "wins": 100,
+      "losses": 132,
+      "win_rate_pct": 43.1,
+      "pnl_usd_per_oz": 316.31
+    }
+  },
+  "holdout": {
+    "signals": 408,
+    "suppressed_overbought": 72,
+    "tolerance_curve_model": {
+      "<=0.05%": 6.1,
+      "<=0.1%": 12.7,
+      "<=0.25%": 34.1,
+      "<=0.5%": 61.8,
+      "<=1.0%": 80.6
+    },
+    "tolerance_curve_naive_spot": {
+      "<=0.05%": 4.7,
+      "<=0.1%": 10.3,
+      "<=0.25%": 20.1,
+      "<=0.5%": 41.2,
+      "<=1.0%": 68.4
+    },
+    "tolerance_curve_naive_atr": {
+      "<=0.05%": 6.6,
+      "<=0.1%": 15.0,
+      "<=0.25%": 32.4,
+      "<=0.5%": 64.5,
+      "<=1.0%": 81.9
+    },
+    "median_err_pct": 0.374,
+    "fill_rate_pct": 62.7,
+    "avg_bounce_after_fill_pct": 0.636,
+    "trades": {
+      "fills": 256,
+      "wins": 86,
+      "losses": 170,
+      "win_rate_pct": 33.6,
+      "pnl_usd_per_oz": -626.21
+    }
+  },
+  "params": {
+    "srsi_os": 20,
+    "srsi_ob": 80,
+    "stoch_os": 20,
+    "stoch_ob": 80,
+    "rsi_os": 35,
+    "rsi_ob": 70,
+    "cci_os": -100,
+    "cci_ob": 100,
+    "wr_os": -80,
+    "wr_ob": -20,
+    "os_deep_votes": 3,
+    "ob_suppress_votes": 3,
+    "depth_atr_oversold": 0.7,
+    "depth_atr_neutral": 1.1,
+    "max_depth_pct": 0.01,
+    "min_zone_strength": 2,
+    "cluster_tol_pct": 0.0015,
+    "fib_daily_window": 90,
+    "fib_hourly_window": 120,
+    "signal_step_hours": 3,
+    "cost_per_trade_usd": 0.5,
+    "use_zone_snap": false,
+    "stop_atr_frac": 0.75
+  }
+}
