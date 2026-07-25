@@ -1,0 +1,41 @@
+name: Gold replay test
+
+# On-demand hour-by-hour replay of the levels engine for a given day.
+# NOTE: dispatchable only once this file is on the default branch.
+on:
+  workflow_dispatch:
+    inputs:
+      date:
+        description: "Target date YYYY-MM-DD (default: most recent Friday)"
+        required: false
+        default: ""
+
+permissions:
+  contents: write
+
+jobs:
+  replay:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Run replay
+        run: python scripts/replay_day.py ${{ inputs.date }}
+
+      - name: Commit replay report
+        run: |
+          git config user.name "gold-data-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add gold-intel/briefs/
+          if git diff --cached --quiet; then
+            echo "No changes"
+          else
+            git commit -m "gold-replay: hour-by-hour test report"
+            git pull --rebase origin "${GITHUB_REF_NAME}"
+            git push origin "HEAD:${GITHUB_REF_NAME}"
+          fi
