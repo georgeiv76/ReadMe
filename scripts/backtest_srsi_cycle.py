@@ -34,7 +34,34 @@ def run(params, data):
     h = data["gold_hourly"]
     live = [i for i in range(len(h["ts"])) if abs(h["high"][i] - h["low"][i]) > 1e-9]
     C = [h["close"][i] for i in live]
+    from datetime import datetime, timezone
+    TS = [h["ts"][i] for i in live]
+    MONTH = [datetime.fromtimestamp(t, tz=timezone.utc).month for t in TS]
+    skip_months = set(params.get("skip_months", []))
     n = len(C)
+
+    # COT crowded-positioning gate: block new longs when managed-money net
+    # length sits at/above cot_block_pctile of its own PRIOR reports
+    # (expanding window, report usable 3 days after its date — no lookahead).
+    cot_blocked = [False] * n
+    if params.get("cot_file"):
+        import bisect
+        rows = json.loads(Path(params["cot_file"]).read_text())["rows"]
+        eff = sorted(
+            (int(datetime.fromisoformat(w["date"]).replace(tzinfo=timezone.utc)
+                 .timestamp()) + 3 * 86400, w["mm_net"])
+            for w in rows
+        )
+        eff_ts = [e[0] for e in eff]
+        nets = [e[1] for e in eff]
+        thr = params.get("cot_block_pctile", 90)
+        for i in range(n):
+            idx = bisect.bisect_right(eff_ts, TS[i]) - 1
+            if idx >= 20:
+                cur = nets[idx]
+                hist = nets[: idx + 1]
+                pct = sum(1 for v in hist if v <= cur) / len(hist) * 100
+                cot_blocked[i] = pct >= thr
     warmup = 200
     split = warmup + int((n - warmup) * 0.75)
     fold_size = (split - warmup) // 3
@@ -89,7 +116,8 @@ def run(params, data):
             continue
         up = regime_up(i)
         if state == "idle":
-            if up and k_prev < os_th <= k:
+            if (up and k_prev < os_th <= k and MONTH[i] not in skip_months
+                    and not cot_blocked[i]):
                 state, entry_i = "long", i
             elif (not up) and shorts_on and k_prev > ob_th >= k:
                 state, entry_i = "short", i

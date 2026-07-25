@@ -14,7 +14,7 @@ from collect_gold_data import REPO_ROOT, fetch  # noqa: E402
 
 URL = (
     "https://publicreporting.cftc.gov/resource/72hh-3qpy.json"
-    "?commodity_name=GOLD&$order=report_date_as_yyyy_mm_dd%20DESC&$limit=70"
+    "?market_and_exchange_names=GOLD%20-%20COMMODITY%20EXCHANGE%20INC.&$order=report_date_as_yyyy_mm_dd%20DESC&$limit=220"
 )
 OUT = REPO_ROOT / "gold-intel" / "data" / "cot_12mo.json"
 
@@ -24,9 +24,6 @@ def main():
     weekly = []
     for r in rows:
         try:
-            name = r.get("market_and_exchange_names", "")
-            if "COMMODITY EXCHANGE" not in name.upper():
-                continue
             long_ = float(r["m_money_positions_long_all"])
             short = float(r["m_money_positions_short_all"])
             weekly.append({
