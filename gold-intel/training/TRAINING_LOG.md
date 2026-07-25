@@ -172,3 +172,17 @@ gold bear bounces are violent). E slow gate + exit-on-flip: fold3 -$1,041
 stand aside in bear. The slow gate's lag is protective, not a bug.
 Open problem: fold3 regime-transition bleed (-$809). Awaiting formal Critic
 ruling + remaining Block 3a stop-loss at next wake.
+
+## Block 3c — community alternatives sweep (all vs champion A, $207/12mo)
+
+Seasonality gate (skip Mar/May/Jun/Sep; stats from 2004-2024 only, no
+leakage): $124 — REJECTED, 2025 bull broke the calendar pattern.
+COT crowded-positioning gate (managed-money net percentile, 4y baseline,
+3-day publication lag, expanding window): >=90th no effect ($207); >=80th
+$174; >=70th -$24 — REJECTED: it only removed profitable bull entries and
+found no extreme in the crash/chop folds. Structural reading: the 2025-26
+marginal buyer is central banks (invisible to COT), so speculative-
+positioning extremes lost contrarian meaning. Fair-value/flow models
+(WGC-style) remain untested at the hourly scale — wrong horizon; suitable
+as macro bias input to the live briefs instead.
+Champion unchanged after 7 rejected hypotheses across Blocks 3b-3c.
