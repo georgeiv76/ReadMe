@@ -1,0 +1,75 @@
+{
+  "fold1": {
+    "long": {
+      "cycles": 30,
+      "win_rate_pct": 70.0,
+      "avg_net_ret_pct": 0.284,
+      "pnl_usd_per_oz": 315.4
+    },
+    "short": {
+      "cycles": 3,
+      "win_rate_pct": 66.7,
+      "avg_net_ret_pct": 0.002,
+      "pnl_usd_per_oz": 0.15
+    },
+    "combined_pnl": 315.54
+  },
+  "fold2": {
+    "long": {
+      "cycles": 24,
+      "win_rate_pct": 62.5,
+      "avg_net_ret_pct": 0.417,
+      "pnl_usd_per_oz": 489.43
+    },
+    "short": {
+      "cycles": 6,
+      "win_rate_pct": 16.7,
+      "avg_net_ret_pct": -0.375,
+      "pnl_usd_per_oz": -91.2
+    },
+    "combined_pnl": 398.23
+  },
+  "fold3": {
+    "long": {
+      "cycles": 21,
+      "win_rate_pct": 47.6,
+      "avg_net_ret_pct": -0.813,
+      "pnl_usd_per_oz": -921.49
+    },
+    "short": {
+      "cycles": 12,
+      "win_rate_pct": 50.0,
+      "avg_net_ret_pct": -0.559,
+      "pnl_usd_per_oz": -301.88
+    },
+    "combined_pnl": -1223.37
+  },
+  "holdout": {
+    "long": {
+      "cycles": 3,
+      "win_rate_pct": 0.0,
+      "avg_net_ret_pct": -0.734,
+      "pnl_usd_per_oz": -102.74
+    },
+    "short": {
+      "cycles": 31,
+      "win_rate_pct": 54.8,
+      "avg_net_ret_pct": -0.085,
+      "pnl_usd_per_oz": -92.5
+    },
+    "combined_pnl": -195.24
+  },
+  "params": {
+    "rsi_period": 14,
+    "stoch_period": 14,
+    "smooth": 3,
+    "max_hold_bars": 48,
+    "cost_per_trade_usd": 0.5,
+    "use_wavg3": false,
+    "os_th": 10,
+    "ob_th": 90,
+    "regime_fast_bars": 100,
+    "regime_slow_bars": 500,
+    "enable_shorts": true
+  }
+}

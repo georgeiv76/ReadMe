@@ -160,3 +160,15 @@ NEXT (agents, redirected continuation): (1) faster regime exit (SMA slope /
 cycle (enter at overbought, cover at oversold) when regime is down, per the
 user's own symmetric logic; (3) Improver/Critic verdicts with fold majority;
 holdout stays sacred.
+
+## Block 3b — iteration 2 (fast gate, short mirror, flip-exit): ALL REJECTED
+
+Tested vs control A (slow SMA-1000h gate, long-only, +$207/12mo net):
+B fast 100/500 cross gate: fold3 worse (-$921), lets losers into holdout.
+C/D short mirror in bear regime: shorts lose in 6 of 8 side-segments;
+holdout shorts 52-55% wins but negative PnL (small wins, big losses —
+gold bear bounces are violent). E slow gate + exit-on-flip: fold3 -$1,041
+(flip exits lock in bottoms). CHAMPION UNCHANGED: A — slow gate, long-only,
+stand aside in bear. The slow gate's lag is protective, not a bug.
+Open problem: fold3 regime-transition bleed (-$809). Awaiting formal Critic
+ruling + remaining Block 3a stop-loss at next wake.
