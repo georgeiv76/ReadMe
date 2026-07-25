@@ -153,15 +153,18 @@ def parse_bing_user_sites(payload):
 
 
 def fetch_bing(site_url, apikey, max_count_pages=5, max_target_pages=25,
-               log=None):
+               max_properties=4, log=None):
     """Inbound links via GetLinkCounts + GetUrlLinks (free API).
 
-    Bounded to max_count_pages listing calls and max_target_pages
-    per-page source lookups, so a run costs at most ~30 requests.
-    If the first pass returns nothing, asks GetUserSites which site
-    URLs the key can actually see and retries with the registered form
-    (catches https:// vs http:// vs www. mismatches automatically).
+    Bing has no GSC-style domain property: dedaub.com and
+    app.dedaub.com are separate properties. So this first asks
+    GetUserSites which properties the key can see, queries EVERY
+    property on the target's registrable domain (bounded by
+    max_properties), and deduplicates the merged links. Falls back to
+    the provided site_url when GetUserSites fails.
     """
+    from .domains import registrable_domain
+
     def _log(msg):
         if log:
             log(msg)
@@ -172,7 +175,7 @@ def fetch_bing(site_url, apikey, max_count_pages=5, max_target_pages=25,
             payload, err = _bing_call("GetLinkCounts", apikey,
                                       {"siteUrl": surl, "page": page})
             if err:
-                _log(f"bing-api GetLinkCounts p{page}: {err}")
+                _log(f"bing-api GetLinkCounts p{page} ({surl}): {err}")
                 break
             rows = parse_bing_link_counts(payload)
             if not rows:
@@ -196,34 +199,41 @@ def fetch_bing(site_url, apikey, max_count_pages=5, max_target_pages=25,
                                       origin="bing-api"))
         return targets, links
 
-    targets, links = _collect(site_url)
-
-    if not targets:
-        payload, err = _bing_call("GetUserSites", apikey, {})
-        if err:
-            _log(f"bing-api GetUserSites: {err}")
+    want = registrable_domain(site_url)
+    queue = [site_url]
+    payload, err = _bing_call("GetUserSites", apikey, {})
+    if err:
+        _log(f"bing-api GetUserSites: {err}; using {site_url} only")
+    else:
+        sites = parse_bing_user_sites(payload)
+        if not sites:
+            _log("bing-api: this key sees NO sites. Fix: in Bing "
+                 "Webmaster Tools add the site (use 'Import from "
+                 "Google Search Console'), then re-run.")
+            return []
+        matching = [s for s in sites if registrable_domain(s) == want]
+        if matching:
+            queue = matching[:max_properties]
+            _log("bing-api: querying properties: " + ", ".join(queue))
         else:
-            from .domains import registrable_domain
-            sites = parse_bing_user_sites(payload)
-            if not sites:
-                _log("bing-api: this key sees NO sites. Fix: in Bing "
-                     "Webmaster Tools add dedaub.com (use 'Import from "
-                     "Google Search Console'), then re-run.")
-            else:
-                _log("bing-api: key has access to: " + ", ".join(sites))
-                want = registrable_domain(site_url)
-                for reg in sites:
-                    if (registrable_domain(reg) == want
-                            and reg.rstrip("/") != site_url.rstrip("/")):
-                        _log(f"bing-api: retrying with registered site "
-                             f"URL {reg}")
-                        targets, links = _collect(reg)
-                        break
+            _log("bing-api: no property matches " + want
+                 + "; key sees: " + ", ".join(sites))
 
-    _log(f"bing-api: {len(links)} backlinks from "
-         f"{min(len(targets), max_target_pages)} linked pages")
-    if not targets:
-        _log("bing-api: still empty. If the site IS verified in Bing "
-             "Webmaster Tools, this is the known Microsoft issue where "
-             "the link API returns empty data for some accounts.")
+    seen, links, any_targets = set(), [], False
+    for surl in queue:
+        targets, plinks = _collect(surl)
+        any_targets = any_targets or bool(targets)
+        for bl in plinks:
+            key = (bl.source_url, bl.target_url)
+            if key not in seen:
+                seen.add(key)
+                links.append(bl)
+
+    _log(f"bing-api: {len(links)} unique backlinks across "
+         f"{len(queue)} propert{'y' if len(queue) == 1 else 'ies'}")
+    if not any_targets:
+        _log("bing-api: no link data yet. Freshly added properties take "
+             "up to 48 hours to populate; if it stays empty after that, "
+             "it is the known Microsoft issue where the link API "
+             "returns empty data for some accounts.")
     return links
