@@ -29,14 +29,11 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Backfill 12 months of history (retry wrapper)
+      - name: Backfill 12 months of history (dukascopy primary, yahoo/stooq fallback)
         run: |
-          for i in 1 2 3; do
-            python scripts/backfill_history.py && exit 0
-            echo "attempt $i failed; cooling down before retry"
-            sleep 90
-          done
-          exit 1
+          python scripts/backfill_dukascopy.py && exit 0
+          echo "dukascopy failed; falling back to yahoo/stooq"
+          python scripts/backfill_history.py
 
       - name: Commit history
         run: |
