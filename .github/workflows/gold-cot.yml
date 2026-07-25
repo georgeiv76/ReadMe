@@ -1,0 +1,32 @@
+name: Gold COT fetch
+
+on:
+  push:
+    branches:
+      - claude/cfd-trading-app-gold-ch5dvz
+    paths:
+      - "gold-intel/data/cot-request.txt"
+      - ".github/workflows/gold-cot.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  cot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Fetch COT
+        run: |
+          for i in 1 2 3; do python scripts/backfill_cot.py && break || sleep 20; done
+      - name: Commit
+        run: |
+          git config user.name "gold-data-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add gold-intel/data/cot_12mo.json
+          git diff --cached --quiet || { git commit -m "gold-cot: weekly COT snapshot"; git pull --rebase origin "${GITHUB_REF_NAME}"; git push origin "HEAD:${GITHUB_REF_NAME}"; }
