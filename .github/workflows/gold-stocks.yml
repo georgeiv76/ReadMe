@@ -1,0 +1,32 @@
+name: Stocks week fetch
+
+on:
+  push:
+    branches:
+      - claude/cfd-trading-app-gold-ch5dvz
+    paths:
+      - "gold-intel/data/stocks-request.txt"
+      - ".github/workflows/gold-stocks.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  stocks:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Fetch stocks
+        run: |
+          for i in 1 2 3; do python scripts/backfill_stocks.py && break || sleep 60; done
+      - name: Commit
+        run: |
+          git config user.name "gold-data-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add gold-intel/data/stocks_week.json
+          git diff --cached --quiet || { git commit -m "stocks: last-week snapshot"; git pull --rebase origin "${GITHUB_REF_NAME}"; git push origin "HEAD:${GITHUB_REF_NAME}"; }
