@@ -137,6 +137,14 @@ def parse_bing_url_links(payload):
             if isinstance(item, dict) and item.get("Url")]
 
 
+def bing_verified_sites(apikey):
+    """Public wrapper: (sites: list, error: str|None) for GetUserSites."""
+    payload, err = _bing_call("GetUserSites", apikey, {})
+    if err:
+        return [], err
+    return parse_bing_user_sites(payload), None
+
+
 def parse_bing_user_sites(payload):
     """GetUserSites -> list of registered site URLs. The 'd' body can be
     a bare list or a dict wrapper depending on API version."""

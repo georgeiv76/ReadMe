@@ -2,3 +2,5 @@ output/
 exports/
 __pycache__/
 *.pyc
+.venv/
+keys.env

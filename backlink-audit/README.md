@@ -241,7 +241,69 @@ private destination for outputs.
    repo, runs the audit and commits the report + snapshot; requires
    the three keys as environment variables in the cloud environment.
 
-## 7. One-time setup checklist (about 30 minutes)
+## 7. MCP server: the always-on interface
+
+The CLI in section 6 is the underlying engine, but the primary way to
+use this project is an **MCP server that is always running**, not a
+command someone has to remember to type. It wraps the exact same
+`backlink_audit` package, so nothing is duplicated: `mcp_server/server.py`
+imports `ingest`, `fetch`, `enrich`, `score`, `report` directly.
+
+Registered once via `.mcp.json` at the repo root, it becomes available
+in every future Claude Code / Claude Desktop session opened on this
+repo, automatically, after a one-time approval prompt.
+
+### Tools it exposes
+
+| Tool | Purpose |
+|---|---|
+| `check_data_sources(target)` | Tests Ahrefs REST, Ahrefs free Domain Rating, Bing, Open PageRank and Spamhaus against the real target domain, reports exactly which are configured/reachable. Run this first after any key or plan change. |
+| `run_audit(target, use_ahrefs, use_bing, online_enrichment)` | The full pipeline: fetch, enrich, score, write report/CSV/disavow/snapshot. Returns a summary. |
+| `get_last_report(target)` | Full markdown of the most recent report. |
+| `list_domains_by_bucket(target, bucket)` | Toxic / review / healthy domains from the last run, with markers. |
+| `score_single_domain(domain, online)` | Score one domain on the spot, e.g. a suspicious new referrer noticed outside the monthly cycle. |
+| `get_disavow_candidates(target)` | The candidates file, warnings included. Never a finished disavow list. |
+
+### Setup (one time)
+
+```bash
+cd backlink-audit
+python3 -m venv .venv
+.venv/bin/pip install -r mcp_server/requirements.txt
+cp keys.env.example keys.env   # fill in AHREFS_API_KEY, BING_WEBMASTER_API_KEY, OPR_API_KEY
+```
+
+Then open this repo as a Claude Code / Claude Desktop project; approve
+the `dedaub-backlink-audit` server on the first prompt. Verify with
+`claude mcp list`.
+
+`keys.env` is git-ignored and is a fallback specifically for GUI-launched
+processes, which do not reliably inherit a shell's exported environment
+variables the way a terminal-launched process does. A real environment
+variable with the same name always takes precedence over the file, so
+CLI/cron usage (section 6) and the MCP server can share one source of
+truth without conflict.
+
+### What has actually been verified
+
+The server was tested end to end over the **real MCP stdio protocol**
+(not a mock): tool registration, `check_data_sources` and `run_audit`
+with no keys configured (graceful "NOT CONFIGURED" / "ERROR" results,
+no crash), `score_single_domain` both offline and with a blocked
+network, and the no-prior-data paths for every read tool. One real bug
+was caught this way and fixed: `list_domains_by_bucket` returning a
+bare empty Python list produced zero content blocks in the MCP
+response and crashed the client; every tool now returns a dict, which
+serializes reliably.
+
+What could NOT be verified from a cloud dev session: actual data from
+Ahrefs or Bing, because outbound access to `api.ahrefs.com` and
+`ssl.bing.com` is blocked at that session's network gateway. That is a
+property of the cloud sandbox, not of this code. Run `check_data_sources`
+wherever the server actually lives (this repo's normal desktop/cron
+environment) for the first live-data confirmation.
+
+## 8. One-time setup checklist (about 30 minutes)
 
 1. **Ahrefs**: subscribe to the Lite plan (annual pricing about
    $108/month) and create an API key in account settings. This is the
@@ -258,7 +320,7 @@ private destination for outputs.
    (`AHREFS_API_KEY`, `BING_WEBMASTER_API_KEY`, `OPR_API_KEY`).
 5. Nothing to install: the tool is stdlib-only Python 3.
 
-## 8. Fallback runbook (manual exports)
+## 9. Fallback runbook (manual exports)
 
 Only relevant when the APIs are unavailable. The CSV ingestion paths
 stay fully supported:
@@ -296,24 +358,32 @@ python3 -m backlink_audit.run_audit \
     --out output/
 ```
 
-## 9. Repo layout
+## 10. Repo layout
 
 ```
-backlink-audit/
-  backlink_audit/         the tool (stdlib-only Python 3)
-    ingest.py             header-flexible CSV parsers (GSC / Ahrefs / Bing)
-    fetch.py              autonomous API fetchers (Ahrefs v3, Bing Webmaster)
-    domains.py            registrable-domain logic, free-host handling
-    enrich.py             DNS / HTTP / Spamhaus DBL / Open PageRank
-    score.py              scoring engine, weights, whitelist, thresholds
-    report.py             markdown report, CSV, disavow file, snapshot
-    run_audit.py          CLI
-  samples/                fixture exports for testing
-  skill/dedaub-backlink-audit/SKILL.md   desktop orchestrator skill
-  README.md               this document
+ReadMe/
+  .mcp.json                project-scoped MCP registration (portable, no secrets)
+  backlink-audit/
+    backlink_audit/        the tool (stdlib-only Python 3)
+      ingest.py            header-flexible CSV parsers (GSC / Ahrefs / Bing)
+      fetch.py             autonomous API fetchers (Ahrefs v3, Bing Webmaster)
+      domains.py           registrable-domain logic, free-host handling
+      enrich.py            DNS / HTTP / Spamhaus DBL / Open PageRank / Ahrefs DR
+      score.py             scoring engine, weights, whitelist, thresholds
+      report.py            markdown report, CSV, disavow file, snapshot
+      run_audit.py         CLI (fallback / cron path)
+    mcp_server/
+      server.py            MCP server: same package, wrapped as always-on tools
+      requirements.txt     just `mcp`
+    .venv/                 created locally, git-ignored, holds the mcp package
+    keys.env.example       template; copy to keys.env (git-ignored) and fill in
+    samples/                fixture exports for testing
+    skill/dedaub-backlink-audit/SKILL.md   desktop orchestrator skill
+    BOOTSTRAP.md            step-by-step handoff for the desktop Claude
+    README.md               this document
 ```
 
-## 10. Roadmap
+## 11. Roadmap
 
 1. Common Crawl host-graph diffing for discovery beyond the two
    indexes.

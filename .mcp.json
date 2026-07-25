@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "dedaub-backlink-audit": {
+      "type": "stdio",
+      "command": "${CLAUDE_PROJECT_DIR:-.}/backlink-audit/.venv/bin/python3",
+      "args": ["${CLAUDE_PROJECT_DIR:-.}/backlink-audit/mcp_server/server.py"],
+      "env": {
+        "AHREFS_API_KEY": "${AHREFS_API_KEY:-}",
+        "BING_WEBMASTER_API_KEY": "${BING_WEBMASTER_API_KEY:-}",
+        "OPR_API_KEY": "${OPR_API_KEY:-}"
+      }
+    }
+  }
+}
