@@ -110,3 +110,56 @@ Sources: [Yahoo Finance gold 24 Jul](https://finance.yahoo.com/personal-finance/
 [TradingEconomics gold](https://tradingeconomics.com/commodity/gold),
 [Investing.com XAU/USD](https://www.investing.com/currencies/xau-usd),
 [Vantage 24 Jul](https://www.vantagemarkets.com/market-analysis/xauusd-price-today-gold-analysis-july-24-2026/).
+
+---
+
+# CORRECTION + FINAL RE-GRADE — after Kitco official session reports
+
+**Correction of record:** the earlier "verified close $4,065.92" was WRONG —
+a stale Investing.com snapshot. Authoritative Friday session data from
+[Kitco's PM report](https://www.kitco.com/news/article/2026-07-24/gold-holds-near-4050-equities-diverge-oil-falls-kitco-pm-report)
+and [AM report](https://www.kitco.com/news/article/2026-07-24/gold-holds-above-4020-fed-rate-risk-caps-rebound-kitco-am-report):
+
+- **Weekly/Friday close: $4,051.51** (after failing to reclaim $4,100)
+- **Session range: $4,021.20 – $4,083.10** (high likely pre-Europe; low
+  printed before the AM report — morning window)
+- AM: "Gold holds above $4,020 as Fed-rate risk caps rebound"
+- PM: "Gold holds near $4,050"; late afternoon modestly higher; "defended
+  $4,000 support once again"; FOMC rate-HIKE probability now 37.9%
+
+New learning rule (added to LEARNING.md): an anchor may be labeled
+"verified" only with two independent agreeing sources.
+
+## Final table — estimate vs real
+
+| CEST | Est. | Real (sourced) | Verdict |
+|---|---|---|---|
+| 10:00 | ~4,038 | ~4,040–4,044 (EU morning, $4,044 target hit) | ✓ |
+| 11:00–14:00 | 4,036→4,030, low at 14:00 | **session low $4,021.20** printed in this morning window (exact hour pending candles) | value: band floor missed by ~$4–7; timing: compatible |
+| 15:00 | ~4,032 | holding above $4,020 (Kitco AM) | ✓ direction |
+| 16:00–17:00 | 4,038→4,045 recovery | recovery to ~$4,050 by 17:27 CEST | ✓ |
+| 18:00–21:00 | 4,050→4,063 | "holds near $4,050" all afternoon (Kitco PM) | price path over-estimated by ~$5–13 |
+| 22:00 | ~4,066 | ~$4,050s, closing $4,051.51 at 23:00 CEST | ✗ close est. off ~$15 (bad anchor) |
+
+## Re-graded criteria
+
+1. Day low 4,025–4,035 in 12:00–15:00 UTC → **near miss on value**
+   ($4,021.20, $4 below band floor); timing likely compatible (morning
+   window). Half credit.
+2. $4,050 early resistance / late support hinge → **STRONG HIT** — the day
+   CLOSED at $4,051.51, dead on the hinge; Kitco titled the PM report
+   around it.
+3. Close within $5 of 4,066–4,070 → **FAIL** ($4,051.51, off ~$15) — caused
+   by the bad input anchor, which also inflated the estimated pivot P.
+4. $4,000–4,010 and $4,105+ untouched → **HIT on both** (low $4,021.20,
+   high $4,083.10; "$4,000 defended once again").
+
+**Trading-relevant outcome:** the engine's intraday pair worked — the
+buy zone ($4,028–4,032) filled during the morning low with ~$7–11 adverse
+excursion to $4,021, and the $4,050 sell zone was reached and held into the
+close: roughly a $20/oz round trip. The $4,065–4,070 sell zone was NOT
+reached during the graded window and would not have filled.
+
+**Final grade: B−.** Structure and the actionable buy/sell pair: right.
+Close estimate and low-band edge: wrong, both traceable to a single-source
+anchor — now a codified learning rule.

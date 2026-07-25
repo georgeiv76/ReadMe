@@ -53,6 +53,15 @@ overall hit rate, best/worst family, biggest miss with a one-paragraph
 post-mortem, and one concrete rule adjustment proposal (which the user can
 approve; rules in PLAYBOOK.md only change with explicit user approval).
 
+## Codified lessons (from graded exams)
+
+- **2026-07-25, two-source rule:** a price anchor may be labeled "verified"
+  only when two independent sources agree. A stale single-source snapshot
+  (Investing.com, $4,065.92) was wrongly treated as Friday's close; the real
+  Kitco-reported close was $4,051.51, and the bad anchor propagated into the
+  estimated pivot and close prediction. Prefer Kitco AM/PM session reports
+  as the authoritative daily reference in degraded mode.
+
 ## Honesty rules
 
 - Hit rates below ~55% mean the system has no edge yet — the brief must say so
