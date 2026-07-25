@@ -1,0 +1,467 @@
+{
+  "rows": [
+    {
+      "date": "2025-12-09",
+      "mm_long": 946.0,
+      "mm_short": 0.0,
+      "mm_net": 946.0,
+      "open_interest": 54042.0
+    },
+    {
+      "date": "2025-12-09",
+      "mm_long": 143383.0,
+      "mm_short": 19835.0,
+      "mm_net": 123548.0,
+      "open_interest": 432569.0
+    },
+    {
+      "date": "2025-12-16",
+      "mm_long": 709.0,
+      "mm_short": 0.0,
+      "mm_net": 709.0,
+      "open_interest": 57894.0
+    },
+    {
+      "date": "2025-12-16",
+      "mm_long": 152873.0,
+      "mm_short": 20277.0,
+      "mm_net": 132596.0,
+      "open_interest": 471093.0
+    },
+    {
+      "date": "2025-12-23",
+      "mm_long": 681.0,
+      "mm_short": 0.0,
+      "mm_net": 681.0,
+      "open_interest": 65212.0
+    },
+    {
+      "date": "2025-12-23",
+      "mm_long": 160581.0,
+      "mm_short": 24311.0,
+      "mm_net": 136270.0,
+      "open_interest": 492103.0
+    },
+    {
+      "date": "2025-12-30",
+      "mm_long": 148642.0,
+      "mm_short": 22602.0,
+      "mm_net": 126040.0,
+      "open_interest": 481866.0
+    },
+    {
+      "date": "2025-12-30",
+      "mm_long": 478.0,
+      "mm_short": 0.0,
+      "mm_net": 478.0,
+      "open_interest": 70021.0
+    },
+    {
+      "date": "2026-01-06",
+      "mm_long": 146445.0,
+      "mm_short": 23232.0,
+      "mm_net": 123213.0,
+      "open_interest": 488116.0
+    },
+    {
+      "date": "2026-01-06",
+      "mm_long": 478.0,
+      "mm_short": 320.0,
+      "mm_net": 158.0,
+      "open_interest": 68733.0
+    },
+    {
+      "date": "2026-01-13",
+      "mm_long": 158825.0,
+      "mm_short": 24080.0,
+      "mm_net": 134745.0,
+      "open_interest": 527455.0
+    },
+    {
+      "date": "2026-01-13",
+      "mm_long": 636.0,
+      "mm_short": 0.0,
+      "mm_net": 636.0,
+      "open_interest": 72555.0
+    },
+    {
+      "date": "2026-01-20",
+      "mm_long": 163668.0,
+      "mm_short": 26224.0,
+      "mm_net": 137444.0,
+      "open_interest": 528004.0
+    },
+    {
+      "date": "2026-01-20",
+      "mm_long": 1504.0,
+      "mm_short": 0.0,
+      "mm_net": 1504.0,
+      "open_interest": 78970.0
+    },
+    {
+      "date": "2026-01-27",
+      "mm_long": 143321.0,
+      "mm_short": 25162.0,
+      "mm_net": 118159.0,
+      "open_interest": 488463.0
+    },
+    {
+      "date": "2026-01-27",
+      "mm_long": 0.0,
+      "mm_short": 0.0,
+      "mm_net": 0.0,
+      "open_interest": 78421.0
+    },
+    {
+      "date": "2026-02-03",
+      "mm_long": 118936.0,
+      "mm_short": 26864.0,
+      "mm_net": 92072.0,
+      "open_interest": 409694.0
+    },
+    {
+      "date": "2026-02-03",
+      "mm_long": 322.0,
+      "mm_short": 0.0,
+      "mm_net": 322.0,
+      "open_interest": 53594.0
+    },
+    {
+      "date": "2026-02-10",
+      "mm_long": 119232.0,
+      "mm_short": 27210.0,
+      "mm_net": 92022.0,
+      "open_interest": 404391.0
+    },
+    {
+      "date": "2026-02-10",
+      "mm_long": 218.0,
+      "mm_short": 611.0,
+      "mm_net": -393.0,
+      "open_interest": 60592.0
+    },
+    {
+      "date": "2026-02-17",
+      "mm_long": 123011.0,
+      "mm_short": 27118.0,
+      "mm_net": 95893.0,
+      "open_interest": 407078.0
+    },
+    {
+      "date": "2026-02-17",
+      "mm_long": 0.0,
+      "mm_short": 0.0,
+      "mm_net": 0.0,
+      "open_interest": 60814.0
+    },
+    {
+      "date": "2026-02-24",
+      "mm_long": 0.0,
+      "mm_short": 0.0,
+      "mm_net": 0.0,
+      "open_interest": 59925.0
+    },
+    {
+      "date": "2026-02-24",
+      "mm_long": 121233.0,
+      "mm_short": 25259.0,
+      "mm_net": 95974.0,
+      "open_interest": 420182.0
+    },
+    {
+      "date": "2026-03-03",
+      "mm_long": 0.0,
+      "mm_short": 0.0,
+      "mm_net": 0.0,
+      "open_interest": 60931.0
+    },
+    {
+      "date": "2026-03-03",
+      "mm_long": 123456.0,
+      "mm_short": 25539.0,
+      "mm_net": 97917.0,
+      "open_interest": 409789.0
+    },
+    {
+      "date": "2026-03-10",
+      "mm_long": 125077.0,
+      "mm_short": 26678.0,
+      "mm_net": 98399.0,
+      "open_interest": 413956.0
+    },
+    {
+      "date": "2026-03-10",
+      "mm_long": 841.0,
+      "mm_short": 509.0,
+      "mm_net": 332.0,
+      "open_interest": 58116.0
+    },
+    {
+      "date": "2026-03-17",
+      "mm_long": 130147.0,
+      "mm_short": 28104.0,
+      "mm_net": 102043.0,
+      "open_interest": 411388.0
+    },
+    {
+      "date": "2026-03-17",
+      "mm_long": 0.0,
+      "mm_short": 0.0,
+      "mm_net": 0.0,
+      "open_interest": 64123.0
+    },
+    {
+      "date": "2026-03-24",
+      "mm_long": 561.0,
+      "mm_short": 0.0,
+      "mm_net": 561.0,
+      "open_interest": 71997.0
+    },
+    {
+      "date": "2026-03-24",
+      "mm_long": 119562.0,
+      "mm_short": 27941.0,
+      "mm_net": 91621.0,
+      "open_interest": 403925.0
+    },
+    {
+      "date": "2026-03-31",
+      "mm_long": 120092.0,
+      "mm_short": 27278.0,
+      "mm_net": 92814.0,
+      "open_interest": 361409.0
+    },
+    {
+      "date": "2026-03-31",
+      "mm_long": 372.0,
+      "mm_short": 583.0,
+      "mm_net": -211.0,
+      "open_interest": 57288.0
+    },
+    {
+      "date": "2026-04-07",
+      "mm_long": 120726.0,
+      "mm_short": 30694.0,
+      "mm_net": 90032.0,
+      "open_interest": 354877.0
+    },
+    {
+      "date": "2026-04-07",
+      "mm_long": 341.0,
+      "mm_short": 477.0,
+      "mm_net": -136.0,
+      "open_interest": 57228.0
+    },
+    {
+      "date": "2026-04-14",
+      "mm_long": 788.0,
+      "mm_short": 271.0,
+      "mm_net": 517.0,
+      "open_interest": 59913.0
+    },
+    {
+      "date": "2026-04-14",
+      "mm_long": 125422.0,
+      "mm_short": 30281.0,
+      "mm_net": 95141.0,
+      "open_interest": 362274.0
+    },
+    {
+      "date": "2026-04-21",
+      "mm_long": 123681.0,
+      "mm_short": 30705.0,
+      "mm_net": 92976.0,
+      "open_interest": 365842.0
+    },
+    {
+      "date": "2026-04-21",
+      "mm_long": 604.0,
+      "mm_short": 604.0,
+      "mm_net": 0.0,
+      "open_interest": 60480.0
+    },
+    {
+      "date": "2026-04-28",
+      "mm_long": 122257.0,
+      "mm_short": 32505.0,
+      "mm_net": 89752.0,
+      "open_interest": 369530.0
+    },
+    {
+      "date": "2026-04-28",
+      "mm_long": 800.0,
+      "mm_short": 222.0,
+      "mm_net": 578.0,
+      "open_interest": 61830.0
+    },
+    {
+      "date": "2026-05-05",
+      "mm_long": 123353.0,
+      "mm_short": 29099.0,
+      "mm_net": 94254.0,
+      "open_interest": 367932.0
+    },
+    {
+      "date": "2026-05-05",
+      "mm_long": 870.0,
+      "mm_short": 235.0,
+      "mm_net": 635.0,
+      "open_interest": 65308.0
+    },
+    {
+      "date": "2026-05-12",
+      "mm_long": 531.0,
+      "mm_short": 0.0,
+      "mm_net": 531.0,
+      "open_interest": 67067.0
+    },
+    {
+      "date": "2026-05-12",
+      "mm_long": 127242.0,
+      "mm_short": 29227.0,
+      "mm_net": 98015.0,
+      "open_interest": 376496.0
+    },
+    {
+      "date": "2026-05-19",
+      "mm_long": 756.0,
+      "mm_short": 1178.0,
+      "mm_net": -422.0,
+      "open_interest": 68209.0
+    },
+    {
+      "date": "2026-05-19",
+      "mm_long": 122894.0,
+      "mm_short": 29354.0,
+      "mm_net": 93540.0,
+      "open_interest": 379325.0
+    },
+    {
+      "date": "2026-05-26",
+      "mm_long": 1130.0,
+      "mm_short": 0.0,
+      "mm_net": 1130.0,
+      "open_interest": 65249.0
+    },
+    {
+      "date": "2026-05-26",
+      "mm_long": 124277.0,
+      "mm_short": 26831.0,
+      "mm_net": 97446.0,
+      "open_interest": 353489.0
+    },
+    {
+      "date": "2026-06-02",
+      "mm_long": 129367.0,
+      "mm_short": 17188.0,
+      "mm_net": 112179.0,
+      "open_interest": 326052.0
+    },
+    {
+      "date": "2026-06-02",
+      "mm_long": 868.0,
+      "mm_short": 700.0,
+      "mm_net": 168.0,
+      "open_interest": 55714.0
+    },
+    {
+      "date": "2026-06-09",
+      "mm_long": 904.0,
+      "mm_short": 786.0,
+      "mm_net": 118.0,
+      "open_interest": 59682.0
+    },
+    {
+      "date": "2026-06-09",
+      "mm_long": 126280.0,
+      "mm_short": 20417.0,
+      "mm_net": 105863.0,
+      "open_interest": 332709.0
+    },
+    {
+      "date": "2026-06-16",
+      "mm_long": 372.0,
+      "mm_short": 0.0,
+      "mm_net": 372.0,
+      "open_interest": 57461.0
+    },
+    {
+      "date": "2026-06-16",
+      "mm_long": 128043.0,
+      "mm_short": 14322.0,
+      "mm_net": 113721.0,
+      "open_interest": 339330.0
+    },
+    {
+      "date": "2026-06-23",
+      "mm_long": 131102.0,
+      "mm_short": 15707.0,
+      "mm_net": 115395.0,
+      "open_interest": 352167.0
+    },
+    {
+      "date": "2026-06-23",
+      "mm_long": 1331.0,
+      "mm_short": 0.0,
+      "mm_net": 1331.0,
+      "open_interest": 61967.0
+    },
+    {
+      "date": "2026-06-30",
+      "mm_long": 1238.0,
+      "mm_short": 0.0,
+      "mm_net": 1238.0,
+      "open_interest": 64819.0
+    },
+    {
+      "date": "2026-06-30",
+      "mm_long": 134577.0,
+      "mm_short": 14486.0,
+      "mm_net": 120091.0,
+      "open_interest": 369541.0
+    },
+    {
+      "date": "2026-07-07",
+      "mm_long": 134941.0,
+      "mm_short": 18780.0,
+      "mm_net": 116161.0,
+      "open_interest": 371776.0
+    },
+    {
+      "date": "2026-07-07",
+      "mm_long": 1172.0,
+      "mm_short": 863.0,
+      "mm_net": 309.0,
+      "open_interest": 70778.0
+    },
+    {
+      "date": "2026-07-14",
+      "mm_long": 136905.0,
+      "mm_short": 16126.0,
+      "mm_net": 120779.0,
+      "open_interest": 383689.0
+    },
+    {
+      "date": "2026-07-14",
+      "mm_long": 1206.0,
+      "mm_short": 0.0,
+      "mm_net": 1206.0,
+      "open_interest": 74364.0
+    },
+    {
+      "date": "2026-07-21",
+      "mm_long": 2010.0,
+      "mm_short": 67.0,
+      "mm_net": 1943.0,
+      "open_interest": 77769.0
+    },
+    {
+      "date": "2026-07-21",
+      "mm_long": 141487.0,
+      "mm_short": 16656.0,
+      "mm_net": 124831.0,
+      "open_interest": 383368.0
+    }
+  ],
+  "n": 66
+}
