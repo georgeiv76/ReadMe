@@ -214,6 +214,18 @@ weekly cadence.
 outage, plan limit), the run aborts with exit code 3 instead of
 writing an empty snapshot over a good baseline.
 
+**Privacy guard (this repo is PUBLIC).** Never commit API keys, and
+never commit audit outputs here: reports and snapshots label
+third-party domains as toxic and reveal SEO operations, so they belong
+on the desktop or in a private repo only. `.gitignore` already excludes
+`output/` and `exports/`; keep it that way.
+
+**Cloud scheduling prerequisites.** Running the audit from a Claude
+cloud Routine additionally requires, in the environment settings:
+network policy allowing `api.ahrefs.com`, `ssl.bing.com` and
+`openpagerank.com`; the three keys as environment variables; and a
+private destination for outputs.
+
 **Scheduling.** Two equivalent options, pick one:
 1. Desktop orchestrator: a monthly scheduled task runs the command
    above and reads `output/audit-report.md` back (see the
