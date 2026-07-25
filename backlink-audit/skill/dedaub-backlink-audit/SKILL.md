@@ -25,9 +25,14 @@ description: Monthly backlink toxicity audit for dedaub.com - free replacement
 | Monthly GA4+GSC dataset pipeline | - | ga-gsc-gtm-report |
 
 HARD FACT: the gsc-server MCP has NO backlinks tool. The GSC API does
-not expose the Links report. Backlink data enters this pipeline only
-through manual UI exports (GSC, Ahrefs, Bing). Never promise Giorgio an
-API pull of GSC links; it does not exist.
+not expose the Links report. Never promise Giorgio an API pull of GSC
+links; it does not exist. The pipeline therefore runs WITHOUT GSC link
+data by design: the autonomous inventory is Ahrefs API v3 plus Bing
+Webmaster API.
+
+OPERATING CONTRACT (set by Giorgio, 25 July 2026): zero recurring
+manual work. No CSV downloads, no UI exports. The audit fetches its
+own data via APIs and runs on a schedule.
 
 ## Part 1 - Where things live
 
@@ -37,32 +42,38 @@ API pull of GSC links; it does not exist.
 | Full research + source links | `backlink-audit/README.md` |
 | Scoring config (weights, whitelist, TLD and keyword lists) | defaults in `backlink_audit/score.py`, override with `--config file.json` |
 | Outputs per run | `output/`: audit-report.md, scored-domains.csv, disavow-candidates.txt, snapshot.json |
-| Open PageRank API key | env var `OPR_API_KEY` (free key from domcop.com/openpagerank, 1,000 req/day) |
+| Ahrefs API key (paid, Lite plan or higher) | env var `AHREFS_API_KEY` |
+| Bing Webmaster API key (free) | env var `BING_WEBMASTER_API_KEY` |
+| Open PageRank API key (free, 1,000 req/day) | env var `OPR_API_KEY` |
 
-## Part 2 - Monthly runbook
+## Part 2 - Monthly runbook (autonomous)
 
-1. Giorgio exports from the GSC UI (Links report, "Export external
-   links"): "Top linking sites" and "Latest links". Domain property
-   covers all subdomains; no per-subdomain export exists.
-2. Giorgio exports the Ahrefs Webmaster Tools backlinks CSV (free tier,
-   requires the one-time site verification in README section 6).
-3. Optional: Bing Webmaster Tools backlinks CSV.
-4. Run the tool:
+1. The scheduled monthly task runs, with the three keys in the
+   environment:
 
 ```bash
 cd backlink-audit
-OPR_API_KEY=$OPR_API_KEY python3 -m backlink_audit.run_audit \
-  --gsc-sites exports/gsc-top-linking-sites.csv \
-  --gsc-links exports/gsc-latest-links.csv \
-  --ahrefs exports/ahrefs-backlinks.csv \
-  --online --prev output/snapshot.json --out output/
+python3 -m backlink_audit.run_audit \
+  --target dedaub.com \
+  --ahrefs-api --bing-api --online \
+  --prev output/snapshot.json --out output/
 ```
 
-5. Read audit-report.md to Giorgio: profile toxicity band, toxic table,
+2. Exit code 3 means API mode returned zero backlinks; the run aborted
+   on purpose so an empty result never overwrites a good snapshot.
+   Diagnose the key or plan limit and re-run. Do NOT fall back to
+   asking Giorgio for CSV exports unless both APIs are confirmed dead
+   and he approves the one-off manual step.
+3. Read audit-report.md to Giorgio: profile toxicity band, toxic table,
    review queue, and the trend section (new / lost / escalated).
-6. Curate the whitelist: any false positive gets added to the config
+4. Curate the whitelist: any false positive gets added to the config
    whitelist so it never fires again.
-7. Keep snapshot.json in place: it is next month's baseline.
+5. Keep snapshot.json in place: it is next month's baseline.
+
+Unit budget note: the default pull is one all-backlinks request, one
+link per referring domain, 5 cheap fields: about 5 units per domain
+plus 50 base. On the Lite plan (10,000 units/month) that covers a
+profile up to roughly 1,900 referring domains monthly.
 
 ## Part 3 - Score interpretation
 
@@ -128,6 +139,7 @@ DISAVOW: <not warranted | review recommended - reason>
 
 | Anti-pattern | Flag as |
 |---|---|
+| Asking Giorgio for a CSV export or any recurring manual step | CONTRACT VIOLATION - autonomous mode is the standing agreement |
 | Promising GSC backlink data via API or gsc-server | DOES NOT EXIST - UI export only |
 | Uploading or recommending upload of the raw candidates file | HARD RULE VIOLATION - Part 4 |
 | Disavowing a free-host platform root (blogspot.com, wordpress.com) | COLLATERAL DAMAGE - subdomain only |
@@ -138,6 +150,13 @@ DISAVOW: <not warranted | review recommended - reason>
 | Using em dash in any output | FORMATTING VIOLATION - use hyphen, colon, or restructure |
 
 ## CHANGELOG
+
+### 25 July 2026 (second pass, same day)
+- Autonomous mode added on Giorgio's zero-manual-work requirement:
+  fetch.py pulls from the Ahrefs API v3 and Bing Webmaster API
+  directly, GSC exports dropped from the standing pipeline, runbook
+  rewritten around the scheduled API run, exit-code-3 snapshot guard
+  documented, CSV ingestion demoted to emergency fallback.
 
 ### 25 July 2026
 - Created. Tool, scoring model and research shipped in the

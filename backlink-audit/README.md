@@ -168,22 +168,81 @@ tracked per subdomain, so a spam blog can be flagged and disavowed
 without touching the platform root. Disavowing `blogspot.com` itself
 would kill every Blogspot link; the tool structurally cannot emit that.
 
-## 6. One-time setup checklist (about 30 minutes)
+## 6. Autonomous mode (primary): zero manual steps
 
-1. **Ahrefs Webmaster Tools** (the important one):
-   [ahrefs.com/webmaster-tools](https://ahrefs.com/webmaster-tools),
-   sign up free, add dedaub.com, verify with a DNS TXT record (same
-   process as the GSC domain property verification).
+Operating requirement set 25 July 2026: no recurring manual work, no
+CSV downloads. Consequences:
+
+- **GSC link data is excluded from the standing pipeline.** Google
+  offers no API for the Links report, so the only way to include it is
+  a monthly manual export. It stays available as an optional
+  cross-check, nothing depends on it.
+- The autonomous inventory is **Ahrefs API v3 + Bing Webmaster API**,
+  with Open PageRank for authority, Spamhaus DBL for reputation and
+  DNS/HTTP for liveness. All fetched by the tool itself.
+
+The standing monthly command (no human in the loop):
+
+```bash
+cd backlink-audit
+python3 -m backlink_audit.run_audit \
+    --target dedaub.com \
+    --ahrefs-api --bing-api --online \
+    --prev output/snapshot.json --out output/
+```
+
+Keys, via environment variables:
+
+| Variable | Source | Cost |
+|---|---|---|
+| `AHREFS_API_KEY` | ahrefs.com account settings, API keys (needs Lite plan or higher) | paid |
+| `BING_WEBMASTER_API_KEY` | Bing Webmaster Tools, Settings, API access | free |
+| `OPR_API_KEY` | domcop.com/openpagerank | free |
+
+**Ahrefs plan sizing.** API access starts at Lite (10,000 units/month;
+each request costs 50 base units plus per-field row costs, most fields
+1 unit: [limits consumption](https://docs.ahrefs.com/en/api/docs/limits-consumption),
+[plan units](https://thatmarketingbuddy.com/api/ahrefs)). The tool's
+default pull is one `all-backlinks` request with one link per
+referring domain and 5 cheap fields, so about 5 units per referring
+domain plus 50 base. A 1,000-domain profile costs about 5,050 units
+per month: **Lite covers a monthly audit with headroom**. Standard
+only becomes necessary beyond roughly 1,900 referring domains or for
+weekly cadence.
+
+**Failure safety.** If API mode returns zero backlinks (dead key,
+outage, plan limit), the run aborts with exit code 3 instead of
+writing an empty snapshot over a good baseline.
+
+**Scheduling.** Two equivalent options, pick one:
+1. Desktop orchestrator: a monthly scheduled task runs the command
+   above and reads `output/audit-report.md` back (see the
+   dedaub-backlink-audit skill, Part 2).
+2. Claude Code cloud: a monthly Routine in a fresh session clones this
+   repo, runs the audit and commits the report + snapshot; requires
+   the three keys as environment variables in the cloud environment.
+
+## 7. One-time setup checklist (about 30 minutes)
+
+1. **Ahrefs**: subscribe to the Lite plan (annual pricing about
+   $108/month) and create an API key in account settings. This is the
+   only paid item and unlocks the main link index programmatically.
+   Free AWT verification of dedaub.com (DNS TXT record) is still worth
+   doing for the extra UI dashboards, but the API does not need it.
 2. **Bing Webmaster Tools**:
-   [bing.com/webmasters](https://www.bing.com/webmasters), sign in and
-   use "Import from Google Search Console": one click, no new
-   verification.
+   [bing.com/webmasters](https://www.bing.com/webmasters), sign in,
+   "Import from Google Search Console" (one click), then Settings,
+   API access, generate the free API key.
 3. **Open PageRank API key**:
-   register free at [domcop.com/openpagerank](https://www.domcop.com/openpagerank/),
-   then `export OPR_API_KEY=...` on the desktop.
-4. Nothing to install: the tool is stdlib-only Python 3.
+   register free at [domcop.com/openpagerank](https://www.domcop.com/openpagerank/).
+4. Put the three keys in the environment where the audit runs
+   (`AHREFS_API_KEY`, `BING_WEBMASTER_API_KEY`, `OPR_API_KEY`).
+5. Nothing to install: the tool is stdlib-only Python 3.
 
-## 7. Monthly runbook
+## 8. Fallback runbook (manual exports)
+
+Only relevant when the APIs are unavailable. The CSV ingestion paths
+stay fully supported:
 
 1. Export from GSC UI (Links report, top right "Export external
    links"): "Top linking sites" and "Latest links".
@@ -208,7 +267,7 @@ OPR_API_KEY=xxxx python3 -m backlink_audit.run_audit \
    disavow candidates file on disk. Upload to Google only under the
    conditions in section 3.
 
-Try it now with the bundled fixtures:
+Try the pipeline now with the bundled fixtures:
 
 ```bash
 python3 -m backlink_audit.run_audit \
@@ -218,12 +277,13 @@ python3 -m backlink_audit.run_audit \
     --out output/
 ```
 
-## 8. Repo layout
+## 9. Repo layout
 
 ```
 backlink-audit/
   backlink_audit/         the tool (stdlib-only Python 3)
     ingest.py             header-flexible CSV parsers (GSC / Ahrefs / Bing)
+    fetch.py              autonomous API fetchers (Ahrefs v3, Bing Webmaster)
     domains.py            registrable-domain logic, free-host handling
     enrich.py             DNS / HTTP / Spamhaus DBL / Open PageRank
     score.py              scoring engine, weights, whitelist, thresholds
@@ -234,13 +294,13 @@ backlink-audit/
   README.md               this document
 ```
 
-## 9. Roadmap
+## 10. Roadmap
 
-1. Bing Webmaster API automation (the one index with programmatic
-   inbound-link access) to remove one manual export.
-2. Common Crawl host-graph diffing for discovery beyond the three
+1. Common Crawl host-graph diffing for discovery beyond the two
    indexes.
-3. GA4 referral cross-check: auto-join scored-domains.csv with the
+2. GA4 referral cross-check: auto-join scored-domains.csv with the
    monthly GA4 referral sources from the ga-gsc-gtm-report pipeline.
-4. Optional GTM tag capturing document.referrer server-side for
+3. Optional GTM tag capturing document.referrer server-side for
    flagged domains (real-time negative-SEO alarm).
+4. Ahrefs refdomains endpoint as a second-opinion pull when the unit
+   budget allows (adds lost-domain detection from Ahrefs' side).
