@@ -91,13 +91,19 @@ def fetch_ahrefs(target, token, mode="subdomains", limit=2000,
 
     payload, err = _get_json(
         AHREFS_ENDPOINT + "?" + urllib.parse.urlencode(params), headers)
-    if err and aggregation:
+    if err and aggregation and "401" not in err:
         _log(f"ahrefs-api: {err}; retrying without aggregation")
         params.pop("aggregation")
         payload, err = _get_json(
             AHREFS_ENDPOINT + "?" + urllib.parse.urlencode(params), headers)
     if err:
         _log(f"ahrefs-api: FAILED: {err}")
+        if "401" in err:
+            _log("ahrefs-api: 401 = key rejected by Ahrefs. Check that "
+                 "(1) the subscription includes API v3 (Lite plan or "
+                 "higher; the free plan has no API), and (2) the key was "
+                 "generated under Account settings, API keys. Regenerate "
+                 "the key and retry.")
         return []
     links = parse_ahrefs_payload(payload)
     _log(f"ahrefs-api: {len(links)} backlinks for {target} (mode={mode})")
@@ -131,48 +137,93 @@ def parse_bing_url_links(payload):
             if isinstance(item, dict) and item.get("Url")]
 
 
+def parse_bing_user_sites(payload):
+    """GetUserSites -> list of registered site URLs. The 'd' body can be
+    a bare list or a dict wrapper depending on API version."""
+    body = payload.get("d", payload) if isinstance(payload, dict) else payload
+    if isinstance(body, dict):
+        body = body.get("Sites") or body.get("sites") or []
+    urls = []
+    for item in body or []:
+        if isinstance(item, dict) and item.get("Url"):
+            urls.append(item["Url"])
+        elif isinstance(item, str):
+            urls.append(item)
+    return urls
+
+
 def fetch_bing(site_url, apikey, max_count_pages=5, max_target_pages=25,
                log=None):
     """Inbound links via GetLinkCounts + GetUrlLinks (free API).
 
     Bounded to max_count_pages listing calls and max_target_pages
     per-page source lookups, so a run costs at most ~30 requests.
+    If the first pass returns nothing, asks GetUserSites which site
+    URLs the key can actually see and retries with the registered form
+    (catches https:// vs http:// vs www. mismatches automatically).
     """
     def _log(msg):
         if log:
             log(msg)
 
-    targets, page = [], 0
-    while page < max_count_pages:
-        payload, err = _bing_call("GetLinkCounts", apikey,
-                                  {"siteUrl": site_url, "page": page})
-        if err:
-            _log(f"bing-api GetLinkCounts p{page}: {err}")
-            break
-        rows = parse_bing_link_counts(payload)
-        if not rows:
-            break
-        targets += rows
-        total = int(_bing_body(payload).get("TotalPages") or 1)
-        page += 1
-        if page >= total:
-            break
+    def _collect(surl):
+        targets, page = [], 0
+        while page < max_count_pages:
+            payload, err = _bing_call("GetLinkCounts", apikey,
+                                      {"siteUrl": surl, "page": page})
+            if err:
+                _log(f"bing-api GetLinkCounts p{page}: {err}")
+                break
+            rows = parse_bing_link_counts(payload)
+            if not rows:
+                break
+            targets += rows
+            total = int(_bing_body(payload).get("TotalPages") or 1)
+            page += 1
+            if page >= total:
+                break
+        targets.sort(key=lambda t: -t[1])
+        links = []
+        for turl, _count in targets[:max_target_pages]:
+            payload, err = _bing_call("GetUrlLinks", apikey,
+                                      {"siteUrl": surl, "link": turl,
+                                       "page": 0})
+            if err:
+                _log(f"bing-api GetUrlLinks {turl}: {err}")
+                continue
+            for src in parse_bing_url_links(payload):
+                links.append(Backlink(source_url=src, target_url=turl,
+                                      origin="bing-api"))
+        return targets, links
 
-    targets.sort(key=lambda t: -t[1])
-    links = []
-    for turl, _count in targets[:max_target_pages]:
-        payload, err = _bing_call("GetUrlLinks", apikey,
-                                  {"siteUrl": site_url, "link": turl,
-                                   "page": 0})
+    targets, links = _collect(site_url)
+
+    if not targets:
+        payload, err = _bing_call("GetUserSites", apikey, {})
         if err:
-            _log(f"bing-api GetUrlLinks {turl}: {err}")
-            continue
-        for src in parse_bing_url_links(payload):
-            links.append(Backlink(source_url=src, target_url=turl,
-                                  origin="bing-api"))
+            _log(f"bing-api GetUserSites: {err}")
+        else:
+            from .domains import registrable_domain
+            sites = parse_bing_user_sites(payload)
+            if not sites:
+                _log("bing-api: this key sees NO sites. Fix: in Bing "
+                     "Webmaster Tools add dedaub.com (use 'Import from "
+                     "Google Search Console'), then re-run.")
+            else:
+                _log("bing-api: key has access to: " + ", ".join(sites))
+                want = registrable_domain(site_url)
+                for reg in sites:
+                    if (registrable_domain(reg) == want
+                            and reg.rstrip("/") != site_url.rstrip("/")):
+                        _log(f"bing-api: retrying with registered site "
+                             f"URL {reg}")
+                        targets, links = _collect(reg)
+                        break
+
     _log(f"bing-api: {len(links)} backlinks from "
          f"{min(len(targets), max_target_pages)} linked pages")
     if not targets:
-        _log("bing-api: empty result; note that some verified accounts "
-             "get empty link data from this API (known Microsoft issue)")
+        _log("bing-api: still empty. If the site IS verified in Bing "
+             "Webmaster Tools, this is the known Microsoft issue where "
+             "the link API returns empty data for some accounts.")
     return links
