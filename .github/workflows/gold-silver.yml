@@ -1,0 +1,24 @@
+name: Silver history fetch
+on:
+  push:
+    branches: [claude/cfd-trading-app-gold-ch5dvz]
+    paths: ["gold-intel/data/silver-request.txt", ".github/workflows/gold-silver.yml"]
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  silver:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.12"}
+      - name: Fetch silver
+        run: python scripts/backfill_dukascopy.py gold-intel/data/silver_2y.json XAGUSD 750
+      - name: Commit
+        run: |
+          git config user.name "gold-data-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add gold-intel/data/silver_2y.json
+          git diff --cached --quiet || { git commit -m "silver: 2y history"; git pull --rebase origin "${GITHUB_REF_NAME}"; git push origin "HEAD:${GITHUB_REF_NAME}"; }

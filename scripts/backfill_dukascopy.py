@@ -28,11 +28,13 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from collect_gold_data import REPO_ROOT, UA  # noqa: E402
 
-OUT = REPO_ROOT / "gold-intel" / "data" / "history_12mo.json"
-BASE = "https://datafeed.dukascopy.com/datafeed/XAUUSD/{y}/{m0:02d}/{d:02d}/BID_candles_min_1.bi5"
-DAYS = 370
+OUT = Path(sys.argv[1]) if len(sys.argv) > 1 else REPO_ROOT / "gold-intel" / "data" / "history_12mo.json"
+INSTRUMENT = sys.argv[2] if len(sys.argv) > 2 else "XAUUSD"
+DAYS = int(sys.argv[3]) if len(sys.argv) > 3 else 370
+BASE = ("https://datafeed.dukascopy.com/datafeed/" + INSTRUMENT
+        + "/{y}/{m0:02d}/{d:02d}/BID_candles_min_1.bi5")
 PRICE_SCALES = (0.001, 0.01, 0.00001)   # XAUUSD point is 0.001; others = safety net
-SANE = (500.0, 20000.0)                 # plausible gold price range
+SANE = (5.0, 20000.0)  # silver trades in double digits                 # plausible gold price range
 
 
 def fetch_raw(url, timeout=25):
