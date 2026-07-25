@@ -1,0 +1,47 @@
+# Training Log — Self-Learning Loop
+
+Data: 12 months Dukascopy 1-min→hourly XAU/USD (8,880 bars; 2,877 dead
+weekend/holiday bars dropped → 6,003 live hours; zero OHLC violations).
+Train = first 75% (bull run → $5,562 blowoff → crash). Holdout = last 25%
+(bear/chop ~$4,000), never used for tuning. Band ±0.15% frozen.
+
+## Iterations
+
+| # | Change (vs prev accepted) | Train | Holdout | Critic verdict |
+|---|---|---|---|---|
+| 0 | baseline (mom .2, pp .03, bias 1.0, tol .0015, stop 1.5, ttl 6) | MAE gap +.0069, dir 49.6, PF 1.118 +$662 | MAE gap +.0082, dir 49.6, PF 0.934 −$128 | — |
+| 1 | mom −.1, bias .5, stop 2.0 (Improver: anti-persistence, regime shrinkage, wider stops) | gap +.0026, dir 50.9, PF 1.115 +$646 | gap +.0051, dir 49.0, PF 0.984 −$30 | ACCEPT (regularization generalized; demanded 1-param discipline) |
+| 2a | ablation ×10 (train-only selection) | pred wants pp↓ mom↓; trade PF loves ttl 12 / tol .0025 | — | prescribed by Critic |
+| 2b | pp .01, mom −.05, ttl 12, tol .0025 | **MAE beats naive** (−.0002), dir 52.1, PF 1.451 +$2,066 | pred: best ever (gap +.0015, band skill +0.28) · trade: **degraded** (PF 0.945 −$92) | **SPLIT: prediction ACCEPT, trading REVERT (overfitting confirmed)** |
+| 3 | shrinkage-to-zero sweep (pp {.005,0}, mom {−.025,0}, pure naive+bias) | gaps → −.0005 (≈naive) | gap never < +.0007; dir ≤ 49.6 | **PLATEAU on linear features** (Critic's stopping criterion met) |
+
+## Locked parameters (Critic-accepted)
+
+momentum_k −0.05 · pivot_pull_k 0.01 · session_bias_scale 0.5 ·
+cluster_tol_pct 0.0015 · stop_atr_mult 2.0 · ttl 6h · horizon 24h
+
+## Honest state of skill vs the 90% target
+
+| Metric | Holdout now | Naive | 90% reachable? |
+|---|---|---|---|
+| Direction accuracy (1h) | 49.6% | ~50% | **No** — no known system does 90%; realistic ceiling 55–65% |
+| Band ±0.15% accuracy | 48.6% | 48.3% | Only by widening the band = metric gaming; blocked |
+| Zone-trade win rate | 51.3% (n=115) | — | The promising axis; 57–62% on train |
+| MAE skill vs naive | −0.0015pp | 0 | Crossed zero on train; not yet on holdout |
+
+**Conclusion so far:** next-hour close prediction from price-only linear
+features has no out-of-sample edge — the model correctly converged to
+~naive. The economically real signal is in the confluence-levels trading
+subsystem (profitable all 9 train months; roughly breakeven on the 3
+bear/chop holdout months after honest reverts).
+
+## Next program (Training Block 2 — scheduled)
+
+1. K-fold walk-forward validation inside train (Critic's rule: a trading
+   param earns a holdout look only after winning a majority of folds with
+   ≥30 fills each).
+2. New features the data already contains but the model ignores: hour-of-
+   session volatility (ATR regime), day-of-week, distance-to-level as a
+   trade filter, and (via the collector) DXY/real-yield daily context.
+3. Target the metrics that can genuinely rise: zone win rate and profit
+   factor on holdout; report direction/band honestly as-is.

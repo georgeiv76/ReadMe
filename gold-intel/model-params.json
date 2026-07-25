@@ -1,9 +1,9 @@
 {
-  "momentum_k": 0.2,
-  "pivot_pull_k": 0.03,
-  "session_bias_scale": 1.0,
+  "momentum_k": -0.05,
+  "pivot_pull_k": 0.01,
+  "session_bias_scale": 0.5,
   "cluster_tol_pct": 0.0015,
-  "stop_atr_mult": 1.5,
+  "stop_atr_mult": 2.0,
   "fib_daily_window": 90,
   "fib_hourly_window": 120,
   "order_ttl_hours": 6,

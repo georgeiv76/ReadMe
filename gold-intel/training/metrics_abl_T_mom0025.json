@@ -1,0 +1,60 @@
+{
+  "source": "gold_hourly",
+  "hours": 6003,
+  "dropped_dead_bars": 2877,
+  "split_at": 4552,
+  "band_pct_fixed": 0.15,
+  "train": {
+    "n_pred": 4352,
+    "mae_usd": 10.247,
+    "mae_pct": 0.2294,
+    "direction_acc_pct": 52.12,
+    "direction_n": 3985,
+    "band_acc_pct": 50.53,
+    "naive_mae_pct": 0.2297,
+    "naive_band_acc_pct": 50.39,
+    "trades": {
+      "signals": 1522,
+      "fills": 313,
+      "win_rate_pct": 60.7,
+      "wins": 190,
+      "stops": 101,
+      "timeouts": 22,
+      "pnl_usd_per_oz": 645.57,
+      "avg_pnl_per_trade": 2.063,
+      "profit_factor": 1.115
+    }
+  },
+  "holdout": {
+    "n_pred": 1450,
+    "mae_usd": 9.264,
+    "mae_pct": 0.215,
+    "direction_acc_pct": 49.56,
+    "direction_n": 1352,
+    "band_acc_pct": 48.62,
+    "naive_mae_pct": 0.2138,
+    "naive_band_acc_pct": 48.34,
+    "trades": {
+      "signals": 296,
+      "fills": 115,
+      "win_rate_pct": 51.3,
+      "wins": 59,
+      "stops": 47,
+      "timeouts": 9,
+      "pnl_usd_per_oz": -29.93,
+      "avg_pnl_per_trade": -0.26,
+      "profit_factor": 0.984
+    }
+  },
+  "params": {
+    "momentum_k": -0.025,
+    "pivot_pull_k": 0.01,
+    "session_bias_scale": 0.5,
+    "cluster_tol_pct": 0.0015,
+    "stop_atr_mult": 2.0,
+    "fib_daily_window": 90,
+    "fib_hourly_window": 120,
+    "order_ttl_hours": 6,
+    "trade_horizon_hours": 24
+  }
+}

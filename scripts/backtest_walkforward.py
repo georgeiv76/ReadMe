@@ -70,8 +70,19 @@ def run(params, data):
     daily_key = "gold_daily" if src == "gold_hourly" else "gold_fut_daily"
     h = data[src]
     d = data[daily_key]
-    h_ts, h_close, h_high, h_low = h["ts"], h["close"], h["high"], h["low"]
+    # Drop dead bars (high == low): closed-market hours padded by the feed.
+    # Leaving them in would gift free "perfect" predictions to model AND
+    # baseline alike, inflating every accuracy metric.
+    live = [
+        i for i in range(len(h["ts"]))
+        if abs(h["high"][i] - h["low"][i]) > 1e-9
+    ]
+    h_ts = [h["ts"][i] for i in live]
+    h_close = [h["close"][i] for i in live]
+    h_high = [h["high"][i] for i in live]
+    h_low = [h["low"][i] for i in live]
     d_ts, d_close, d_high, d_low = d["ts"], d["close"], d["high"], d["low"]
+    dropped_dead_bars = len(h["ts"]) - len(live)
 
     h_dt = [datetime.fromtimestamp(t, tz=timezone.utc) for t in h_ts]
     h_dates = [t.date() for t in h_dt]
@@ -237,6 +248,7 @@ def run(params, data):
     return {
         "source": src,
         "hours": n,
+        "dropped_dead_bars": dropped_dead_bars,
         "split_at": split,
         "band_pct_fixed": BAND_PCT,
         "train": finalize("train"),
