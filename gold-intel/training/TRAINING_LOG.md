@@ -121,3 +121,22 @@ negative result itself — this family of strategies is closed off with
 quantified confidence. Training loop CLOSED; no further continuations armed.
 The live hourly intelligence loop (briefs + prediction journal) continues
 separately — it reports and scores, it does not claim edge.
+
+## Block 3a — user-redefined objective: best buy over next 10 candles
+
+New evaluator (backtest_entry10.py): full oscillator stack (StochRSI,
+Stochastic, RSI, CCI, Williams %R) voting to SUPPRESS buys when overbought
+(the user's Fib-but-overbought rule) and to steer dip depth when oversold;
+ground truth = actual low of next 10 candles; naive baselines spot and
+spot-1*ATR; 15m-resolved fills; $0.50 costs.
+
+Iter 0: zone-snapping LOST to naive-ATR everywhere; no-stop dip-buying bled
+-$736 on holdout despite 58% wins. Iter 1 (Improver: pure ATR anchor,
+depths 0.7/1.1) — ACCEPTED: median error improved on every split (holdout
+0.427->0.374%), holdout beats naive at the +-0.25% band (34.1% vs 32.4%),
++-0.5% at 61.8%. Critic: real but narrow skill; fat-tail misses in
+downtrends unresolved; PnL still negative without a stop.
+
+NEXT (iteration 2, continuation armed): structural stop-loss below predicted
+low (0.5-0.75 ATR or swing low), prediction metrics must stay byte-identical;
+then regime gate (spot<SMA200) with coverage reported.
