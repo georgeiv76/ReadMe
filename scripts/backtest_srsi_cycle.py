@@ -230,6 +230,8 @@ def run(params, data):
     def bucket(i):
         return "holdout" if i >= split else f"fold{min(2, (i - warmup) // fold_size) + 1}"
 
+    trade_dump = []
+
     def record(side, entry_i, exit_i):
         z = Z[bucket(entry_i)][side]
         raw = (C[exit_i] - C[entry_i]) if side == "long" else (C[entry_i] - C[exit_i])
@@ -238,6 +240,12 @@ def run(params, data):
         z["wins"] += net > 0
         z["rets"].append(net / C[entry_i] * 100)
         z["pnl"] += net
+        trade_dump.append({
+            "side": side, "entry_ts": TS[entry_i], "exit_ts": TS[exit_i],
+            "entry_px": round(C[entry_i], 2), "exit_px": round(C[exit_i], 2),
+            "min_low_during": round(min(Lh[entry_i: exit_i + 1]), 2),
+            "hold_hours": exit_i - entry_i,
+        })
 
     state, entry_i = "idle", None
     for i in range(warmup, n):
@@ -266,7 +274,7 @@ def run(params, data):
                 "avg_net_ret_pct": round(sum(z["rets"]) / nc, 3) if z["rets"] else None,
                 "pnl_usd_per_oz": round(z["pnl"], 2)}
 
-    out = {}
+    out = {"trades": trade_dump}
     for s in segs:
         out[s] = {
             "long": side_summary(Z[s]["long"]),
