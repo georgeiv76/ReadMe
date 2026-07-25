@@ -54,3 +54,59 @@ R2 ~$4,165 · S2 ~$3,975.
 - If the real path was inverse (early high, late low), rows 10:00–16:00 fail.
 
 Not financial advice; at 20:1 leverage a 5% adverse move is −100% of margin.
+
+---
+
+# EVALUATION — appended 25 Jul after deeper news harvesting
+(original estimate above left untouched; full candle-level grading still
+pending the REPLAY workflow)
+
+## New verified real values (sources at bottom)
+
+| Real data point | Value | Confidence |
+|---|---|---|
+| Asia 01:33 UTC | $4,042.49 | verified (Vantage) |
+| Gold Aug futures Friday open | $4,053.40 (+0.1% vs Thu close) | verified (Yahoo Finance) |
+| European-morning bearish target hit | $4,044 reached | verified (LiteFinance 24 Jul analysis) |
+| Day's spot low zone | ~$4,028–4,030 | verified twice (LiteFinance "close to $4,028", TradingEconomics "toward $4,030") — exact hour NOT verifiable from news |
+| Mid-afternoon ~15:27 UTC | spot ~$4,050 area, "below $4,100" all day | verified (Yahoo, TradingEconomics "little changed around $4,050") |
+| Late/close | $4,065.92 | verified (Investing.com) |
+| Day high | ≤ $4,100 | verified (Yahoo headline) |
+
+## Estimate vs real, hour by hour (real filled only where sourced)
+
+| CEST | Est. price | Real (sourced) | Verdict |
+|---|---|---|---|
+| 10:00 | ~4,038 | ~4,040–4,044 ($4,044 target hit in EU morning) | ✓ within band |
+| 11:00–13:00 | 4,036→4,032 drifting down | dip underway; low $4,028–4,030 printed somewhere late-morning→early-NY | ✓ values, timing unresolved |
+| 14:00 | ~4,030 = est. day low | real low $4,028–4,030 — hour unconfirmed | ✓ VALUE (±$2), timing pending replay |
+| 15:00–16:00 | 4,032→4,038 recovery starts | n/a pending replay | — |
+| 17:00 | ~4,045 | ~$4,050 area (15:27 UTC snapshot) | ✓ within $5 |
+| 18:00–21:00 | 4,050→4,063 grind higher | "little changed around $4,050", then close path | plausible, pending replay |
+| 22:00 | ~4,066 (anchor) | $4,065.92 | ✓ (anchor — no predictive credit) |
+
+## Grading against the pre-declared criteria
+
+1. **Day low 4,025–4,035, formed 12:00–15:00 UTC** — VALUE: HIT (real low
+   $4,028–4,030, dead-center of the predicted band). TIMING: unresolved —
+   news suggests the dip may have started in the European morning, earlier
+   than the overlap window I predicted. Score: half credit pending candles.
+2. **$4,050 resistance early / support late** — consistent with every
+   snapshot (morning below it, afternoon "around $4,050", close above it);
+   full hourly confirmation pending replay. Provisional: HIT.
+3. **Close within $5 of est. pivot P $4,066–4,070** — HIT ($4,065.92), but
+   the close was an input anchor, so this earns method-credit (close landed
+   ON the estimated pivot), not prediction-credit.
+4. **$4,000–4,010 and $4,105+ never touched** — HIT on both: low $4,028,
+   day capped below $4,100. This was a genuine structural prediction.
+
+**Provisional grade: B+.** The levels engine called the structure correctly
+(low zone value exact, $4,050 hinge, untouched extremes) — the weakness is
+intra-day timing precision, exactly the declared weakness. Definitive grade
+needs REPLAY_2026-07-24.md (merge to main → dispatch).
+
+Sources: [Yahoo Finance gold 24 Jul](https://finance.yahoo.com/personal-finance/investing/article/gold-prices-today-friday-july-24-2026-gold-price-remains-below-4100-ahead-of-next-weeks-rate-decision-152726975.html),
+[LiteFinance 24 Jul short-term analysis](https://www.litefinance.org/blog/analysts-opinions/short-term-analysis-for-oil-gold-and-eurusd-for-24072026/),
+[TradingEconomics gold](https://tradingeconomics.com/commodity/gold),
+[Investing.com XAU/USD](https://www.investing.com/currencies/xau-usd),
+[Vantage 24 Jul](https://www.vantagemarkets.com/market-analysis/xauusd-price-today-gold-analysis-july-24-2026/).
