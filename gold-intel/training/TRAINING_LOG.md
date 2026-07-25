@@ -45,3 +45,16 @@ bear/chop holdout months after honest reverts).
    trade filter, and (via the collector) DXY/real-yield daily context.
 3. Target the metrics that can genuinely rise: zone win rate and profit
    factor on holdout; report direction/band honestly as-is.
+
+## Data upgrade (user-provided, 25 Jul)
+
+494,235 clean 15-min candles, Jun 2004 -> 30 Jan 2026 (125,206 hourly bars,
+22 years, every regime). Zero parse rejects; tz-corrected UTC+2 -> UTC;
+cross-validated vs Dukascopy overlap: MAE 0.069% over 2,489 bars.
+Files: data/history_22y_hourly.json (training), data/xau_15m_2004_2026.csv.gz
+(15m, for finer fill simulation later).
+
+REVISED SPLIT for Block 2: train = 2004-2022, validation folds = 2023-2025,
+final holdout = Feb-Jul 2026 Dukascopy data — which the uploaded file
+physically cannot contain (ends 30 Jan 2026): a leak-proof holdout from an
+independent source and a later time period.
