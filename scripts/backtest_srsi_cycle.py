@@ -26,14 +26,86 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from backtest_entry10 import stochrsi_series  # noqa: E402
+from collect_gold_data import fib_retracements  # noqa: E402
 
 HISTORY = Path(__file__).resolve().parent.parent / "gold-intel" / "data" / "history_12mo.json"
+
+
+def ema_full(values, period):
+    k = 2 / (period + 1)
+    out = [values[0]]
+    for v in values[1:]:
+        out.append(v * k + out[-1] * (1 - k))
+    return out
+
+
+def adx_series(H, L, C, p=14):
+    n = len(C)
+    adx = [None] * n
+    if n <= 2 * p + 1:
+        return adx
+    tr = [0.0] * n
+    pdm = [0.0] * n
+    ndm = [0.0] * n
+    for i in range(1, n):
+        up, dn = H[i] - H[i - 1], L[i - 1] - L[i]
+        pdm[i] = up if (up > dn and up > 0) else 0.0
+        ndm[i] = dn if (dn > up and dn > 0) else 0.0
+        tr[i] = max(H[i] - L[i], abs(H[i] - C[i - 1]), abs(L[i] - C[i - 1]))
+    a, pd_, nd_ = sum(tr[1: p + 1]), sum(pdm[1: p + 1]), sum(ndm[1: p + 1])
+    dxs = []
+    for i in range(p + 1, n):
+        a = a - a / p + tr[i]
+        pd_ = pd_ - pd_ / p + pdm[i]
+        nd_ = nd_ - nd_ / p + ndm[i]
+        pdi = 100 * pd_ / a if a > 0 else 0
+        ndi = 100 * nd_ / a if a > 0 else 0
+        dx = 100 * abs(pdi - ndi) / (pdi + ndi) if (pdi + ndi) > 0 else 0
+        dxs.append(dx)
+        if len(dxs) == p:
+            adx[i] = sum(dxs) / p
+        elif len(dxs) > p:
+            adx[i] = (adx[i - 1] * (p - 1) + dx) / p
+    return adx
+
+
+def vwap_by_hour(m15_path, min_ts):
+    """Hour-ts -> session VWAP (UTC-day reset) from the 15m file's volume."""
+    import csv
+    import gzip
+    from datetime import datetime as dtt, timezone as tz
+
+    out = {}
+    cur_day, s_pv, s_v = None, 0.0, 0.0
+    with gzip.open(m15_path, "rt") as fh:
+        rdr = csv.reader(fh, delimiter=";")
+        next(rdr)
+        for f in rdr:
+            try:
+                dt = dtt.strptime(f[0], "%Y.%m.%d %H:%M").replace(tzinfo=tz.utc)
+                ts = int(dt.timestamp()) - 2 * 3600
+                if ts < min_ts:
+                    continue
+                px = (float(f[2]) + float(f[3]) + float(f[4])) / 3
+                v = float(f[5])
+            except (ValueError, IndexError):
+                continue
+            day = ts // 86400
+            if day != cur_day:
+                cur_day, s_pv, s_v = day, 0.0, 0.0
+            s_pv += px * v
+            s_v += v
+            if s_v > 0:
+                out[ts - ts % 3600] = s_pv / s_v
+    return out
 
 
 def run(params, data):
     h = data["gold_hourly"]
     live = [i for i in range(len(h["ts"])) if abs(h["high"][i] - h["low"][i]) > 1e-9]
     C = [h["close"][i] for i in live]
+    Hh = [h["high"][i] for i in live]
+    Lh = [h["low"][i] for i in live]
     from datetime import datetime, timezone
     TS = [h["ts"][i] for i in live]
     MONTH = [datetime.fromtimestamp(t, tz=timezone.utc).month for t in TS]
@@ -93,6 +165,64 @@ def run(params, data):
     exit_on_flip = params.get("exit_on_flip", True)
     shorts_on = params.get("enable_shorts", False)
 
+    # --- 'Fib + one index at a time' entry confirmations ---
+    extra = params.get("extra_index", "none")
+    combo = params.get("combo", [])
+    active = set(combo) | ({extra} if extra != "none" else set())
+    fib_gate = params.get("fib_gate", False)
+    fib_tol = params.get("fib_tol_pct", 0.15)
+    EMA9 = EMA21 = ADXS = HIST = PIV = VW = None
+    if "ema" in active:
+        EMA9, EMA21 = ema_full(C, 9), ema_full(C, 21)
+    if "adx" in active:
+        ADXS = adx_series(Hh, Lh, C)
+    if "macd" in active:
+        e12, e26 = ema_full(C, 12), ema_full(C, 26)
+        line = [a - b for a, b in zip(e12, e26)]
+        sig = ema_full(line, 9)
+        HIST = [m - s for m, s in zip(line, sig)]
+    if "pivot" in active:
+        d = data["gold_daily"]
+        d_dates = [datetime.fromtimestamp(t, tz=timezone.utc).date() for t in d["ts"]]
+        PIV = [None] * n
+        j = 0
+        for i2 in range(n):
+            hd = datetime.fromtimestamp(TS[i2], tz=timezone.utc).date()
+            while j + 1 < len(d_dates) and d_dates[j + 1] < hd:
+                j += 1
+            pj = j if d_dates[j] < hd else max(0, j - 1)
+            PIV[i2] = (d["high"][pj] + d["low"][pj] + d["close"][pj]) / 3
+    if "vwap" in active:
+        VW = vwap_by_hour(params["m15_file"], TS[0])
+
+    def check(name, i):
+        if name == "ema":
+            return EMA9[i] > EMA21[i]
+        if name == "adx":
+            return ADXS[i] is not None and ADXS[i] < params.get("adx_max", 30)
+        if name == "macd":
+            return HIST[i] > HIST[i - 1]
+        if name == "pivot":
+            return C[i] > PIV[i]
+        if name == "vwap":
+            v = VW.get(TS[i])
+            return True if v is None else C[i] > v   # pass-through where no volume data
+        return True
+
+    def extra_ok(i):
+        if combo:
+            votes = sum(check(x, i) for x in combo)
+            return votes >= params.get("combo_min_votes", 1)
+        return check(extra, i)
+
+    def fib_ok(i):
+        if not fib_gate:
+            return True
+        fibs = fib_retracements(
+            max(Hh[max(0, i - 119): i + 1]), min(Lh[max(0, i - 119): i + 1])
+        )["levels"].values()
+        return any(abs(C[i] - f) / C[i] * 100 <= fib_tol for f in fibs)
+
     segs = ("fold1", "fold2", "fold3", "holdout")
     Z = {s: {side: {"cycles": 0, "wins": 0, "rets": [], "pnl": 0.0}
              for side in ("long", "short")} for s in segs}
@@ -117,7 +247,7 @@ def run(params, data):
         up = regime_up(i)
         if state == "idle":
             if (up and k_prev < os_th <= k and MONTH[i] not in skip_months
-                    and not cot_blocked[i]):
+                    and not cot_blocked[i] and fib_ok(i) and extra_ok(i)):
                 state, entry_i = "long", i
             elif (not up) and shorts_on and k_prev > ob_th >= k:
                 state, entry_i = "short", i

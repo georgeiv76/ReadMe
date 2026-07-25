@@ -1,0 +1,78 @@
+{
+  "fold1": {
+    "long": {
+      "cycles": 10,
+      "win_rate_pct": 80.0,
+      "avg_net_ret_pct": 0.46,
+      "pnl_usd_per_oz": 176.38
+    },
+    "short": {
+      "cycles": 0,
+      "win_rate_pct": 0.0,
+      "avg_net_ret_pct": null,
+      "pnl_usd_per_oz": 0.0
+    },
+    "combined_pnl": 176.38
+  },
+  "fold2": {
+    "long": {
+      "cycles": 6,
+      "win_rate_pct": 66.7,
+      "avg_net_ret_pct": 0.536,
+      "pnl_usd_per_oz": 127.5
+    },
+    "short": {
+      "cycles": 0,
+      "win_rate_pct": 0.0,
+      "avg_net_ret_pct": null,
+      "pnl_usd_per_oz": 0.0
+    },
+    "combined_pnl": 127.5
+  },
+  "fold3": {
+    "long": {
+      "cycles": 6,
+      "win_rate_pct": 50.0,
+      "avg_net_ret_pct": -0.094,
+      "pnl_usd_per_oz": -25.45
+    },
+    "short": {
+      "cycles": 0,
+      "win_rate_pct": 0.0,
+      "avg_net_ret_pct": null,
+      "pnl_usd_per_oz": 0.0
+    },
+    "combined_pnl": -25.45
+  },
+  "holdout": {
+    "long": {
+      "cycles": 0,
+      "win_rate_pct": 0.0,
+      "avg_net_ret_pct": null,
+      "pnl_usd_per_oz": 0.0
+    },
+    "short": {
+      "cycles": 0,
+      "win_rate_pct": 0.0,
+      "avg_net_ret_pct": null,
+      "pnl_usd_per_oz": 0.0
+    },
+    "combined_pnl": 0.0
+  },
+  "params": {
+    "rsi_period": 14,
+    "stoch_period": 14,
+    "smooth": 3,
+    "max_hold_bars": 48,
+    "cost_per_trade_usd": 0.5,
+    "use_wavg3": false,
+    "os_th": 10,
+    "ob_th": 90,
+    "regime_sma_bars": 1000,
+    "enable_shorts": false,
+    "exit_on_flip": false,
+    "fib_gate": true,
+    "extra_index": "vwap",
+    "m15_file": "gold-intel/data/xau_15m_2004_2026.csv.gz"
+  }
+}

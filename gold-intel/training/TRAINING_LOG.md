@@ -186,3 +186,24 @@ positioning extremes lost contrarian meaning. Fair-value/flow models
 (WGC-style) remain untested at the hourly scale — wrong horizon; suitable
 as macro bias input to the live briefs instead.
 Champion unchanged after 7 rejected hypotheses across Blocks 3b-3c.
+
+## Block 3c — Fibonacci + one-index-at-a-time, then ponderation (USER DESIGN)
+
+Single-index results vs champion A ($207/12mo): Fib-proximity gate alone
+$292 (transition fold -$809 -> -$25!); Fib+ADX<30 $357 (fold3 +$2);
+Fib+MACD $301; Fib+VWAP $278; Fib+EMA too restrictive; Fib+pivot $168.
+COT gates (4y baseline) and seasonal gate: rejected earlier same day.
+
+PONDERATION (weighted voting, Fib required + N of {ADX, MACD, VWAP}):
+1-of-3: $292 · **2-of-3: $447 (best ever)** · 3-of-3: $213 · 2-of-2(adx,macd): $428.
+
+**NEW CHAMPION (pending formal Critic ruling): SRSI cycle 10/90 + slow
+regime gate + Fib-proximity (0.15%) + 2-of-3 votes {ADX<30, MACD-hist
+rising, price>VWAP}: +$447/12mo net, win rates 73-79% in trend folds,
+transition bleed contained at -$25, zero bear-regime exposure.**
+
+Honest caveats: ~31 trades/yr -> small fold samples (6-15 cycles); gains
+measured on training folds (bear holdout has zero trades BY DESIGN — the
+gate refuses; out-of-sample proof must come from the live journal). Formal
+Critic ruling + overfit audit due at next wake; config pre-registered here
+before any live claim.
