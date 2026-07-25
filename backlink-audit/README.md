@@ -48,6 +48,17 @@ Research verified: 25 July 2026. All factual claims carry inline sources.
   unlimited verified sites. Source: [Allable AWT review](https://www.allable.ai/blog/ahrefs-webmaster-tools/).
 - This is the strongest single free replacement for the Semrush link
   index and the main reason the setup checklist below matters.
+- The **Ahrefs API is NOT free** (verified 25 July 2026): the free plan
+  and AWT have no API access at all. API v3 starts at the Lite plan
+  (about $129/month, 10,000 units/month, minimum 50 units per request),
+  and the documented "free test queries" only work against Ahrefs' own
+  domains (ahrefs.com, yep.com, firehose.com), so they cannot return
+  dedaub.com data. Sources: [Ahrefs free test queries](https://docs.ahrefs.com/en/api/docs/free-test-queries),
+  [Topicfinder Ahrefs API guide](https://www.topicfinder.com/ahrefs-api-guide/),
+  [ThatMarketingBuddy Ahrefs API pricing](https://thatmarketingbuddy.com/api/ahrefs).
+  Consequence: for Ahrefs data the free path is and stays the UI CSV
+  export. The free programmatic path for automation remains the Bing
+  Webmaster API (roadmap item 1).
 
 ### Bing Webmaster Tools
 - Free backlinks report: referring pages, referring domains, anchor
