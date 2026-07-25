@@ -1,0 +1,24 @@
+{"id": "W0S0", "take": true, "size": 1.0, "reason": "calm ADX, tiny fib dist, higher low, low extension"}
+{"id": "W0S1", "take": true, "size": 0.5, "reason": "reversal bar, fib dist near edge, slightly extended"}
+{"id": "W0S2", "take": true, "size": 0.5, "reason": "capitulation then chop, ADX borderline, low extension"}
+{"id": "W0S3", "take": false, "size": 0.5, "reason": "ADX too high, MACD hist falling, fib dist at edge"}
+{"id": "W0S4", "take": true, "size": 0.5, "reason": "very calm ADX, tight low-vol chop, stochrsi less fresh"}
+{"id": "W0S5", "take": true, "size": 0.5, "reason": "tight fib dist but 3pct above SMA, chase risk, weak reversal"}
+{"id": "W0S6", "take": true, "size": 1.0, "reason": "fresh cross, best fib dist, calm ADX, tight orderly base"}
+{"id": "W0S7", "take": false, "size": 0.5, "reason": "persistent lower-lows downtrend, ADX above calm threshold"}
+{"id": "W0S8", "take": true, "size": 0.5, "reason": "very calm ADX, shakeout then base, but high SMA extension"}
+{"id": "W0S9", "take": false, "size": 0.5, "reason": "ADX 52 extreme, 7pct above SMA, blowoff-top volatility"}
+{"id": "W0S10", "take": false, "size": 0.5, "reason": "ADX 38 elevated, 6.9pct above SMA, high volatility chase risk"}
+{"id": "W0S11", "take": false, "size": 0.5, "reason": "MACD hist falling, elevated extension, no clear reversal yet"}
+{"id": "W1S0", "take": true, "size": 1.0, "reason": "fresh cross, minimal extension, calm ADX, basing after drop"}
+{"id": "W1S1", "take": true, "size": 1.0, "reason": "steady uptrend, shallow pullback, calm ADX, low extension"}
+{"id": "W1S2", "take": true, "size": 1.0, "reason": "excellent fib dist, very calm ADX, basing with bounce bar"}
+{"id": "W1S3", "take": false, "size": 0.5, "reason": "MACD hist falling, volatile wide-range last bar, unclear resolution"}
+{"id": "W1S4", "take": true, "size": 1.0, "reason": "capitulation then tight base, calm ADX, low extension"}
+{"id": "W1S5", "take": true, "size": 1.0, "reason": "fresh cross, calm ADX, tight fib dist, low ATR"}
+{"id": "W1S6", "take": true, "size": 0.5, "reason": "huge capitulation reversal bar, but stochrsi less fresh"}
+{"id": "W1S7", "take": true, "size": 1.0, "reason": "best fib dist yet, calm ADX, low extension, healthy pullback"}
+{"id": "W1S8", "take": true, "size": 1.0, "reason": "persistent uptrend, shakeout recovered, calm ADX, low extension"}
+{"id": "W1S9", "take": true, "size": 0.5, "reason": "healthy pullback, calm ADX, fib dist decent not tightest"}
+{"id": "W1S10", "take": true, "size": 0.5, "reason": "very calm ADX, good fib dist, choppy/whipsaw structure"}
+{"id": "W1S11", "take": true, "size": 1.0, "reason": "fresh cross, very calm ADX, tight fib dist, stabilizing"}

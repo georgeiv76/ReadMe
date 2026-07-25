@@ -230,3 +230,22 @@ layer (median 0.31% error to the 10-candle low) retained as a fill-pricing
 module for the live intelligence briefs. No further training wakes armed;
 the live hourly journal remains the only open evidence channel, and it
 reports — it does not claim edge.
+
+## BLIND ORACLE/TRADER PILOT (user-designed, 25 Jul evening)
+
+Design: Oracle replays seeded random 6-month windows from the 2004-2024
+archive, ANONYMIZED (dates stripped, prices rescaled by secret factor) so
+the trader agent's knowledge of gold history is useless. Trader agent
+(separate context, rules only, no dataset) decided 24 sealed buy candidates
+strictly one at a time; outcomes stored outside its workspace.
+
+UNSEALED: blind trader 18 takes, 50% wins, -0.61% net. Mechanical 2-of-2
+rule on same signals: 52.9%, -0.12%. Take-everything: -1.15%.
+TAKE-NOTHING WON (0%). Eras revealed after scoring: Mar-Aug 2019 (a good
+year for the system) and Jun-Nov 2021 (its worst year). n=24 — pilot scale.
+
+Reading: machinery validated (a truly leak-free evaluation channel now
+exists); judgment did not beat the formula; both filters beat taking
+everything but neither beat abstention — fully consistent with the 20-year
+falsification verdict. Any future strategy claim can now be tested blind
+before risking a euro.
