@@ -162,15 +162,52 @@ def run(params, data):
             m["naive_band_hit"] += 1
 
     # --- trading-levels simulation (sequential, non-overlapping) ---
+    # Fold attribution: train split into 3 equal walk-forward folds (Critic
+    # rule: a trading param earns a holdout look only by winning a majority
+    # of folds). Optional trade-quality filters, all off by default.
+    min_strength = params.get("min_zone_strength", 1)
+    max_dist = params.get("max_zone_dist_pct", 0.015)
+    atr_ratio_cap = params.get("atr_regime_max_ratio")
+    dow_skip = set(params.get("dow_skip", []))
+    fold_size = (split - warmup) // 3
+
+    def bucket(i):
+        if i >= split:
+            return "holdout"
+        return f"fold{min(2, (i - warmup) // fold_size) + 1}"
+
+    def pick_zones(clusters, spot):
+        supports = [
+            c for c in clusters
+            if c["level"] < spot and c["strength"] >= min_strength
+        ]
+        resistances = [c for c in clusters if c["level"] > spot]
+
+        def pick(cands):
+            for md in (max_dist, max_dist * 2, None):
+                pool = [
+                    c for c in cands
+                    if md is None or abs(c["level"] - spot) / spot <= md
+                ]
+                if pool:
+                    return max(pool, key=lambda c: (c["strength"], -abs(c["level"] - spot)))
+            return None
+
+        return pick(supports), pick(resistances)
+
     T = {
         s: {"signals": 0, "fills": 0, "wins": 0, "stops": 0, "timeouts": 0,
             "gross_win": 0.0, "gross_loss": 0.0, "pnl": 0.0}
-        for s in ("train", "holdout")
+        for s in ("fold1", "fold2", "fold3", "holdout")
     }
+    recent_atrs = []
     i = warmup
     while i < n - 2:
         ctx = day_ctx(i)
         spot = h_close[i]
+        if h_dt[i].weekday() in dow_skip:
+            i += 1
+            continue
         fw = params["fib_hourly_window"]
         fib_h = fib_retracements(
             max(h_high[max(0, i - fw + 1): i + 1]),
@@ -179,16 +216,23 @@ def run(params, data):
         boll = bollinger(h_close[max(0, i - 199): i + 1])
         levels = collect_levels(spot, ctx["ind"], ctx["pivots"], ctx["fib"], fib_h, boll)
         clusters = cluster_levels(levels, spot, params["cluster_tol_pct"])
-        buy_zone, sell_zone = best_zones(clusters, spot)
-        t = T[seg(i)]
+        buy_zone, sell_zone = pick_zones(clusters, spot)
+        t = T[bucket(i)]
         if not (buy_zone and sell_zone):
             i += 1
             continue
+        atr_now = atr(h_high[max(0, i - 199): i + 1], h_low[max(0, i - 199): i + 1],
+                      h_close[max(0, i - 199): i + 1]) or spot * 0.003
+        recent_atrs.append(atr_now)
+        if len(recent_atrs) > 200:
+            recent_atrs.pop(0)
+        if atr_ratio_cap and len(recent_atrs) >= 50:
+            if atr_now > atr_ratio_cap * (sum(recent_atrs) / len(recent_atrs)):
+                i += 1
+                continue
         t["signals"] += 1
         buy_lv, sell_lv = buy_zone["level"], sell_zone["level"]
-        a = atr(h_high[max(0, i - 199): i + 1], h_low[max(0, i - 199): i + 1],
-                h_close[max(0, i - 199): i + 1]) or spot * 0.003
-        stop_lv = buy_lv - params["stop_atr_mult"] * a
+        stop_lv = buy_lv - params["stop_atr_mult"] * atr_now
 
         fill_j = None
         for j in range(i + 1, min(i + 1 + params["order_ttl_hours"], n)):
@@ -221,11 +265,28 @@ def run(params, data):
             t["gross_win" if pnl > 0 else "gross_loss"] += abs(pnl)
         i = exit_j + 1   # no overlapping trades
 
-    def finalize(s):
-        m, t = M[s], T[s]
-        np_, dn = max(m["n_pred"], 1), max(m["dir_n"], 1)
+    def trade_summary(t):
         fills = max(t["fills"], 1)
         return {
+            "signals": t["signals"], "fills": t["fills"],
+            "win_rate_pct": round(t["wins"] / fills * 100, 2),
+            "wins": t["wins"], "stops": t["stops"], "timeouts": t["timeouts"],
+            "pnl_usd_per_oz": round(t["pnl"], 2),
+            "avg_pnl_per_trade": round(t["pnl"] / fills, 3),
+            "profit_factor": round(t["gross_win"] / t["gross_loss"], 3)
+            if t["gross_loss"] > 0 else None,
+        }
+
+    train_trades = {
+        k: sum(T[f][k] for f in ("fold1", "fold2", "fold3"))
+        for k in T["fold1"]
+    }
+
+    def finalize(s):
+        m = M[s]
+        t = train_trades if s == "train" else T["holdout"]
+        np_, dn = max(m["n_pred"], 1), max(m["dir_n"], 1)
+        out = {
             "n_pred": m["n_pred"],
             "mae_usd": round(m["abs_err_usd"] / np_, 3),
             "mae_pct": round(m["abs_err_pct"] / np_, 4),
@@ -234,16 +295,11 @@ def run(params, data):
             "band_acc_pct": round(m["band_hit"] / np_ * 100, 2),
             "naive_mae_pct": round(m["naive_abs_err_pct"] / np_, 4),
             "naive_band_acc_pct": round(m["naive_band_hit"] / np_ * 100, 2),
-            "trades": {
-                "signals": t["signals"], "fills": t["fills"],
-                "win_rate_pct": round(t["wins"] / fills * 100, 2),
-                "wins": t["wins"], "stops": t["stops"], "timeouts": t["timeouts"],
-                "pnl_usd_per_oz": round(t["pnl"], 2),
-                "avg_pnl_per_trade": round(t["pnl"] / fills, 3),
-                "profit_factor": round(t["gross_win"] / t["gross_loss"], 3)
-                if t["gross_loss"] > 0 else None,
-            },
+            "trades": trade_summary(t),
         }
+        if s == "train":
+            out["trade_folds"] = {f: trade_summary(T[f]) for f in ("fold1", "fold2", "fold3")}
+        return out
 
     return {
         "source": src,

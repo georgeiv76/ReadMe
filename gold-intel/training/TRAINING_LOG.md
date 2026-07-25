@@ -61,3 +61,31 @@ the last 25% (Apr-Jul 2026), untouched by tuning. The 22-year corpus is
 retained as archive/reference only — NOT used for training. The 15m file's
 Jul 2025 - Jan 2026 portion may be used for finer fill simulation within the
 12-month window (it cross-validated against Dukascopy at 0.069% MAE).
+
+## Block 2 — Iteration 4 (regime filters) — ACCEPTED
+
+Candidate: min_zone_strength=2, atr_regime_max_ratio=1.5 (entry gating for
+high-vol chop). Majority-of-folds satisfied: PF up 3/3 (fold1 1.257->1.471,
+fold2 1.556->1.964, fold3 0.959->0.979). Holdout: PF 0.984->0.997, PnL
+-$30->-$5.46. Critic verified numbers directly from metrics files; accepted;
+no overfitting (removed cohort was the predicted bad-geometry population).
+
+**Critic's structural finding:** entry filters asymptote PF toward 1.0 from
+below and cannot cross it — the surviving trade population in recent regimes
+has ~zero raw edge. Breakthrough requires exit geometry, fill accuracy, or
+regime-conditional direction.
+
+## Next program (iteration 5, wake at 15:32 UTC continues here)
+
+1. Re-test trade_horizon ON TOP of the iter-4 champion (single pre-stated
+   hypothesis; the old horizon-36 ablation predates the champion).
+2. 15-minute fill-simulation as a MEASUREMENT AUDIT (not tuning): re-baseline
+   champion before/after under identical sim; fill-model error currently
+   exceeds the measured edge.
+3. Verify mechanics: why signal counts rose under stricter filters
+   (fold3 326->362); confirm trailing-ATR mean excludes the current signal.
+4. NO fitted dow_skip (data-mining); event-window masks only if mechanistic.
+5. TERMINATION CRITERION (Critic): if exit-geometry + corrected fill sim
+   cannot lift holdout PF above ~1.05 with positive PnL after realistic
+   costs, declare the base signal edgeless in recent regimes and END the
+   loop with a final report rather than asymptoting to breakeven.

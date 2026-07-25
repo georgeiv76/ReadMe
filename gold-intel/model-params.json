@@ -7,5 +7,7 @@
   "fib_daily_window": 90,
   "fib_hourly_window": 120,
   "order_ttl_hours": 6,
-  "trade_horizon_hours": 24
+  "trade_horizon_hours": 24,
+  "min_zone_strength": 2,
+  "atr_regime_max_ratio": 1.5
 }
