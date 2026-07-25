@@ -1,0 +1,99 @@
+{
+  "source": "gold_hourly",
+  "hours": 6003,
+  "dropped_dead_bars": 2877,
+  "split_at": 4552,
+  "band_pct_fixed": 0.15,
+  "train": {
+    "n_pred": 4352,
+    "mae_usd": 10.251,
+    "mae_pct": 0.2295,
+    "direction_acc_pct": 52.1,
+    "direction_n": 3985,
+    "band_acc_pct": 50.69,
+    "naive_mae_pct": 0.2297,
+    "naive_band_acc_pct": 50.39,
+    "trades": {
+      "signals": 1732,
+      "fills": 268,
+      "win_rate_pct": 48.51,
+      "wins": 130,
+      "stops": 68,
+      "timeouts": 70,
+      "pnl_usd_per_oz": 947.79,
+      "avg_pnl_per_trade": 3.537,
+      "profit_factor": 1.282
+    },
+    "trade_folds": {
+      "fold1": {
+        "signals": 652,
+        "fills": 79,
+        "win_rate_pct": 50.63,
+        "wins": 40,
+        "stops": 18,
+        "timeouts": 21,
+        "pnl_usd_per_oz": 362.54,
+        "avg_pnl_per_trade": 4.589,
+        "profit_factor": 1.635
+      },
+      "fold2": {
+        "signals": 672,
+        "fills": 80,
+        "win_rate_pct": 51.25,
+        "wins": 41,
+        "stops": 17,
+        "timeouts": 22,
+        "pnl_usd_per_oz": 700.24,
+        "avg_pnl_per_trade": 8.753,
+        "profit_factor": 2.065
+      },
+      "fold3": {
+        "signals": 408,
+        "fills": 109,
+        "win_rate_pct": 44.95,
+        "wins": 49,
+        "stops": 33,
+        "timeouts": 27,
+        "pnl_usd_per_oz": -114.99,
+        "avg_pnl_per_trade": -1.055,
+        "profit_factor": 0.946
+      }
+    }
+  },
+  "holdout": {
+    "n_pred": 1450,
+    "mae_usd": 9.279,
+    "mae_pct": 0.2153,
+    "direction_acc_pct": 49.56,
+    "direction_n": 1352,
+    "band_acc_pct": 48.62,
+    "naive_mae_pct": 0.2138,
+    "naive_band_acc_pct": 48.34,
+    "trades": {
+      "signals": 400,
+      "fills": 107,
+      "win_rate_pct": 37.38,
+      "wins": 40,
+      "stops": 44,
+      "timeouts": 23,
+      "pnl_usd_per_oz": -296.89,
+      "avg_pnl_per_trade": -2.775,
+      "profit_factor": 0.837
+    }
+  },
+  "m15_resolution_hours": 2489,
+  "params": {
+    "momentum_k": -0.05,
+    "pivot_pull_k": 0.01,
+    "session_bias_scale": 0.5,
+    "cluster_tol_pct": 0.0015,
+    "stop_atr_mult": 2.0,
+    "fib_daily_window": 90,
+    "fib_hourly_window": 120,
+    "order_ttl_hours": 6,
+    "trade_horizon_hours": 12,
+    "min_zone_strength": 2,
+    "atr_regime_max_ratio": 1.5,
+    "cost_per_trade_usd": 0.5
+  }
+}

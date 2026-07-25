@@ -89,3 +89,35 @@ regime-conditional direction.
    cannot lift holdout PF above ~1.05 with positive PnL after realistic
    costs, declare the base signal edgeless in recent regimes and END the
    loop with a final report rather than asymptoting to breakeven.
+
+## Block 2 — Iteration 5 (audit battery) and TERMINAL VERDICT
+
+Mechanics fix (ATR self-inclusion): holdout PF 0.997 -> 0.980 (the
+near-breakeven was partly mechanical bias). 15m fill audit (2,489 hrs):
+fill-model error measured at 0.2-0.35 PF — larger than any claimed edge.
+Costs ($0.50/oz RT): holdout PF 0.951, -$84/3mo. Horizon 12/36/48: all fail
+the majority-fold rule and degrade holdout.
+
+**CRITIC TERMINAL RULING: END_LOOP** (criterion met; all numbers re-verified
+from metrics files by the Critic itself). Key sentence: "A signal that loses
+to naive on both direction and magnitude cannot be salvaged by exit geometry
+or fill modeling... Continuing would be curve-fitting noise."
+
+**Verified negative result:** pivot/Fibonacci confluence geometry on hourly
+XAU bars, in 2025-2026 conditions, has no exploitable edge after honest
+measurement. Three optimism sources (self-referential ATR, hourly-bar fill
+assumptions, zero costs) EACH inflated results by more than the entire
+claimed edge.
+
+**What a future edge requires:** information not already in the price series
+— COT positioning, ETF flows, macro surprise indices, real-time DXY/rates
+co-movement, microstructure — plus 15m+ data covering the full evaluation
+window, and an economic rationale stated BEFORE parameter search.
+
+**Salvage:** the strategy-agnostic backtest harness (folds, holdout
+isolation, fill sim, cost model), the corrected indicator library, the
+cleaned datasets, the 15m fill-audit gate as mandatory methodology, and the
+negative result itself — this family of strategies is closed off with
+quantified confidence. Training loop CLOSED; no further continuations armed.
+The live hourly intelligence loop (briefs + prediction journal) continues
+separately — it reports and scores, it does not claim edge.

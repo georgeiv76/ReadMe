@@ -65,7 +65,29 @@ def build_daily_index(d_ts, hourly_dates):
     return idx_map
 
 
-def run(params, data):
+def load_m15(path, min_ts=0):
+    """Hour-ts -> ordered [(high, low)] sub-bars from the gz 15m CSV (UTC+2 -> UTC)."""
+    import csv
+    import gzip
+
+    m15 = {}
+    with gzip.open(path, "rt") as fh:
+        rdr = csv.reader(fh, delimiter=";")
+        next(rdr)
+        for f in rdr:
+            try:
+                dt = datetime.strptime(f[0], "%Y.%m.%d %H:%M").replace(tzinfo=timezone.utc)
+                ts = int(dt.timestamp()) - 2 * 3600
+                if ts < min_ts:
+                    continue
+                hi, lo = float(f[2]), float(f[3])
+            except (ValueError, IndexError):
+                continue
+            m15.setdefault(ts - ts % 3600, []).append((hi, lo))
+    return m15
+
+
+def run(params, data, m15_map=None):
     src = "gold_hourly" if data.get("gold_hourly", {}).get("n", 0) > 3000 else "gold_fut_hourly"
     daily_key = "gold_daily" if src == "gold_hourly" else "gold_fut_daily"
     h = data[src]
@@ -223,21 +245,37 @@ def run(params, data):
             continue
         atr_now = atr(h_high[max(0, i - 199): i + 1], h_low[max(0, i - 199): i + 1],
                       h_close[max(0, i - 199): i + 1]) or spot * 0.003
+        # Regime check against the mean of PRIOR signal ATRs only (the
+        # current signal is appended after the check — no self-inclusion).
+        blocked = (
+            atr_ratio_cap and len(recent_atrs) >= 50
+            and atr_now > atr_ratio_cap * (sum(recent_atrs) / len(recent_atrs))
+        )
         recent_atrs.append(atr_now)
         if len(recent_atrs) > 200:
             recent_atrs.pop(0)
-        if atr_ratio_cap and len(recent_atrs) >= 50:
-            if atr_now > atr_ratio_cap * (sum(recent_atrs) / len(recent_atrs)):
-                i += 1
-                continue
+        if blocked:
+            i += 1
+            continue
         t["signals"] += 1
         buy_lv, sell_lv = buy_zone["level"], sell_zone["level"]
         stop_lv = buy_lv - params["stop_atr_mult"] * atr_now
 
-        fill_j = None
+        def granular(j):
+            """Sub-bars (high, low) for hour j — 15m when available, else 1h."""
+            if m15_map:
+                subs = m15_map.get(h_ts[j])
+                if subs:
+                    return subs
+            return ((h_high[j], h_low[j]),)
+
+        fill_j = fill_k = None
         for j in range(i + 1, min(i + 1 + params["order_ttl_hours"], n)):
-            if h_low[j] <= buy_lv:
-                fill_j = j
+            for k, (_sh, sl) in enumerate(granular(j)):
+                if sl <= buy_lv:
+                    fill_j, fill_k = j, k
+                    break
+            if fill_j is not None:
                 break
         if fill_j is None:
             i += 1
@@ -245,14 +283,22 @@ def run(params, data):
         t["fills"] += 1
         exit_j = min(fill_j + params["trade_horizon_hours"], n - 1)
         outcome, exit_px = "timeout", h_close[exit_j]
+        done = False
         for j in range(fill_j, exit_j + 1):
-            if h_low[j] <= stop_lv:          # conservative: stop checked first
-                outcome, exit_px, exit_j = "stop", stop_lv, j
+            subs = granular(j)
+            start = fill_k if j == fill_j else 0
+            for sh, sl in subs[start:]:
+                if sl <= stop_lv:            # conservative: stop checked first
+                    outcome, exit_px, exit_j = "stop", stop_lv, j
+                    done = True
+                    break
+                if sh >= sell_lv:
+                    outcome, exit_px, exit_j = "win", sell_lv, j
+                    done = True
+                    break
+            if done:
                 break
-            if h_high[j] >= sell_lv:
-                outcome, exit_px, exit_j = "win", sell_lv, j
-                break
-        pnl = exit_px - buy_lv
+        pnl = exit_px - buy_lv - params.get("cost_per_trade_usd", 0.0)
         t["pnl"] += pnl
         if outcome == "win":
             t["wins"] += 1
@@ -316,7 +362,12 @@ def main():
     params_path = sys.argv[1] if len(sys.argv) > 1 else DEFAULT_PARAMS
     params = load_params(params_path)
     data = json.loads(HISTORY.read_text())
-    result = run(params, data)
+    m15_map = None
+    if len(sys.argv) > 3 and sys.argv[3] != "-":
+        first_ts = data["gold_hourly"]["ts"][0]
+        m15_map = load_m15(sys.argv[3], min_ts=first_ts)
+    result = run(params, data, m15_map)
+    result["m15_resolution_hours"] = len(m15_map) if m15_map else 0
     result["params"] = params
     out = json.dumps(result, indent=2)
     print(out)
