@@ -4,7 +4,7 @@ Market OPEN (reopened Sun 22:00 UTC). Technicals from Friday 24 Jul close (Dukas
 spot from weekend WebSearch. Data quality: DEGRADED (no live reopen tick found; latest
 timestamped quote is Sun 14:23 UTC — ~8h stale at posting).
 
-**Spot: ~$4,066.38** (Sun 14:23 UTC, JM Bullion/Kitco) · Friday close $4,051.51 (Kitco) / $4,049.12 (Dukascopy bid)
+**Spot: n/a — reopen tick UNVERIFIED** (see 23:45 delta) · Friday close $4,051.51 (Kitco) / $4,049.12 (Dukascopy bid)
 **Bias into Monday: BEARISH (medium confidence, composite −65)** — with one honest conflict flagged below.
 
 **BEST BUY:  ~$4,021–4,022** — confluence: classic pivot S1 $4,022.34 + Friday's low
@@ -28,7 +28,13 @@ StochRSI 32 = between 20 and 80 → **HOLD zone, no entry signal**. If price rea
 - Tue 28 Jul: Netanyahu–Trump Iran meeting (unscheduled headline risk).
 
 ## Learning
-Weekend entry (25 Jul, bearish, composite −45) **partial score vs corrected baseline** $4,051.51 (Kitco Friday close): latest observed $4,066.38 = **+0.37% → tracking WRONG so far** (bearish call, price up beyond the +0.15% miss threshold). Not finalized — scores lock against Monday's close. Note: that entry's own spot anchor (4,066) was the value later corrected to 4,051.51; two-source rule now in force. Weights unchanged (tech/macro/news = 1.0, n=0 scored).
+Weekend entry (25 Jul, bearish, composite −45) partial score: **n/a — RETRACTED at 23:45 UTC.** The first pass scored it "+0.37% tracking WRONG" against a $4,066.38 weekend quote that subsequently FAILED the two-source rule (see delta below). No verified post-Friday price exists yet; the entry scores against Monday's verified close. Weights unchanged (tech/macro/news = 1.0, n=0 scored).
+
+## DELTA — 23:45 UTC scan (second Sunday firing)
+- **Spot verification failed.** The $4,066.38 "Sun 14:23 UTC" quote (JM Bullion via news collector) conflicts with the Kitco/Investing family showing Friday spot $4,052.70–4,055.82. The only "Jul 26" print found is **$4,052.845 (Investing.com, single source, unconfirmed)** — within pennies of Friday's late spot, i.e. most likely a stale snapshot, not a live reopen tick. This is the same ~$4,066 stale-artifact family that caused the 25 Jul anchor error which created the two-source rule. Working anchor remains **Friday close ~$4,051.5**; reopen spot = **n/a**.
+- If the unconfirmed $4,052.85 print IS live, price sits exactly on the $4,052 pivot-P + Fib 61.8% magnet — consistent with the bearish reopen read, but we do not trade on a single unverified quote.
+- No new Iran headlines found in this pass beyond the 22:45 sweep. Bias, scores, and zones **unchanged** (bearish −65).
+- Next scan: Monday 00:42 UTC (weekday hourly routine), when Dukascopy Monday data and live quotes should let us verify the reopen properly.
 
 Risk note: at 20:1 leverage a 5% adverse move wipes 100% of margin. Reference levels, not fills; not financial advice.
 
