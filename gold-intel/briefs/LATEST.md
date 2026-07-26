@@ -1,21 +1,35 @@
-# Gold Hourly Brief — 2026-07-25 ~12:00 UTC (WEEKEND EDITION)
+# Gold Hourly Brief — 2026-07-26 ~22:45 UTC (SUNDAY MARKET REOPEN)
 
-Market CLOSED (Saturday). Data is Friday 24 July's close; next open Sunday 22:00 UTC.
-Data quality: DEGRADED (WebSearch-based — Actions data pipeline not yet active on main).
+Market OPEN (reopened Sun 22:00 UTC). Technicals from Friday 24 Jul close (Dukascopy);
+spot from weekend WebSearch. Data quality: DEGRADED (no live reopen tick found; latest
+timestamped quote is Sun 14:23 UTC — ~8h stale at posting).
 
-**Spot (Fri close area): ~$4,066** · week range $3,960–$4,140 · below 200-day SMA (~$4,479)
-**Bias into the reopen: BEARISH (medium confidence, composite −45)**
+**Spot: ~$4,066.38** (Sun 14:23 UTC, JM Bullion/Kitco) · Friday close $4,051.51 (Kitco) / $4,049.12 (Dukascopy bid)
+**Bias into Monday: BEARISH (medium confidence, composite −65)** — with one honest conflict flagged below.
 
-**BEST BUY:  ~$4,000–4,002** — confluence: $4,000 round-number/psychological floor + $4,002/$4,020 prior support cluster (documented battleground level)
-**BEST SELL: ~$4,133–4,148** — confluence: key supply zone $4,133–4,168 + H4 bearish invalidation at $4,148 + $4,140 weekly high
+**BEST BUY:  ~$4,021–4,022** — confluence: classic pivot S1 $4,022.34 + Friday's low
+**BEST SELL: ~$4,073–4,083** — confluence: 5-day Fib 50% $4,073.85 + pivot R1 $4,083.23
+First magnet below: **$4,052** cluster (pivot P $4,052.39 + Fib 61.8% $4,052.16) — spot sits above it; a reopen fade would likely test it first. ATR14(1h): $12.37.
 
-- Technicals (−25, degraded): bearish daily regime (price below 200-day SMA, June death cross intact); daily RSI ~34 — weak but not yet oversold; sellers control below $4,148.
-- Macro (−30): DXY firm ~101; 10Y real yield 2.42% (highest since Jan 2025); hawkish Warsh Fed — **FOMC Wednesday 29 July, ~63.5% hold priced**; ADP, claims, Q2 GDP also next week → high-volatility week.
-- News (+10): Hormuz escalation risk still caps downside; PBoC bought 14.9t in June (20-month streak, dip-buying); offset by Western ETF outflows (June −$8.9bn).
+## Scores
+- **Tech (−20)**: GCI 2.0 price-side = −20 (long tide: close $4,049 far below SMA1000h $4,195 → −25; medium tide: barely above SMA200h $4,048 → +15; 3-candle falling → −10; StochRSI 32 = mid-range → 0 per extremes-only rule; no Fib+oscillator confluence). RSI14(1h) 44. No FOMC event mask active yet (Wednesday).
+- **Macro (−35)**: DXY firm ~101.3 (bearish); 10Y 4.69%, real-yield read stale/unverified; oil war premium unwinding — Brent fell ~4% Friday on talks (bearish for gold via the inflation channel); S&P futures risk-on Sunday (bearish). FOMC odds: sources conflict — one collector read ~46.5% hike / 53.5% hold for July, the other ~25% hike / ~75% hold (38% was for later 2026). Either way hold is the base case and hike odds are sharply UP on the oil spike → hawkish repricing, bearish.
+- **News (−10)**: The weekend story is **US–Iran DE-ESCALATION**: strikes on hold after 13 days, Trump reports "very good" weekend talks, possible "good news" coming (bearish — war premium unwinds). Residual bullish offsets: Hormuz disruption unresolved, Waltz says "all options on the table", Netanyahu at the White House Tuesday 28 Jul (re-escalation risk).
 
-Learning: first entry — no scored predictions yet (n=0), weights tech/macro/news = 1.0/1.0/1.0.
-Event mask next week: Wed 29 Jul 18:00 UTC FOMC + presser — technical signals near that window are unreliable.
+**Honest conflict — WAR_DEESC live test:** our converged signal table (SIGNALS.md round 2) found war ESCALATION spikes fade (5/5 negative 1h→6h drift) — the inversion pattern. The mirrored provisional read is that de-escalations have NOT reliably produced the "obvious" selloff either. Tonight is the first out-of-sample WAR_DEESC observation: the conventional tape read says bearish (and macro agrees), the inversion caution says don't over-trust the obvious direction. We log it and score it Monday — this is exactly what the live journal is for.
 
-Risk note: at 20:1 leverage a 5% adverse move wipes 100% of margin. These are technical reference levels, not guaranteed fills, and not financial advice.
+## Rules check (TRADING_RULES.md)
+StochRSI 32 = between 20 and 80 → **HOLD zone, no entry signal**. If price reaches the $4,021–22 buy confluence AND StochRSI(1h) prints ≤20, that's the setup; long-tide is DOWN, so per the tide gate keep size small (0.1 oz) and never-sell-at-loss discipline requires the margin buffer sized for a $200+ adverse move.
 
-Sources: [Vantage 24 Jul analysis](https://www.vantagemarkets.com/market-analysis/xauusd-price-today-gold-analysis-july-24-2026/), [EBC technical map](https://www.ebc.com/forex/xauusd-technical-map-support-resistance-and-amp-trade-ideas), [LiteFinance forecast](https://www.litefinance.org/blog/analysts-opinions/gold-price-prediction-forecast/daily-and-weekly/), [Investing.com XAU/USD](https://www.investing.com/currencies/xau-usd), plus RESEARCH.md agent findings.
+## Week ahead (event masks)
+- Mon 27 Jul 12:30 UTC: Durable Goods (f +1.6%)
+- **Wed 29 Jul 18:00 UTC: FOMC decision** + 18:30 presser (Warsh; non-SEP). Tech signals ±6h → halved.
+- Thu 30 Jul 12:30 UTC: Q2 advance GDP (f 2.3%), June core PCE (f 2.6% y/y), claims — the week's data barrage.
+- Tue 28 Jul: Netanyahu–Trump Iran meeting (unscheduled headline risk).
+
+## Learning
+Weekend entry (25 Jul, bearish, composite −45) **partial score vs corrected baseline** $4,051.51 (Kitco Friday close): latest observed $4,066.38 = **+0.37% → tracking WRONG so far** (bearish call, price up beyond the +0.15% miss threshold). Not finalized — scores lock against Monday's close. Note: that entry's own spot anchor (4,066) was the value later corrected to 4,051.51; two-source rule now in force. Weights unchanged (tech/macro/news = 1.0, n=0 scored).
+
+Risk note: at 20:1 leverage a 5% adverse move wipes 100% of margin. Reference levels, not fills; not financial advice.
+
+Sources: Kitco, JM Bullion (spot); FX Leaders (oil week recap); Washington Post / CNN / Fox / The National / Deccan Herald (Iran, 26 Jul); IndexBox / CME / Polymarket (Fed odds); Markets Today / Seeking Alpha (calendar); Dukascopy (Friday technicals).
