@@ -28,3 +28,22 @@ were round-hour stamped — the inversion could be an artifact), WAR split
 escalation/de-escalation with 0-1h/1-6h/6-24h phases, CPI by signed
 surprise, NFP/FOMC at 1h with quantified surprise, equity shocks to n=15+
 via mechanical -1.5% trigger, DXY/real-yield controls on every event.
+
+## GCI 2.0 (25 Jul, evening) — the fused index
+
+Components (weights earned by measurement, not belief): long tide SMA1000h
+(+/-25) · medium tide SMA200h — the April recovery detector (+/-15) ·
+USER 3-CANDLE RULE, empirically confirmed 55.6%/49.9% next-day (+/-10) ·
+StochRSI extremes only (+/-15) · Fib confluence (+/-10) · CPI/equity/
+personnel event terms · FOMC/war/tariff +/-6h confidence halving ·
+BAD-NEWS ASYMMETRY (user rule): any hostile event within 24h caps the
+index at +25 — bad news means smaller bets, never bigger.
+
+Calibration (fwd 24h, 12 months): >=+40 bucket +0.293%/day, 62.0% positive
+— MONOTONIC top (v1 anomaly fixed). April now opens correctly (17
+favorable hours, +0.999% mean — the missed +$19 becomes reachable).
+REMAINING WEAKNESS, stated plainly: war-whipsaw months still generate
+false favorable hours (Mar: 109 hrs at -1.2% mean; May: 36 at -1.0%) —
+the index alone is not sufficient in violent months; the world-aware
+trader agent remains the final gate (its March run: 0 takes, correct).
+In-sample calibration; live journal provides the honest test.
