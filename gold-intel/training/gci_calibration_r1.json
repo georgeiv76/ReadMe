@@ -1,0 +1,27 @@
+{
+ "<=-40": {
+  "hours": 521,
+  "mean_fwd_24h_pct": -0.17,
+  "pct_positive": 46.1
+ },
+ "-40..-15": {
+  "hours": 1400,
+  "mean_fwd_24h_pct": -0.186,
+  "pct_positive": 46.5
+ },
+ "-15..+15": {
+  "hours": 360,
+  "mean_fwd_24h_pct": -0.19,
+  "pct_positive": 41.9
+ },
+ "+15..+40": {
+  "hours": 2004,
+  "mean_fwd_24h_pct": 0.358,
+  "pct_positive": 61.2
+ },
+ ">=+40": {
+  "hours": 593,
+  "mean_fwd_24h_pct": -0.026,
+  "pct_positive": 55.5
+ }
+}
