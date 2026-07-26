@@ -47,3 +47,34 @@ false favorable hours (Mar: 109 hrs at -1.2% mean; May: 36 at -1.0%) —
 the index alone is not sufficient in violent months; the world-aware
 trader agent remains the final gate (its March run: 0 takes, correct).
 In-sample calibration; live journal provides the honest test.
+
+## ROUND 2 — FINAL (study CONVERGED, loop closed 26 Jul)
+
+Timestamp audit done (Epic Fury 13:00->03:30 UTC; wire times on war events;
+equity shocks mechanical n=11; CPI/NFP split by signed surprise).
+
+DEAD (stable negative knowledge):
+- CPI direction "80%" — was selection bias; signed-surprise split = coin
+  flip at the smallest z of any class. CPI = volatility flag only.
+- Equity-shock safe-haven bid — REVERSED: gold FELL after 7/11 shocks
+  (mean -0.55%/6h; liquidation selling concentrated in hours 1-6). Never
+  buy gold into an equity crash intraday.
+- CB_GOLD headlines — strongest null in the dataset (n=14). Fully priced.
+- TARIFF direction — vol without sign (SCOTUS repeal rallied gold +1.27%
+  against hypothesis).
+
+SURVIVED (with honest caveats):
+- WAR_ESC inversion — held under verified timestamps: 4/5 down at 6h, and
+  5/5 negative in the 1-6h phase after the initial spike (Epic Fury: +2.1%
+  knee-jerk then fade). PROVISIONAL RULE: "fade the escalation spike 1h->6h,
+  stop above the 1h high, reduced size" — n=5, needs 3-4 out-of-sample
+  escalations to promote or kill.
+- NFP asymmetry (new) — misses lifted gold 4/4 at 1h AND 6h (p=0.0625);
+  beats only weakly depress (4/6). Tentative.
+- Warsh nomination -3.7%/6h z=3.6: largest shock measured; n=1 anecdote.
+
+VERDICT: every remaining question is sample-size-bound — no re-analysis can
+move these p-values, only future events. Loop CLOSED; WAR_ESC and NFP_MISS
+enter passive out-of-sample tracking in the live hourly briefs. GCI event
+weights updated implication: CPI terms downgraded to vol-flag; equity-shock
+term flips from +10 bid to caution.
