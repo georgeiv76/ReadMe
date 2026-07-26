@@ -59,6 +59,11 @@ def main():
             meas[f"move_{h}h_pct"] = round(mv, 3)
             z = zscore(i, h, mv)
             meas[f"z_{h}h"] = round(z, 2) if z is not None else None
+        # phase decomposition: spike (0-1h), digestion (1-6h), resolution (6-24h)
+        j1, j6, j24 = min(i+1, n-1), min(i+6, n-1), min(i+24, n-1)
+        meas["phase_0_1h"] = round((C[j1]-C[i])/C[i]*100, 3)
+        meas["phase_1_6h"] = round((C[j6]-C[j1])/C[j1]*100, 3)
+        meas["phase_6_24h"] = round((C[j24]-C[j6])/C[j6]*100, 3)
         results.append({**ev, "measured": True, "price_at_event": round(C[i], 2), **meas})
 
     by_type = {}
